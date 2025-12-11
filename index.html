@@ -163,15 +163,15 @@
                 { id: 2, label: "Rescue lost applications" }
             ];
 
-            // Auto-advance timer
-            useEffect(() => {
-                if (!isPaused) {
-                    intervalRef.current = setInterval(() => {
-                        setActiveTab(prev => (prev + 1) % 3);
-                    }, 9000);
-                }
-                return () => clearInterval(intervalRef.current);
-            }, [isPaused]);
+//             // Auto-advance timer
+//             useEffect(() => {
+//                 if (!isPaused) {
+//                     intervalRef.current = setInterval(() => {
+//                         setActiveTab(prev => (prev + 1) % 3);
+//                     }, 9000);
+//                 }
+//                 return () => clearInterval(intervalRef.current);
+//             }, [isPaused]);
 
             const handleTabClick = (index) => {
                 setActiveTab(index);
