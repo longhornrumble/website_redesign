@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>MyRecruiter - Never Miss Another Volunteer or Donor</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -12,6 +15,9 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
                     colors: {
                         emerald: {
                             50: '#e8f9f3',
@@ -30,6 +36,11 @@
             }
         }
     </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>
@@ -711,10 +722,10 @@
             return (
                 <div className="min-h-screen bg-white text-slate-900">
                     <style>{`
-                        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap');
+                        /* Old fonts removed - using Plus Jakarta Sans */
 
-                        * { font-family: 'DM Sans', sans-serif; }
-                        .font-display { font-family: 'Fraunces', serif; }
+                        * { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+                        .font-display { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; }
                         
                         .gradient-text {
                             background: linear-gradient(135deg, #75dbb7 0%, #50C878 50%, #3da060 100%);
@@ -802,13 +813,14 @@
                                 </div>
 
                                 {/* CTA Button - improved padding and styling */}
-                                <div className="flex items-center">
+                                <div className="flex items-center gap-8">
+                                    <a href="#" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-white/80 hover:text-white'}`}>Log In</a>
                                     <button className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
                                         isScrolled 
                                             ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm hover:shadow-md' 
                                             : 'bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg'
                                     }`}>
-                                        Get a Demo
+                                        Book a Demo
                                     </button>
                                 </div>
                             </div>
@@ -1057,7 +1069,7 @@
                                 <div className="text-center mb-12">
                                     <span className="text-emerald-200 font-semibold text-sm tracking-wide uppercase">Real Results — Austin Angels</span>
                                     <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
-                                        From 3 to 26 volunteers a month — <span className="text-emerald-400">with <span className="font-extrabold">zero new staff</span>.</span>
+                                        From 3 to 26 volunteers in their first month<br /><span className="text-emerald-400">— with <span className="font-extrabold">zero new staff</span>.</span>
                                     </h2>
                                 </div>
                             </FadeIn>
@@ -1065,7 +1077,7 @@
                             <FadeIn delay={100}>
                                 <div className="grid md:grid-cols-4 gap-8 mb-24 max-w-5xl mx-auto">
                                     {[
-                                        { value: "767%", label: "increase in volunteer signups", sub: "From 3 to 26 per month" },
+                                        { value: "767%", label: "increase in volunteer signups", sub: "in their first month" },
                                         { value: "90%", label: "reduction in admin burden", sub: "Staff free to focus on mission" },
                                         { value: "125", label: "touchpoints automated", sub: "No staff needed" },
                                         { value: "2×", label: "conversation volume", sub: "Across every channel" }
