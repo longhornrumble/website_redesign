@@ -154,10 +154,7 @@
         // ============================================
         function DashboardCarousel() {
             const [activeTab, setActiveTab] = useState(0);
-            const [isPaused, setIsPaused] = useState(false);
-            const [showSwipeHint, setShowSwipeHint] = useState(true);
             const [touchStart, setTouchStart] = useState(null);
-            const intervalRef = useRef(null);
 
             const tabs = [
                 { id: 0, label: "Know what's working" },
@@ -175,7 +172,6 @@
                 const diff = touchStart - touchEnd;
 
                 if (Math.abs(diff) > 50) {
-                    setShowSwipeHint(false);
                     if (diff > 0) {
                         // Swipe left - next slide
                         setActiveTab(prev => (prev + 1) % 3);
@@ -183,23 +179,20 @@
                         // Swipe right - previous slide
                         setActiveTab(prev => (prev - 1 + 3) % 3);
                     }
-                    // Scroll to slide content top
-                    document.getElementById('carousel-slides')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Scroll to slide eyebrow/kicker
+                    setTimeout(() => {
+                        document.getElementById('slide-eyebrow')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 50);
                 }
                 setTouchStart(null);
             };
 
             const handleTabClick = (index) => {
                 setActiveTab(index);
-                setShowSwipeHint(false);
             };
 
             return (
-                <section 
-                    className="py-16 sm:py-24 bg-slate-900"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                >
+                <section className="py-16 sm:py-24 bg-slate-900">
                     <div className="max-w-6xl mx-auto px-6">
                         <FadeIn>
                             <div className="text-center mb-12">
@@ -242,19 +235,6 @@
                             ))}
                         </div>
 
-                        {/* Swipe Hint - Mobile Only */}
-                        {showSwipeHint && (
-                            <div className="flex sm:hidden justify-center items-center gap-2 text-slate-500 text-xs mb-4">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                                </svg>
-                                <span>Swipe to explore</span>
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </div>
-                        )}
-
                         {/* Slide Content */}
                         <div
                             id="carousel-slides" className="min-h-[600px] lg:h-[800px] overflow-visible lg:overflow-hidden"
@@ -272,22 +252,19 @@
                             )}
                         </div>
 
-                        {/* Swipe Hint - Mobile Only (Bottom) */}
-                        {showSwipeHint && (
-                            <div className="flex sm:hidden justify-center items-center gap-2 text-slate-500 text-xs mt-8">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                                </svg>
-                                <span>Swipe to explore</span>
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </div>
-                        )}
-
-                        {/* Section CTA */}
+                        {/* Section CTA with Swipe Hint */}
                         <FadeIn delay={300}>
                             <div className="text-center mt-12">
+                                {/* Swipe Hint - Mobile Only */}
+                                <div className="flex sm:hidden justify-center items-center gap-2 text-slate-500 text-xs mb-6">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                                    </svg>
+                                    <span>Swipe to explore</span>
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </div>
                                 <a
                                     href="#results"
                                     className="inline-flex items-center flex-wrap text-emerald-400 font-medium text-lg hover:text-white transition-colors group"
@@ -314,7 +291,7 @@
             return (
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
-                        <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Put More Toward Your Mission</span>
+                        <span id="slide-eyebrow" className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Put More Toward Your Mission</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
                             See where supporters come from — and focus your effort where it counts.
                         </h2>
@@ -384,7 +361,7 @@
             return (
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
-                        <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Nothing Slips Through</span>
+                        <span id="slide-eyebrow" className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Nothing Slips Through</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
                             See every question. Capture every opportunity.
                         </h2>
@@ -456,7 +433,7 @@
             return (
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
-                        <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Rescue Lost Volunteers</span>
+                        <span id="slide-eyebrow" className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Rescue Lost Volunteers</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
                             They wanted to help. They got stuck.
                         </h2>
