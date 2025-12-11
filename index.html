@@ -859,14 +859,17 @@
                                         {item.label}
                                     </a>
                                 ))}
-                                <div className="mt-8 flex flex-col items-center gap-6">
+                                <div className="mt-8 flex flex-col items-center gap-4">
                                     <a href="#" className="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
-                                    <button 
+                                    <div className="w-32 border-t border-slate-600 mt-2"></div>
+                                    <a
+                                        href="#demo"
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="px-8 py-3 bg-emerald-600 text-white rounded-full font-semibold hover:bg-emerald-700 transition-all"
+                                        className="px-6 py-2.5 bg-emerald-600 text-white rounded-full font-semibold text-sm hover:bg-emerald-700 transition-all"
                                     >
-                                        Book a Demo
-                                    </button>
+                                        Get a Personalized Demo
+                                    </a>
+                                    <p className="text-slate-400 text-xs">Purpose-built for nonprofits</p>
                                 </div>
                             </div>
                     </div>
