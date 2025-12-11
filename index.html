@@ -199,7 +199,7 @@
                         </FadeIn>
 
                         {/* Tab Navigation */}
-                        <div className="flex flex-wrap justify-center gap-2 mb-8">
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-2 sm:gap-3 mb-8">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
@@ -228,7 +228,7 @@
                         </div>
 
                         {/* Slide Content */}
-                        <div className="h-[800px] overflow-hidden">
+                        <div className="min-h-[600px] lg:h-[800px] overflow-visible lg:overflow-hidden">
                             {activeTab === 0 && (
                                 <AttributionSlide triggerKey={`attr-${activeTab}-${Date.now()}`} />
                             )}
