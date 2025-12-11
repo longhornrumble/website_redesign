@@ -1,0 +1,10 @@
+# macOS system files
+.DS_Store
+
+# Project documentation (not needed for page)
+CLAUDE.md
+
+# Reference materials
+Guides/
+MyRecruiter Screenshots/
+Webpage Mocks/
