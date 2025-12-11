@@ -264,7 +264,7 @@
         // ============================================
         function AttributionSlide({ triggerKey }) {
             return (
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
                         <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Put More Toward Your Mission</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
@@ -334,7 +334,7 @@
         // ============================================
         function ConversationsSlide({ triggerKey }) {
             return (
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
                         <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Nothing Slips Through</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
@@ -406,7 +406,7 @@
         // ============================================
         function FormsSlide({ triggerKey }) {
             return (
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div>
                         <span className="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Rescue Lost Volunteers</span>
                         <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
@@ -874,8 +874,8 @@
                     <section className="hero-gradient relative min-h-screen flex items-center pt-20">
                         <div className="absolute inset-0 noise pointer-events-none" />
                         
-                        <div className="max-w-6xl mx-auto px-6 py-20 pb-32 relative z-10">
-                            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 pb-16 sm:pb-32 relative z-10">
+                            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                                 {/* Left Column */}
                                 <FadeIn>
                                     <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
@@ -887,42 +887,42 @@
                                         Never miss another volunteer or donor inquiry again.
                                     </h1>
                                     
-                                    <p className="text-xl text-slate-300 leading-relaxed mb-6 max-w-lg">
+                                    <p className="text-lg sm:text-xl text-slate-300 leading-relaxed mb-8 sm:mb-6 max-w-lg">
                                         MyRecruiter answers every supporter question across your website, email, and social — guiding people to donate or volunteer the moment interest sparks, even when your team is off the clock.
                                     </p>
                                     
                                     {/* Proof Bar */}
-                                    <div className="flex flex-col gap-1 mb-8 text-sm">
+                                    <div className="flex flex-col gap-1 mb-10 text-sm">
                                         <span className="text-emerald-400 font-semibold">✓ 65.6% of conversations turn into action</span>
                                         <span className="text-emerald-400 font-semibold">✓ 8× more volunteer applications</span>
                                         <span className="text-emerald-400 font-semibold">✓ 50% of engagement happens after hours</span>
                                     </div>
                                     
                                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-3">
-                                        <a href="#demo" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-7 py-3.5 rounded-full font-semibold transition-all shadow-lg shadow-emerald-600/25">
+                                        <a href="#demo" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all shadow-lg shadow-emerald-600/25">
                                             Get Your Personalized Demo
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
                                         </a>
-                                        <a href="#meet-them-where-they-are" className="inline-flex items-center gap-2 text-white px-7 py-3.5 rounded-full font-medium border border-white/20 hover:bg-white/5 transition-all">
+                                        <a href="#meet-them-where-they-are" className="inline-flex items-center gap-2 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-medium text-sm sm:text-base border border-white/20 hover:bg-white/5 transition-all">
                                             Learn How It Works
                                         </a>
                                     </div>
                                     
-                                    <p className="text-slate-300 text-center lg:text-left text-sm" style={{whiteSpace: 'nowrap'}}>
+                                    <p className="text-slate-300 text-center lg:text-left text-sm" >
                                         Live in 48 hours · We handle everything · No technical skills needed
                                     </p>
                                 </FadeIn>
                                 
                                 {/* Right Column - Real Widget Screenshots */}
-                                <FadeIn delay={200} className="flex justify-center lg:justify-end">
+                                <FadeIn delay={200} className="flex justify-center lg:justify-end mt-8 lg:mt-0">
                                     <div className="relative">
                                         <div className="widget-shadow rounded-2xl overflow-hidden float-animation">
                                             <img 
                                                 src={IMAGES.austinAngels}
                                                 alt="Austin Angels chat widget" 
-                                                className="w-72 h-auto"
+                                                className="w-56 sm:w-72 h-auto"
                                             />
                                         </div>
                                         
