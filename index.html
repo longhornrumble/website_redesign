@@ -1118,7 +1118,7 @@
                             </FadeIn>
                             
                             <FadeIn delay={100}>
-                                <div className="grid md:grid-cols-4 gap-8 mb-24 max-w-5xl mx-auto">
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-16 md:mb-24 max-w-5xl mx-auto">
                                     {[
                                         { value: "767%", label: "increase in volunteer signups", sub: "in their first month" },
                                         { value: "90%", label: "reduction in admin burden", sub: "Staff free to focus on mission" },
@@ -1126,7 +1126,7 @@
                                         { value: "2×", label: "conversation volume", sub: "Across every channel" }
                                     ].map((stat, i) => (
                                         <div key={i} className="rounded-2xl p-5 text-center" style={{backgroundColor: '#F9FBFA', border: '1px solid rgba(80, 200, 120, 0.15)', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.06)'}}>
-                                            <div className="font-display font-semibold mb-2" style={{color: '#047857', fontSize: '42px'}}>{stat.value}</div>
+                                            <div className="font-display font-semibold mb-2" className="text-3xl md:text-5xl" style={{color: '#047857'}}>{stat.value}</div>
                                             <div className="text-sm mb-1" style={{color: '#0A1A2F'}}>{stat.label}</div>
                                             <div className="text-xs" style={{color: '#5C6B74'}}>{stat.sub}</div>
                                         </div>
@@ -1193,7 +1193,7 @@
                                 {/* Timeline Container */}
                                 <div className="relative">
                                     {/* Steps Grid with Sequential Pulse Indicators */}
-                                    <div className="grid md:grid-cols-2 gap-x-24 gap-y-16 relative" style={{zIndex: 1}}>
+                                    <div className="grid md:grid-cols-2 gap-8 md:gap-x-24 md:gap-y-16 relative" style={{zIndex: 1}}>
                                         {/* Step 1 - Top Left */}
                                         <div className="rounded-2xl p-8 pr-12 relative" style={{backgroundColor: '#F9FBFA', border: '1px solid rgba(80, 200, 120, 0.25)', boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.08)'}}>
                                             <div className="flex items-center gap-4 mb-4">
