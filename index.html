@@ -1491,7 +1491,7 @@
                             <div className="flex justify-center mb-8">
                                 <div className="flex flex-col md:flex-row gap-8 md:gap-20">
                                 {/* Section A - Brand Block */}
-                                <div>
+                                <div className="flex flex-col items-center md:items-start">
                                     <div className="flex items-center mb-3">
                                         <img 
                                             src={IMAGES.logoWhite}
@@ -1499,10 +1499,10 @@
                                             className="h-7 w-auto"
                                         />
                                     </div>
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-3">
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-3 text-center md:text-left">
                                         AI-powered engagement for nonprofits.
                                     </p>
-                                    <p className="text-slate-500 text-xs italic mb-4">
+                                    <p className="text-slate-500 text-xs italic mb-4 text-center md:text-left">
                                         Serving nonprofits across the U.S.
                                     </p>
                                     
@@ -1527,7 +1527,7 @@
                                 </div>
                                 
                                 {/* Section B - Navigation */}
-                                <div>
+                                <div className="text-center md:text-left">
                                     <h3 className="text-white font-semibold text-sm mb-4">Product</h3>
                                     <ul className="space-y-2.5">
                                         <li>
@@ -1559,38 +1559,38 @@
                                 </div>
                                 
                                 {/* Section C - Trust & Compliance */}
-                                <div>
+                                <div className="text-center md:text-left">
                                     <h3 className="text-white font-semibold text-sm mb-4">Security & Trust</h3>
                                     <ul className="space-y-2.5 text-slate-400 text-sm">
-                                        <li className="flex items-start gap-2">
+                                        <li className="flex items-start gap-2 justify-center md:justify-start">
                                             <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                             <span>No donor PII stored</span>
                                         </li>
-                                        <li className="flex items-start gap-2">
+                                        <li className="flex items-start gap-2 justify-center md:justify-start">
                                             <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                             <span>Encrypted in transit & at rest</span>
                                         </li>
-                                        <li className="flex items-start gap-2">
+                                        <li className="flex items-start gap-2 justify-center md:justify-start">
                                             <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                             <span>No fundraising data collected</span>
                                         </li>
-                                        <li className="flex items-start gap-2">
+                                        <li className="flex items-start gap-2 justify-center md:justify-start">
                                             <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
-                                            <span>Your data is never shared with other organizations</span>
+                                            <span>Your data is never shared</span>
                                         </li>
-                                        <li className="flex items-start gap-2">
+                                        <li className="flex items-start gap-2 justify-center md:justify-start">
                                             <svg className="w-4 h-4 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
-                                            <span>Built following SOC 2–aligned best practices</span>
+                                            <span>SOC 2–aligned best practices</span>
                                         </li>
                                     </ul>
                                 </div>
