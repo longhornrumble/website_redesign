@@ -49,34 +49,43 @@
 </head>
 <body class="bg-white text-slate-900">
     
-    <!-- Header -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-lg border-b border-slate-800">
+    <!-- Header - transitions from transparent/dark to white on scroll -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
         <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
+                <!-- Logo - swaps between white and dark versions -->
                 <div class="flex items-center w-48">
                     <a href="/">
+                        <!-- White logo (default) -->
                         <img
+                            id="logo-white"
                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQ0IiB2aWV3Qm94PSIwIDAgMTgwIDQ0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzUwQzg3OCIvPgo8cGF0aCBkPSJNMTQgMjJDMTQgMTguNjg2MyAxNi42ODYzIDE2IDE5IDE2SDI1QzI4LjMxMzcgMTYgMzEgMTguNjg2MyAzMSAyMlYyOEMzMSAzMS4zMTM3IDI4LjMxMzcgMzQgMjUgMzRIMTlDMTYuNjg2MyAzNCAxNCAzMS4zMTM3IDE0IDI4VjIyWiIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4zIi8+CjxjaXJjbGUgY3g9IjIyIiBjeT0iMjIiIHI9IjQiIGZpbGw9IndoaXRlIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMTgiIHI9IjIiIGZpbGw9IndoaXRlIiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8dGV4dCB4PSI1NiIgeT0iMzAiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0iUGx1cyBKYWthcnRhIFNhbnMsIHN5c3RlbS11aSwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjYwMCI+TXlSZWNydWl0ZXI8L3RleHQ+Cjwvc3ZnPgo="
                             alt="MyRecruiter"
                             class="h-11 w-auto"
+                        />
+                        <!-- Dark logo (scrolled) -->
+                        <img
+                            id="logo-dark"
+                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQ0IiB2aWV3Qm94PSIwIDAgMTgwIDQ0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzUwQzg3OCIvPgo8cGF0aCBkPSJNMTQgMjJDMTQgMTguNjg2MyAxNi42ODYzIDE2IDE5IDE2SDI1QzI4LjMxMzcgMTYgMzEgMTguNjg2MyAzMSAyMlYyOEMzMSAzMS4zMTM3IDI4LjMxMzcgMzQgMjUgMzRIMTlDMTYuNjg2MyAzNCAxNCAzMS4zMTM3IDE0IDI4VjIyWiIgZmlsbD0iIzFmMjkzNyIgZmlsbC1vcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iMjIiIGN5PSIyMiIgcj0iNCIgZmlsbD0iIzFmMjkzNyIvPgo8Y2lyY2xlIGN4PSIzMCIgY3k9IjE4IiByPSIyIiBmaWxsPSIjMWYyOTM3IiBmaWxsLW9wYWNpdHk9IjAuNiIvPgo8dGV4dCB4PSI1NiIgeT0iMzAiIGZpbGw9IiMxZjI5MzciIGZvbnQtZmFtaWx5PSJQbHVzIEpha2FydGEgU2Fucywgc3lzdGVtLXVpLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmb250LXdlaWdodD0iNjAwIj5NeVJlY3J1aXRlcjwvdGV4dD4KPC9zdmc+Cg=="
+                            alt="MyRecruiter"
+                            class="h-11 w-auto hidden"
                         />
                     </a>
                 </div>
 
                 <!-- Navigation Links - Desktop -->
                 <div class="hidden lg:flex items-center gap-12">
-                    <a href="/#meet-them-where-they-are" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">How It Works</a>
-                    <a href="/#results" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Results</a>
-                    <a href="/#pricing" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
-                    <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Blog</a>
-                    <a href="#book" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+                    <a href="/#meet-them-where-they-are" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">How It Works</a>
+                    <a href="/#results" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Results</a>
+                    <a href="/#pricing" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
+                    <a href="#" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Blog</a>
+                    <a href="#book" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
                 </div>
 
                 <!-- CTA - Desktop -->
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Log In</a>
-                    <a href="#book" class="px-6 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 text-white hover:bg-emerald-400 transition-all">
+                    <a href="#" id="login-link" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Log In</a>
+                    <a href="#book" id="cta-btn" class="px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg transition-all">
                         Book a Demo
                     </a>
                 </div>
@@ -84,9 +93,9 @@
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
                     <div class="flex flex-col gap-1.5">
-                        <span class="block w-6 h-0.5 bg-current transition-all"></span>
-                        <span class="block w-4 h-0.5 bg-current transition-all"></span>
-                        <span class="block w-5 h-0.5 bg-current transition-all"></span>
+                        <span id="hamburger-1" class="block w-6 h-0.5 bg-current transition-all"></span>
+                        <span id="hamburger-2" class="block w-4 h-0.5 bg-current transition-all"></span>
+                        <span id="hamburger-3" class="block w-5 h-0.5 bg-current transition-all"></span>
                     </div>
                 </button>
             </div>
@@ -114,11 +123,69 @@
     </div>
 
     <script>
-        // Mobile menu toggle
+        // Elements
+        const nav = document.getElementById('main-nav');
+        const logoWhite = document.getElementById('logo-white');
+        const logoDark = document.getElementById('logo-dark');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const loginLink = document.getElementById('login-link');
+        const ctaBtn = document.getElementById('cta-btn');
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const hamburger1 = document.getElementById('hamburger-1');
+        const hamburger2 = document.getElementById('hamburger-2');
+        const hamburger3 = document.getElementById('hamburger-3');
         let menuOpen = false;
+        let isScrolled = false;
 
+        // Scroll handler - transition to white header
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const shouldBeScrolled = scrollY > 50;
+
+            if (shouldBeScrolled !== isScrolled) {
+                isScrolled = shouldBeScrolled;
+
+                if (isScrolled) {
+                    // White header state
+                    nav.classList.remove('bg-transparent');
+                    nav.classList.add('bg-white/95', 'backdrop-blur-lg', 'border-b', 'border-slate-200/80');
+                    logoWhite.classList.add('hidden');
+                    logoDark.classList.remove('hidden');
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-slate-300', 'hover:text-white');
+                        link.classList.add('text-slate-700', 'hover:text-emerald-600');
+                    });
+                    loginLink.classList.remove('text-white/80', 'hover:text-white');
+                    loginLink.classList.add('text-slate-600', 'hover:text-slate-900');
+                    ctaBtn.classList.remove('bg-white', 'text-emerald-600', 'hover:bg-emerald-50');
+                    ctaBtn.classList.add('bg-emerald-600', 'text-white', 'hover:bg-emerald-700', 'shadow-sm', 'hover:shadow-md');
+                    menuBtn.classList.remove('text-white');
+                    menuBtn.classList.add('text-slate-800');
+                } else {
+                    // Transparent/dark header state
+                    nav.classList.add('bg-transparent');
+                    nav.classList.remove('bg-white/95', 'backdrop-blur-lg', 'border-b', 'border-slate-200/80');
+                    logoWhite.classList.remove('hidden');
+                    logoDark.classList.add('hidden');
+                    navLinks.forEach(link => {
+                        link.classList.add('text-slate-300', 'hover:text-white');
+                        link.classList.remove('text-slate-700', 'hover:text-emerald-600');
+                    });
+                    loginLink.classList.add('text-white/80', 'hover:text-white');
+                    loginLink.classList.remove('text-slate-600', 'hover:text-slate-900');
+                    ctaBtn.classList.add('bg-white', 'text-emerald-600', 'hover:bg-emerald-50');
+                    ctaBtn.classList.remove('bg-emerald-600', 'text-white', 'hover:bg-emerald-700', 'shadow-sm', 'hover:shadow-md');
+                    menuBtn.classList.add('text-white');
+                    menuBtn.classList.remove('text-slate-800');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial state
+
+        // Mobile menu toggle
         menuBtn.addEventListener('click', () => {
             menuOpen = !menuOpen;
             if (menuOpen) {
@@ -143,29 +210,36 @@
     <!-- Hero -->
     <section class="pt-32 sm:pt-40 pb-16 sm:pb-24 bg-slate-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
-            
+            <!-- Hero copy -->
             <div class="text-center">
-                <div class="mb-8 flex justify-center">
-                    <div class="w-20 h-20 rounded-full bg-slate-800 border-4 border-emerald-500/30 flex items-center justify-center">
-                        <span class="text-slate-400 text-xs font-medium">Photo</span>
-                    </div>
-                </div>
-                
                 <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Meet with the founder</span>
                 
                 <h1 class="font-display text-4xl sm:text-5xl font-semibold text-white mt-3 mb-6 leading-tight">
                     Let’s see how MyRecruiter can support your mission
                 </h1>
                 
-                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto mb-4">
-                    In this 30‑minute consultative demo, we’ll get to know your organization, your team, and how you’re currently spreading the word about your mission — then I’ll walk you through a tailored experience of how our AI assistant can help.
-                </p>
-                
-                <p class="text-sm text-slate-400">
-                    I’m Chris Miller, a lifelong technologist and foster‑adoptive dad to four incredible siblings. After seeing firsthand how nonprofits showed up for our family with mentors, tutors, and support, I created MyRecruiter to help organizations like yours reach more people who need you.
+                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    In this 30‑minute consultative demo, we’ll get to know your organization, your team, and how you’re currently spreading the word about your mission — then I’ll walk you through a tailored experience of how our AI assistant can help. You’ll leave with a clear, personalized view of whether MyRecruiter is a good fit and what it could do for your team.
                 </p>
             </div>
-            
+
+            <!-- Founder card -->
+            <div class="mt-10 bg-slate-800/60 border border-slate-700 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6">
+                <div class="w-24 h-24 rounded-full bg-slate-800 border-4 border-emerald-500/40 flex items-center justify-center flex-shrink-0">
+                    <span class="text-slate-400 text-xs font-medium">Photo</span>
+                </div>
+                <div class="text-center sm:text-left">
+                    <p class="text-sm sm:text-base font-semibold text-white">Chris Miller</p>
+                    <div class="mt-1 flex flex-wrap justify-center sm:justify-start gap-3 text-[11px] sm:text-xs text-slate-400">
+                        <span>Founder</span>
+                        <span>Foster-adoptive dad to four siblings</span>
+                        <span>Lifelong technologist</span>
+                    </div>
+                    <p class="text-sm text-slate-300 mt-4 leading-relaxed">
+                        I’m Chris Miller, a lifelong technologist and foster‑adoptive dad to four incredible siblings. After seeing firsthand how nonprofits showed up for our family with mentors, tutors, and support, I created MyRecruiter to help organizations like yours reach more people who need you.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -187,16 +261,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                     <p class="text-slate-700 leading-relaxed">
-                        You're responsible for hiring, volunteer recruitment, or community engagement
-                    </p>
-                </div>
-
-                <div class="bg-white border border-slate-200 rounded-xl p-6 flex gap-4 shadow-sm hover:shadow-md transition-shadow">
-                    <svg class="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <p class="text-slate-700 leading-relaxed">
-                        Your website gets a steady stream of visitors, but you're not sure they're converting
+                        You’re responsible for volunteer recruitment, community outreach, or supporter engagement
                     </p>
                 </div>
 
@@ -214,7 +279,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                     <p class="text-slate-700 leading-relaxed">
-                        You want to see concrete examples of how other organizations are using AI assistants
+                        Your website gets a steady stream of visitors, but you're not sure they're converting
+                    </p>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-xl p-6 flex gap-4 shadow-sm hover:shadow-md transition-shadow">
+                    <svg class="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <p class="text-slate-700 leading-relaxed">
+                        You want an honest, no-pressure conversation about whether AI is actually a fit for your team right now
                     </p>
                 </div>
                 
@@ -247,7 +321,7 @@
                     <div>
                         <h3 class="text-xl font-semibold text-white mb-2">Your organization, website & goals</h3>
                         <p class="text-slate-300 leading-relaxed">
-                            We’ll look at your current site, programs, and team structure and talk through how you’re attracting candidates, volunteers, or donors today.
+                            We’ll look at your current site, programs, and team structure and talk through how you’re attracting volunteers, donors, or other supporters today.
                         </p>
                     </div>
                 </div>
@@ -301,6 +375,7 @@
                 <p class="text-slate-600 max-w-xl mx-auto">
                     Choose a slot below and you’ll get a calendar invite with a link to join. I’ll review your website ahead of time so our conversation and demo are tailored to your organization.
                 </p>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2">Times are shown in your local timezone, and you can reschedule anytime using the link in your confirmation email.</p>
             </div>
             
             <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
@@ -336,6 +411,7 @@
                 <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
                     Why teams love MyRecruiter
                 </h2>
+                <p class="text-slate-400 text-base mt-3 mb-8 text-center">For many nonprofits, these outcomes started with a single 30-minute demo conversation.</p>
             </div>
             
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 md:p-10">
