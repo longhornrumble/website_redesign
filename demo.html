@@ -2,6 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Structured Data - BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://myrecruiter.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Book a Demo",
+          "item": "https://myrecruiter.ai/demo"
+        }
+      ]
+    }
+    </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H76K3TC1FL"></script>
     <script>
@@ -17,6 +38,9 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://myrecruiter.ai/demo">
     <meta property="og:image" content="https://myrecruiter.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Book a Demo - MyRecruiter">
     <meta name="twitter:description" content="See how MyRecruiter helps nonprofits find volunteers and donors 24/7.">
