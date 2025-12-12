@@ -1,0 +1,383 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const whoThisIsForItems = [
+    "You're responsible for volunteer recruitment, community outreach, or supporter engagement",
+    "Your team spends time answering repeat questions by email or phone",
+    "Your website gets a steady stream of visitors, but you're not sure they're converting",
+    "You want an honest, no-pressure conversation about whether AI is actually a fit for your team right now"
+];
+
+const agendaItems = [
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>`,
+        title: "Your organization, website & goals",
+        description: "We'll look at your current site, programs, and team structure and talk through how you're attracting volunteers, donors, or other supporters today."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`,
+        title: "How the AI assistant fits in",
+        description: "I'll show you a curated walkthrough of MyRecruiter that's tailored to your programs — how it answers questions, routes people to the right forms, and works alongside your existing tools."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`,
+        title: "Plan, pricing & next steps",
+        description: "Together we'll outline a realistic plan, timeline, and investment — including whether MyRecruiter is the right fit for your organization and what it would take to go live."
+    }
+];
+
+const stats = [
+    { value: "10%", label: "of site visitors engage with the assistant" },
+    { value: "20-30%", label: "of conversations convert into leads" },
+    { value: "60%", label: "of activity happens outside office hours" }
+];
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://myrecruiter.ai/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Book a Demo",
+            "item": "https://myrecruiter.ai/demo"
+        }
+    ]
+};
+---
+
+<Layout
+    title="Book a Demo - MyRecruiter"
+    description="Book a personalized demo of MyRecruiter - AI engagement platform for nonprofits."
+    canonical="https://myrecruiter.ai/demo"
+>
+    <Fragment slot="head">
+        <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    </Fragment>
+
+    <!-- Header - Demo page specific with scroll effect -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center w-48">
+                    <a href="/">
+                        <img
+                            id="logo-white"
+                            src="/images/logo-white.webp"
+                            alt="MyRecruiter"
+                            class="h-11 w-auto"
+                            width="200"
+                            height="44"
+                        />
+                        <img
+                            id="logo-dark"
+                            src="/images/logo.webp"
+                            alt="MyRecruiter"
+                            class="h-11 w-auto hidden"
+                            width="200"
+                            height="44"
+                        />
+                    </a>
+                </div>
+
+                <!-- Navigation Links - Desktop -->
+                <div class="hidden lg:flex items-center gap-12">
+                    <a href="/#meet-them-where-they-are" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">How It Works</a>
+                    <a href="/#results" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Results</a>
+                    <a href="/#pricing" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
+                    <a href="https://myrecruiter.ai/blog" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Blog</a>
+                    <a href="#book" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <!-- CTA - Desktop -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#" id="login-link" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Log In</a>
+                    <a href="#book" id="cta-btn" class="px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg transition-all">
+                        Book a Demo
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
+                    <div class="flex flex-col gap-1.5">
+                        <span id="hamburger-1" class="block w-6 h-0.5 bg-current transition-all"></span>
+                        <span id="hamburger-2" class="block w-4 h-0.5 bg-current transition-all"></span>
+                        <span id="hamburger-3" class="block w-5 h-0.5 bg-current transition-all"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-lg translate-x-full transition-transform duration-300">
+        <div class="flex flex-col items-center pt-32 gap-6 p-8">
+            <a href="/#meet-them-where-they-are" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">How It Works</a>
+            <a href="/#results" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Results</a>
+            <a href="/#pricing" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Pricing</a>
+            <a href="https://myrecruiter.ai/blog" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Blog</a>
+            <a href="#book" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Contact</a>
+
+            <div class="mt-8 flex flex-col items-center gap-4">
+                <a href="#" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
+                <div class="w-32 border-t border-slate-600 mt-2"></div>
+                <a href="#book" class="mobile-menu-link px-6 py-2.5 bg-emerald-500 text-white rounded-full font-semibold text-sm hover:bg-emerald-400 transition-all">
+                    Get a Personalized Demo
+                </a>
+                <p class="text-slate-400 text-xs">Purpose-built for nonprofits</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="pt-32 sm:pt-40 pb-16 sm:pb-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center">
+                <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Meet with the founder</span>
+
+                <h1 class="font-display text-4xl sm:text-5xl font-semibold text-white mt-3 mb-6 leading-tight">
+                    Let's see how MyRecruiter can support your mission
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    In this 30-minute consultative demo, we'll get to know your organization, your team, and how you're currently spreading the word about your mission — then I'll walk you through a tailored experience of how our AI assistant can help. You'll leave with a clear, personalized view of whether MyRecruiter is a good fit and what it could do for your team.
+                </p>
+            </div>
+
+            <!-- Founder card -->
+            <div class="mt-10 bg-slate-800/60 border border-slate-700 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6">
+                <img
+                    src="/images/chris-miller-profile.png"
+                    alt="Chris Miller"
+                    class="w-24 h-24 rounded-full border-4 border-emerald-500/40 object-cover flex-shrink-0"
+                    width="96"
+                    height="96"
+                    loading="eager"
+                />
+                <div class="text-center sm:text-left">
+                    <p class="text-sm sm:text-base font-semibold text-white">Chris Miller</p>
+                    <p class="mt-1 text-[11px] sm:text-xs text-slate-400">
+                        Founder — Foster-adoptive dad to four siblings — Lifelong technologist
+                    </p>
+                    <p class="text-sm text-slate-300 mt-4 leading-relaxed">
+                        I'm Chris Miller, a lifelong technologist and foster-adoptive dad to four incredible siblings.
+                    </p>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">
+                        After seeing firsthand how nonprofits showed up for our family with mentors, tutors, and support, I created MyRecruiter to help organizations like yours reach more people who need you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who This Is For -->
+    <section class="py-16 sm:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Is This Right For You?</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3">
+                    Who this conversation is a great fit for
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                {whoThisIsForItems.map((item) => (
+                    <div class="bg-white border border-slate-200 rounded-xl p-6 flex gap-4 shadow-sm hover:shadow-md transition-shadow">
+                        <svg class="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="text-slate-700 leading-relaxed">{item}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- What We'll Cover -->
+    <section class="py-16 sm:py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">The Agenda</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
+                    What we'll cover on the call
+                </h2>
+            </div>
+
+            <div class="space-y-6">
+                {agendaItems.map((item) => (
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-6 sm:p-8 flex gap-6 hover:bg-slate-800/70 transition-all">
+                        <div class="flex-shrink-0">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                                <Fragment set:html={item.icon} />
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-2">{item.title}</h3>
+                            <p class="text-slate-300 leading-relaxed">{item.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="book" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Schedule Your Call</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    Pick a time that works for you
+                </h2>
+                <p class="text-slate-600 max-w-xl mx-auto">
+                    Choose a slot below and you'll get a calendar invite with a link to join. I'll review your website ahead of time so our conversation and demo are tailored to your organization.
+                </p>
+                <p class="text-xs sm:text-sm text-slate-500 mt-2">Times are shown in your local timezone, and you can reschedule anytime using the link in your confirmation email.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+                <iframe src="https://app.usemotion.com/meet/myrecruiter/demo" title="Motion Booking Page" width="100%" height="840px" frameborder="0" loading="lazy"></iframe>
+            </div>
+
+            <div class="mt-10 text-center">
+                <p class="text-slate-600 mb-3">
+                    Not ready to schedule? Have questions first?
+                </p>
+                <a href="mailto:sales@myrecruiter.ai" class="inline-flex items-center flex-wrap text-emerald-500 hover:text-emerald-400 font-semibold text-lg transition-colors group">
+                    Email me&nbsp;
+                    <span class="whitespace-nowrap inline-flex items-center gap-2">
+                        directly
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-16 sm:py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">Proven Results</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
+                    Why teams love MyRecruiter
+                </h2>
+                <p class="text-slate-400 text-base mt-3 mb-8 text-center">For many nonprofits, these outcomes started with a single 30-minute demo conversation.</p>
+            </div>
+
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 md:p-10">
+                <div class="grid md:grid-cols-3 gap-8 mb-10">
+                    {stats.map((stat) => (
+                        <div class="text-center">
+                            <div class="font-display text-5xl font-bold text-emerald-400 mb-2">{stat.value}</div>
+                            <p class="text-sm text-slate-300">{stat.label}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div class="border-t border-slate-700 pt-8">
+                    <svg class="w-8 h-8 text-emerald-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <p class="text-xl text-slate-200 leading-relaxed mb-4">
+                        "We had no idea how many people were trying to engage with us at night. MyRecruiter gave us 24/7 coverage and better insight into what visitors actually need."
+                    </p>
+                    <p class="text-sm text-slate-400">
+                        Executive Director, Youth-Serving Nonprofit
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<script>
+    // Demo page header scroll effect
+    const nav = document.getElementById('main-nav');
+    const logoWhite = document.getElementById('logo-white');
+    const logoDark = document.getElementById('logo-dark');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const loginLink = document.getElementById('login-link');
+    const ctaBtn = document.getElementById('cta-btn');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+    let isScrolled = false;
+
+    function handleScroll() {
+        const scrollY = window.scrollY;
+        const shouldBeScrolled = scrollY > 50;
+
+        if (shouldBeScrolled !== isScrolled) {
+            isScrolled = shouldBeScrolled;
+
+            if (isScrolled) {
+                nav?.classList.remove('bg-transparent');
+                nav?.classList.add('bg-white/95', 'backdrop-blur-lg', 'border-b', 'border-slate-200/80');
+                logoWhite?.classList.add('hidden');
+                logoDark?.classList.remove('hidden');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-slate-300', 'hover:text-white');
+                    link.classList.add('text-slate-700', 'hover:text-emerald-600');
+                });
+                loginLink?.classList.remove('text-white/80', 'hover:text-white');
+                loginLink?.classList.add('text-slate-600', 'hover:text-slate-900');
+                ctaBtn?.classList.remove('bg-white', 'text-emerald-600', 'hover:bg-emerald-50');
+                ctaBtn?.classList.add('bg-emerald-500', 'text-white', 'hover:bg-emerald-400', 'shadow-sm', 'hover:shadow-md');
+                menuBtn?.classList.remove('text-white');
+                menuBtn?.classList.add('text-slate-800');
+            } else {
+                nav?.classList.add('bg-transparent');
+                nav?.classList.remove('bg-white/95', 'backdrop-blur-lg', 'border-b', 'border-slate-200/80');
+                logoWhite?.classList.remove('hidden');
+                logoDark?.classList.add('hidden');
+                navLinks.forEach(link => {
+                    link.classList.add('text-slate-300', 'hover:text-white');
+                    link.classList.remove('text-slate-700', 'hover:text-emerald-600');
+                });
+                loginLink?.classList.add('text-white/80', 'hover:text-white');
+                loginLink?.classList.remove('text-slate-600', 'hover:text-slate-900');
+                ctaBtn?.classList.add('bg-white', 'text-emerald-600', 'hover:bg-emerald-50');
+                ctaBtn?.classList.remove('bg-emerald-500', 'text-white', 'hover:bg-emerald-400', 'shadow-sm', 'hover:shadow-md');
+                menuBtn?.classList.add('text-white');
+                menuBtn?.classList.remove('text-slate-800');
+            }
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    // Mobile menu toggle
+    menuBtn?.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+            mobileMenu?.classList.remove('translate-x-full');
+            mobileMenu?.classList.add('translate-x-0');
+        } else {
+            mobileMenu?.classList.add('translate-x-full');
+            mobileMenu?.classList.remove('translate-x-0');
+        }
+    });
+
+    // Close menu when clicking links
+    document.querySelectorAll('.mobile-menu-link').forEach(link => {
+        link.addEventListener('click', () => {
+            menuOpen = false;
+            mobileMenu?.classList.add('translate-x-full');
+            mobileMenu?.classList.remove('translate-x-0');
+        });
+    });
+</script>

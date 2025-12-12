@@ -75,6 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const premiumPrice = document.getElementById('premium-price');
     const standardNote = document.getElementById('standard-billing-note');
     const premiumNote = document.getElementById('premium-billing-note');
+    const standardCta = document.getElementById('standard-cta');
+    const premiumCta = document.getElementById('premium-cta');
+    const billingMessage = document.getElementById('billing-message');
 
     function setPricing(isAnnual) {
         if (isAnnual) {
@@ -82,19 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
             premiumPrice.textContent = '240';
             standardNote.classList.remove('hidden');
             premiumNote.classList.remove('hidden');
-            billingAnnual.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
-            billingAnnual.classList.remove('text-slate-600');
-            billingMonthly.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
-            billingMonthly.classList.add('text-slate-600');
+            if (standardCta) standardCta.textContent = 'Get Started — Save 20%';
+            if (premiumCta) premiumCta.textContent = 'Start your 48-hour setup — Save 20%';
+            if (billingMessage) billingMessage.textContent = 'Billed annually. Switch to monthly anytime.';
+            // Annual active
+            billingAnnual.classList.add('bg-emerald-500', 'text-white');
+            billingAnnual.classList.remove('text-slate-600', 'hover:text-slate-900');
+            // Monthly inactive
+            billingMonthly.classList.remove('bg-emerald-500', 'text-white');
+            billingMonthly.classList.add('text-slate-600', 'hover:text-slate-900');
         } else {
             standardPrice.textContent = '150';
             premiumPrice.textContent = '300';
             standardNote.classList.add('hidden');
             premiumNote.classList.add('hidden');
-            billingMonthly.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
-            billingMonthly.classList.remove('text-slate-600');
-            billingAnnual.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
-            billingAnnual.classList.add('text-slate-600');
+            if (standardCta) standardCta.textContent = 'Get Started';
+            if (premiumCta) premiumCta.textContent = 'Start your 48-hour setup';
+            if (billingMessage) billingMessage.textContent = 'Billed monthly. Switch to annual anytime.';
+            // Monthly active
+            billingMonthly.classList.add('bg-emerald-500', 'text-white');
+            billingMonthly.classList.remove('text-slate-600', 'hover:text-slate-900');
+            // Annual inactive
+            billingAnnual.classList.remove('bg-emerald-500', 'text-white');
+            billingAnnual.classList.add('text-slate-600', 'hover:text-slate-900');
         }
     }
 
