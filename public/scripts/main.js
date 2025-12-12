@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const premiumNote = document.getElementById('premium-billing-note');
     const standardCta = document.getElementById('standard-cta');
     const premiumCta = document.getElementById('premium-cta');
+    const premiumCtaSave = document.getElementById('premium-cta-save');
     const billingMessage = document.getElementById('billing-message');
 
     function setPricing(isAnnual) {
@@ -86,7 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
             standardNote.classList.remove('hidden');
             premiumNote.classList.remove('hidden');
             if (standardCta) standardCta.textContent = 'Get Started — Save 20%';
-            if (premiumCta) premiumCta.textContent = 'Start your 48-hour setup — Save 20%';
+            // Show Save 20% span for premium CTA
+            if (premiumCtaSave) premiumCtaSave.classList.remove('hidden');
             if (billingMessage) billingMessage.textContent = 'Billed annually. Switch to monthly anytime.';
             // Annual active
             billingAnnual.classList.add('bg-emerald-500', 'text-white');
@@ -100,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             standardNote.classList.add('hidden');
             premiumNote.classList.add('hidden');
             if (standardCta) standardCta.textContent = 'Get Started';
-            if (premiumCta) premiumCta.textContent = 'Start your 48-hour setup';
+            // Hide Save 20% span for premium CTA
+            if (premiumCtaSave) premiumCtaSave.classList.add('hidden');
             if (billingMessage) billingMessage.textContent = 'Billed monthly. Switch to annual anytime.';
             // Monthly active
             billingMonthly.classList.add('bg-emerald-500', 'text-white');
