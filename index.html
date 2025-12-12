@@ -845,13 +845,13 @@
                                 {/* CTA Button - hidden on mobile */}
                                 <div className="hidden lg:flex items-center gap-8">
                                     <a href="#" className={`text-sm font-medium transition-colors ${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-white/80 hover:text-white'}`}>Log In</a>
-                                    <button className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
-                                        isScrolled 
-                                            ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm hover:shadow-md' 
+                                    <a href="demo.html" className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                                        isScrolled
+                                            ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm hover:shadow-md'
                                             : 'bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg'
                                     }`}>
                                         Book a Demo
-                                    </button>
+                                    </a>
                                 </div>
 
                                 {/* Mobile Hamburger Button */}
@@ -891,7 +891,7 @@
                                     <a href="#" className="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
                                     <div className="w-32 border-t border-slate-600 mt-2"></div>
                                     <a
-                                        href="#demo"
+                                        href="demo.html"
                                         onClick={() => setMobileMenuOpen(false)}
                                         className="px-6 py-2.5 bg-emerald-600 text-white rounded-full font-semibold text-sm hover:bg-emerald-700 transition-all"
                                     >
@@ -931,7 +931,7 @@
                                     </div>
                                     
                                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-3">
-                                        <a href="#demo" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all shadow-lg shadow-emerald-600/25">
+                                        <a href="demo.html" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all shadow-lg shadow-emerald-600/25">
                                             Get Your Personalized Demo
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -1470,7 +1470,7 @@
                                     Help us get to know your mission, and we'll build a personalized demo that shows what MyRecruiter can do for you — real conversations, real insights, and real results.
                                 </p>
                                 <div className="flex flex-wrap justify-center gap-4 mb-8">
-                                    <a href="#" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg shadow-emerald-600/25">
+                                    <a href="demo.html" className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg shadow-emerald-600/25">
                                         Book Your Personalized Demo
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -1599,7 +1599,7 @@
                             
                             {/* Footer CTA */}
                             <div className="text-center mb-8">
-                                <a href="#demo" className="inline-flex items-center flex-wrap text-emerald-400 hover:text-emerald-300 font-medium text-lg transition-colors group">
+                                <a href="demo.html" className="inline-flex items-center flex-wrap text-emerald-400 hover:text-emerald-300 font-medium text-lg transition-colors group">
                                     Ready to see MyRecruiter in&nbsp;
                                     <span className="whitespace-nowrap inline-flex items-center gap-2">
                                         action?
