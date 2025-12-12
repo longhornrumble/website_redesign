@@ -42,33 +42,48 @@ const {
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#50C878">
 
-    <!-- Fonts -->
+    <!-- Fonts - Load asynchronously after critical rendering -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Preload critical images -->
-    <link rel="preload" href="/images/logo.webp" as="image">
+    <link rel="preload" href="/images/logo-white.webp" as="image" fetchpriority="high">
 
     <title>{title}</title>
 
     <!-- Additional head content from pages -->
     <slot name="head" />
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H76K3TC1FL"></script>
-    <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-H76K3TC1FL');
-    </script>
 </head>
 <body class="min-h-screen bg-white text-slate-900 font-sans">
     <slot />
 
-    <!-- Core interactions script -->
-    <script is:inline src="/scripts/main.js"></script>
+    <!-- Core interactions script (minified) -->
+    <script is:inline src="/scripts/main.min.js"></script>
+
+    <!-- Load fonts asynchronously -->
+    <script is:inline>
+        (function() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
+            document.head.appendChild(link);
+        })();
+    </script>
+
+    <!-- Google Analytics - Deferred to not block rendering -->
+    <script is:inline>
+        window.addEventListener('load', function() {
+            var ga = document.createElement('script');
+            ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-H76K3TC1FL';
+            ga.async = true;
+            document.head.appendChild(ga);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-H76K3TC1FL');
+        });
+    </script>
 </body>
 </html>
 
