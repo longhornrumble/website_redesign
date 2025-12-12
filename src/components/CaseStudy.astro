@@ -18,57 +18,45 @@ const stats = [
             </div>
         </div>
 
+        <!-- Stats Grid with bordered boxes -->
         <div class="fade-in" style="transition-delay: 100ms">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mb-16 md:mb-24 max-w-5xl mx-auto">
                 {stats.map((stat) => (
-                    <div class="text-center p-4 md:p-6">
-                        <div class="font-display text-3xl md:text-5xl font-semibold text-white mb-2">{stat.value}</div>
-                        <div class="text-emerald-200 text-sm md:text-base">{stat.label}</div>
-                        <div class="text-emerald-400/60 text-xs mt-1">{stat.sub}</div>
+                    <div
+                        class="rounded-2xl p-5 text-center"
+                        style="background-color: #F9FBFA; border: 1px solid rgba(80, 200, 120, 0.15); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06)"
+                    >
+                        <div class="font-display text-3xl md:text-5xl font-semibold mb-2" style="color: #50C878">{stat.value}</div>
+                        <div class="text-sm mb-1" style="color: #0A1A2F">{stat.label}</div>
+                        <div class="text-xs" style="color: #5C6B74">{stat.sub}</div>
                     </div>
                 ))}
             </div>
         </div>
 
+        <!-- Testimonial Card -->
         <div class="fade-in" style="transition-delay: 200ms">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16">
-                <div class="relative order-2 lg:order-1">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                        <svg class="w-10 h-10 text-emerald-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                        </svg>
-                        <p class="text-white text-xl lg:text-2xl font-light leading-relaxed mb-6">
-                            In under a month, MyRecruiter brought in <span class="font-semibold text-emerald-400">more new volunteer leads than we'd typically see in a quarter</span>. These weren't just form fills — they were engaged, informed, and ready to get started.
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                                <span class="text-white font-semibold">TR</span>
-                            </div>
-                            <div>
-                                <div class="text-white font-semibold">Tracy Randall</div>
-                                <div class="text-emerald-200 text-sm">Executive Director, Austin Angels</div>
-                            </div>
-                        </div>
+            <div class="bg-white rounded-2xl p-12 md:p-14 mt-16" style="box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08)">
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <div class="w-20 h-16 flex-shrink-0 overflow-hidden rounded-lg">
+                        <img
+                            src="/images/austin-angels-logo.webp"
+                            alt="Austin Angels"
+                            class="w-full h-full object-contain"
+                            style="opacity: 0.88"
+                            width="80"
+                            height="64"
+                            loading="lazy"
+                            onerror="this.style.display='none'"
+                        />
                     </div>
-                </div>
-
-                <div class="order-1 lg:order-2">
-                    <div class="bg-white rounded-2xl p-6 shadow-xl">
-                        <div class="flex items-center gap-3 mb-4">
-                            <!-- Austin Angels Logo SVG -->
-                            <svg class="h-10 w-auto" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="30" cy="30" r="25" fill="#50C878"/>
-                                <path d="M30 15 L35 35 L25 35 Z" fill="white"/>
-                                <text x="65" y="38" font-family="Plus Jakarta Sans, sans-serif" font-size="20" font-weight="600" fill="#1e293b">Austin Angels</text>
-                            </svg>
-                        </div>
-                        <p class="text-slate-600 text-sm mb-4">
-                            Austin Angels supports foster families through mentorship, practical help, and community. Before MyRecruiter, their small team was stretched thin — trying to answer questions, onboard volunteers, and manage inquiries across channels.
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium">Foster Care</span>
-                            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium">Austin, TX</span>
-                            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium">5-person team</span>
+                    <div>
+                        <blockquote class="text-xl text-slate-700 leading-relaxed mb-4">
+                            "The bot works around the clock — evenings, weekends, and all the off-hours when people have questions but our staff can't be online. It's filling the gaps, driving consistent engagement, and delivering long-term value across volunteer pipeline growth, program support, donors, partnerships, and in-kind contributions."
+                        </blockquote>
+                        <div>
+                            <div class="font-semibold text-slate-900">Austin Angels</div>
+                            <div class="text-slate-500">ROI Report, 2024</div>
                         </div>
                     </div>
                 </div>
@@ -76,15 +64,12 @@ const stats = [
         </div>
 
         <!-- CTA -->
-        <div class="fade-in text-center" style="transition-delay: 300ms">
-            <a href="demo.html" class="inline-flex items-center flex-wrap text-emerald-200 hover:text-white font-medium text-lg transition-colors group">
-                See what MyRecruiter could do for your&nbsp;
-                <span class="whitespace-nowrap inline-flex items-center gap-2">
-                    organization
-                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </span>
+        <div class="fade-in text-center mt-12" style="transition-delay: 300ms">
+            <a href="demo.html" class="text-emerald-200 hover:text-white font-medium text-lg transition-colors group text-center">
+                Ask us what results could look like for your organization
+                <svg class="w-5 h-5 inline ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
             </a>
         </div>
     </div>
