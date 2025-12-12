@@ -1,0 +1,16 @@
+{
+  "name": "MyRecruiter",
+  "short_name": "MyRecruiter",
+  "description": "AI engagement platform for nonprofits",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#50C878",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
