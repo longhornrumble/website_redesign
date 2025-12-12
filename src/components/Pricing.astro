@@ -1,0 +1,150 @@
+---
+const standardFeatures = [
+    "AI assistant trained on your organization",
+    "Unlimited conversations across your website",
+    "Lead capture and notification",
+    "Conversation analytics",
+    "Email support",
+    "No technical setup needed — we handle everything"
+];
+
+const premiumFeatures = [
+    "Everything in Standard",
+    "Form analytics & drop-off tracking",
+    "Attribution dashboard to see where volunteers/donors come from",
+    "AI-powered insights",
+    "Priority support",
+    "Monthly review & optimization to stay ahead of supporter needs"
+];
+---
+
+<section id="pricing" class="py-16 sm:py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in">
+            <div class="text-center mb-7">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Pricing</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    More capacity for your mission — without adding staff
+                </h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">
+                    Your AI assistant takes on repetitive questions and follow-ups so your team can focus on programs, people, and impact.
+                </p>
+            </div>
+        </div>
+
+        <!-- No contracts notice -->
+        <div class="fade-in text-center mb-6" style="transition-delay: 50ms">
+            <p class="text-slate-600 font-medium">No contracts. No setup fees. Cancel anytime.</p>
+        </div>
+
+        <!-- Toggle -->
+        <div class="fade-in" style="transition-delay: 75ms">
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex items-center gap-4 bg-slate-100 rounded-full p-1.5">
+                    <button
+                        id="billing-monthly"
+                        class="billing-toggle px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-900 shadow-sm"
+                    >
+                        Monthly
+                    </button>
+                    <button
+                        id="billing-annual"
+                        class="billing-toggle px-6 py-2.5 rounded-full text-sm font-medium transition-all text-slate-600 hover:text-slate-900"
+                    >
+                        Annual <span class="text-emerald-600 font-semibold ml-1">Save 20%</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Standard -->
+                <div class="bg-white rounded-3xl p-12 border border-slate-200 flex flex-col">
+                    <div>
+                        <h3 class="font-semibold text-xl text-slate-900 mb-2">Standard</h3>
+                        <div class="flex items-baseline gap-1 mb-1">
+                            <span class="font-display text-3xl font-semibold text-slate-900">$<span id="standard-price">150</span></span>
+                            <span class="text-slate-500">/mo</span>
+                        </div>
+                        <p id="standard-billing-note" class="text-sm text-slate-500 mb-3 hidden">Billed annually. Save 20%.</p>
+                        <p class="text-slate-600 text-sm italic mb-6 mt-2">Best for orgs getting started with AI engagement who want instant answers and lead capture.</p>
+                        <ul class="space-y-4 mb-8">
+                            {standardFeatures.map((item) => (
+                                <li class="flex items-center text-slate-700">
+                                    <svg class="w-5 h-5 flex-shrink-0 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <a href="demo.html" class="w-full py-3 rounded-full border-2 border-emerald-600 text-emerald-600 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block">
+                        Get started
+                    </a>
+                </div>
+
+                <!-- Premium -->
+                <div class="bg-emerald-800 rounded-3xl p-12 text-white relative flex flex-col" style="box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18), 0 6px 14px rgba(6, 95, 70, 0.22); padding-top: 43px; padding-bottom: 43px">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-slate-900 text-xs font-bold px-4 py-1.5 shadow-md rounded-full">
+                        MOST POPULAR
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-xl text-white mb-2">Premium</h3>
+                        <div class="flex items-baseline gap-1 mb-1">
+                            <span class="font-display text-3xl font-semibold text-white">$<span id="premium-price">300</span></span>
+                            <span class="text-emerald-200">/mo</span>
+                        </div>
+                        <p id="premium-billing-note" class="text-sm text-emerald-200 mb-3 hidden">Billed annually. Save 20%.</p>
+                        <p class="text-emerald-200 text-sm italic mb-6 mt-2">Best for orgs with higher volunteer demand that need deeper insights, smarter optimization, and board-ready reporting.</p>
+                        <ul class="space-y-4 mb-8">
+                            {premiumFeatures.map((item) => (
+                                <li class="flex items-center text-white">
+                                    <svg class="w-5 h-5 flex-shrink-0 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <a href="demo.html" class="w-full py-4 rounded-full bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block">
+                        Get started
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prominent Walkthrough CTA -->
+        <div class="fade-in text-center mt-8" style="transition-delay: 150ms">
+            <a href="demo.html" class="inline-flex items-center flex-wrap text-emerald-600 hover:text-emerald-700 font-medium text-lg transition-colors group">
+                Not sure which plan is right? Book a&nbsp;
+                <span class="whitespace-nowrap inline-flex items-center gap-2">
+                    walkthrough
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+
+        <!-- Comparison Box -->
+        <div class="fade-in text-center mt-6 max-w-2xl mx-auto" style="transition-delay: 200ms">
+            <div class="bg-emerald-50/30 rounded-xl p-5 border border-emerald-200/40">
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <div class="text-left">
+                        <p class="text-slate-900 font-semibold mb-1">
+                            A full-time entry-level nonprofit staff member costs about $45,000/year.
+                        </p>
+                        <p class="text-slate-600 text-sm">
+                            Your AI assistant is $150–$300/month — and it never takes nights, weekends, or holidays off.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,151 @@
+---
+const navLinks = [
+    { label: 'How It Works', href: '#meet-them-where-they-are' },
+    { label: 'Results', href: '#results' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'Blog', href: 'https://myrecruiter.ai/blog' },
+    { label: 'Contact', href: '#demo' }
+];
+---
+
+<nav id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
+        <div class="flex items-center justify-between">
+            <!-- Logo - consistent 44px height in both states -->
+            <div class="flex items-center w-48">
+                <img
+                    id="logo-default"
+                    src="/images/logo-white.webp"
+                    alt="MyRecruiter"
+                    class="h-11 w-auto"
+                    style="height: 44px"
+                />
+                <img
+                    id="logo-scrolled"
+                    src="/images/logo.webp"
+                    alt="MyRecruiter"
+                    class="h-11 w-auto hidden"
+                    style="height: 44px"
+                />
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center gap-12">
+                {navLinks.map((item) => (
+                    <a
+                        href={item.href}
+                        class="nav-link text-sm font-medium transition-colors text-slate-300 hover:text-white"
+                    >
+                        {item.label}
+                    </a>
+                ))}
+            </div>
+
+            <!-- CTA Button -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#" class="login-link text-sm font-medium transition-colors text-white/80 hover:text-white">Log In</a>
+                <a href="demo.html" id="header-cta" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg">
+                    Book a Demo
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button
+                id="mobile-menu-btn"
+                class="lg:hidden p-2 flex flex-col justify-center items-end gap-1.5 w-8 h-8"
+                aria-label="Toggle mobile menu"
+            >
+                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 origin-center bg-white w-6"></span>
+                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 bg-white w-4"></span>
+                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 origin-center bg-white w-5"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Modal -->
+<div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-lg transition-all duration-300 ease-out translate-x-full opacity-0">
+    <div class="flex flex-col items-center pt-32 gap-6 p-8">
+        {navLinks.map((item) => (
+            <a
+                href={item.href}
+                class="mobile-nav-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors"
+            >
+                {item.label}
+            </a>
+        ))}
+        <div class="mt-8 flex flex-col items-center gap-4">
+            <a href="#" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
+            <div class="w-32 border-t border-slate-600 mt-2"></div>
+            <a
+                href="demo.html"
+                class="mobile-nav-link px-6 py-2.5 bg-emerald-600 text-white rounded-full font-semibold text-sm hover:bg-emerald-700 transition-all"
+            >
+                Get a Personalized Demo
+            </a>
+            <p class="text-slate-400 text-xs">Purpose-built for nonprofits</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scrolled state styles applied via JS */
+    #header.scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    #header.scrolled .nav-link {
+        color: rgb(51, 65, 85);
+    }
+
+    #header.scrolled .nav-link:hover {
+        color: rgb(5, 150, 105);
+    }
+
+    #header.scrolled .login-link {
+        color: rgb(71, 85, 105);
+    }
+
+    #header.scrolled .login-link:hover {
+        color: rgb(15, 23, 42);
+    }
+
+    #header.scrolled #header-cta {
+        background-color: rgb(5, 150, 105);
+        color: white;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    #header.scrolled #header-cta:hover {
+        background-color: rgb(4, 120, 87);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+
+    #header.scrolled .hamburger-line {
+        background-color: rgb(15, 23, 42);
+    }
+
+    /* Mobile menu open state */
+    #mobile-menu.open {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    /* Hamburger animation */
+    #mobile-menu-btn.open .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+        width: 1.5rem;
+    }
+
+    #mobile-menu-btn.open .hamburger-line:nth-child(2) {
+        opacity: 0;
+        width: 0;
+    }
+
+    #mobile-menu-btn.open .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
+        width: 1.5rem;
+    }
+</style>

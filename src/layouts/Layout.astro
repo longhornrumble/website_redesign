@@ -1,0 +1,156 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = "MyRecruiter: AI engagement platform for nonprofits. Find volunteers and donors 24/7. Never miss another opportunity.",
+  canonical = "https://myrecruiter.ai/"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content="AI engagement platform for nonprofits. Find volunteers and donors 24/7.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonical}>
+    <meta property="og:image" content="https://myrecruiter.ai/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content="AI engagement platform for nonprofits">
+    <meta name="twitter:image" content="https://myrecruiter.ai/og-image.png">
+
+    <!-- Canonical & Icons -->
+    <link rel="canonical" href={canonical}>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#50C878">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Preload critical images -->
+    <link rel="preload" href="/images/logo.webp" as="image">
+
+    <title>{title}</title>
+
+    <!-- Additional head content from pages -->
+    <slot name="head" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H76K3TC1FL"></script>
+    <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-H76K3TC1FL');
+    </script>
+</head>
+<body class="min-h-screen bg-white text-slate-900 font-sans">
+    <slot />
+
+    <!-- Core interactions script -->
+    <script is:inline src="/scripts/main.js"></script>
+</body>
+</html>
+
+<style is:global>
+    /* Base font */
+    body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    .font-display {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-weight: 700;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+        background: linear-gradient(135deg, #75dbb7 0%, #50C878 50%, #3da060 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+        background: #0f172a;
+    }
+
+    /* Noise texture */
+    .noise {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.03;
+    }
+
+    /* Widget shadow */
+    .widget-shadow {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Float animation */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .float-animation {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    /* Sequential pulse for setup dots */
+    @keyframes sequentialPulse {
+        0%, 18%, 100% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        2%, 16% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        5%, 13% {
+            transform: scale(1.5);
+        }
+    }
+
+    /* Fade in animation */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animated bar */
+    .animated-bar {
+        transition: width 1s ease-out;
+    }
+
+    /* Scroll margin for anchor links */
+    .scroll-mt-24 {
+        scroll-margin-top: 6rem;
+    }
+</style>

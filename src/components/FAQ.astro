@@ -1,0 +1,105 @@
+---
+const faqs = [
+    {
+        q: "What exactly is MyRecruiter?",
+        a: "MyRecruiter is an AI assistant trained on your organization. It lives on your website and can be shared via links in your emails, newsletters, and social posts. When someone has a question or wants to get involved, it responds instantly — guiding them to volunteer, donate, or learn more."
+    },
+    {
+        q: "How long does setup take?",
+        a: "We handle everything. Most organizations go live in 24–48 hours."
+    },
+    {
+        q: "Can we approve responses before it goes live?",
+        a: "Yes. You'll see exactly how the assistant answers real questions before it's added to your website."
+    },
+    {
+        q: "What if our programs change later?",
+        a: "Just send us updates — we retrain the AI for free so your content always stays current."
+    },
+    {
+        q: "Is my donor data secure?",
+        a: "Yes. We're SOC 2 compliant and never store sensitive donor information. Conversations are encrypted in transit and at rest."
+    },
+    {
+        q: "What if we need to change the AI's responses?",
+        a: "You have full control. Flag any response in the dashboard and we'll update the training within 24 hours."
+    },
+    {
+        q: "How do we deploy on other channels?",
+        a: "We provide unique links for each channel — just paste them in your social posts, emails, or newsletters. You can also generate QR codes for print materials and events. Same AI, unified analytics across everything."
+    },
+    {
+        q: "Does it integrate with our CRM?",
+        a: "We integrate with Salesforce, Bloomerang, Little Green Light, and most major nonprofit CRMs via Zapier. Leads flow directly into your existing systems."
+    }
+];
+---
+
+<section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="fade-in">
+            <div class="text-center mb-8">
+                <h2 class="font-display text-3xl font-semibold text-slate-900">
+                    Common questions
+                </h2>
+            </div>
+        </div>
+
+        <div class="fade-in" style="transition-delay: 100ms">
+            <div class="space-y-6">
+                {faqs.map((item, i) => (
+                    <div class="faq-item bg-slate-50 rounded-xl overflow-hidden" data-faq={i}>
+                        <button
+                            class="faq-btn w-full p-6 text-left flex justify-between items-center md:cursor-default"
+                            data-faq-btn={i}
+                        >
+                            <h3 class="font-semibold text-slate-900 pr-4">{item.q}</h3>
+                            <svg
+                                class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform md:hidden"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="faq-content px-6 pb-6 md:block hidden">
+                            <p class="text-slate-600">{item.a}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- FAQ CTA -->
+        <div class="fade-in text-center mt-10" style="transition-delay: 150ms">
+            <p class="text-slate-600 mb-2">Still have a question?</p>
+            <a href="#" class="inline-flex items-center flex-wrap text-emerald-600 hover:text-emerald-700 font-semibold text-lg transition-colors group">
+                Ask us anything — we're here to&nbsp;
+                <span class="whitespace-nowrap inline-flex items-center gap-2">
+                    help
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Desktop: always show answers */
+    @media (min-width: 768px) {
+        .faq-content {
+            display: block !important;
+        }
+    }
+
+    /* Mobile: accordion behavior */
+    @media (max-width: 767px) {
+        .faq-item.open .faq-content {
+            display: block;
+        }
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+    }
+</style>

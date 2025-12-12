@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import LeanTeams from '../components/LeanTeams.astro';
+import HubAndSpoke from '../components/HubAndSpoke.astro';
+import DashboardCarousel from '../components/DashboardCarousel.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import Setup from '../components/Setup.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="MyRecruiter - Never Miss Another Volunteer or Donor">
+    <!-- Structured Data -->
+    <Fragment slot="head">
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "MyRecruiter",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "150",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "billingDuration": "P1M",
+                    "price": "150",
+                    "priceCurrency": "USD"
+                }
+            },
+            "description": "AI engagement platform for nonprofits. Find volunteers and donors 24/7.",
+            "url": "https://myrecruiter.ai",
+            "image": "https://myrecruiter.ai/og-image.png",
+            "publisher": {
+                "@type": "Organization",
+                "name": "MyRecruiter",
+                "url": "https://myrecruiter.ai",
+                "logo": "https://myrecruiter.ai/images/logo.webp"
+            }
+        })} />
+
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What exactly is MyRecruiter?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "MyRecruiter is an AI assistant trained on your organization. It lives on your website and can be shared via links in your emails, newsletters, and social posts. When someone has a question or wants to get involved, it responds instantly — guiding them to volunteer, donate, or learn more."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How long does setup take?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We handle everything. Most organizations go live in 24–48 hours."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can we approve responses before it goes live?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. You'll see exactly how the assistant answers real questions before it's added to your website."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What if our programs change later?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Just send us updates — we retrain the AI for free so your content always stays current."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is my donor data secure?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. We're SOC 2 compliant and never store sensitive donor information. Conversations are encrypted in transit and at rest."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What if we need to change the AI's responses?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "You have full control. Flag any response in the dashboard and we'll update the training within 24 hours."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do we deploy on other channels?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We provide unique links for each channel — just paste them in your social posts, emails, or newsletters. You can also generate QR codes for print materials and events. Same AI, unified analytics across everything."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Does it integrate with our CRM?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "We integrate with Salesforce, Bloomerang, Little Green Light, and most major nonprofit CRMs via Zapier. Leads flow directly into your existing systems."
+                    }
+                }
+            ]
+        })} />
+    </Fragment>
+
+    <Header />
+    <Hero />
+    <LeanTeams />
+    <HubAndSpoke />
+    <DashboardCarousel />
+    <CaseStudy />
+    <Setup />
+    <Pricing />
+    <FAQ />
+    <FinalCTA />
+    <Footer />
+</Layout>

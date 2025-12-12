@@ -1,0 +1,94 @@
+---
+const steps = [
+    {
+        num: 1,
+        title: "Share your website",
+        desc: "Send us your URL. We'll review your mission, programs, and volunteer opportunities."
+    },
+    {
+        num: 2,
+        title: "We build your assistant",
+        desc: "Our team creates an AI trained on your organization — no technical work from you."
+    },
+    {
+        num: 3,
+        title: "You review & approve",
+        desc: "See how it answers real questions. Request any changes before launch."
+    },
+    {
+        num: 4,
+        title: "Go live everywhere",
+        desc: "Deploy on your website, social, email, and events. Start capturing opportunities instantly."
+    }
+];
+---
+
+<section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in">
+            <div class="text-center mb-16">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Simple Setup</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    Live in 48 hours — no technical skills needed
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    We handle the technical work. You focus on your mission.
+                </p>
+            </div>
+        </div>
+
+        <div class="fade-in" style="transition-delay: 100ms">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-x-24 md:gap-y-16 max-w-5xl mx-auto relative">
+                {steps.map((step, i) => (
+                    <div class={`relative ${step.num === 4 ? 'order-4 md:order-none' : step.num === 3 ? 'order-3 md:order-none' : ''}`}>
+                        <div class="rounded-2xl bg-slate-50 p-8 border border-slate-200 relative">
+                            <!-- Step number badge -->
+                            <div class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg shadow-lg">
+                                {step.num}
+                            </div>
+
+                            <!-- Animated dot -->
+                            <div class="absolute top-4 right-4">
+                                <div
+                                    class="w-3 h-3 bg-emerald-500 rounded-full"
+                                    style={`animation: sequentialPulse 11s infinite; animation-delay: ${(step.num - 1) * 2.75}s`}
+                                ></div>
+                            </div>
+
+                            <h3 class="font-display text-xl font-semibold text-slate-900 mb-3 mt-2">{step.title}</h3>
+                            <p class="text-slate-600">{step.desc}</p>
+
+                            {/* Connecting lines - desktop only */}
+                            {step.num === 1 && (
+                                <div class="absolute top-1/2 -right-24 w-24 hidden md:block" style="border-top: 2px dashed rgba(80, 200, 120, 0.2); transform: translateY(-1px)"></div>
+                            )}
+                            {step.num === 2 && (
+                                <div class="absolute -bottom-16 left-1/2 h-16 hidden md:block" style="border-left: 2px dashed rgba(80, 200, 120, 0.2); transform: translateX(-1px)"></div>
+                            )}
+                            {step.num === 3 && (
+                                <div class="absolute top-1/2 -left-24 w-24 hidden md:block" style="border-top: 2px dashed rgba(80, 200, 120, 0.2); transform: translateY(-1px)"></div>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Tagline below grid -->
+            <div class="text-center" style="margin-top: 40px">
+                <div class="mx-auto mb-5" style="width: 600px; max-width: 90%; height: 1px; background: rgba(148, 163, 184, 0.3)"></div>
+                <p class="font-display text-slate-900" style="font-size: 18px; font-weight: 500; letter-spacing: 0.02em; opacity: 0.85; margin-top: 10px">
+                    From URL → trained assistant → live everywhere — in 48 hours.
+                </p>
+                <a href="demo.html" class="inline-flex items-center flex-wrap text-emerald-600 hover:text-emerald-700 font-medium transition-colors group text-lg mt-6">
+                    Schedule a call to see how simple this can be
+                    <span class="whitespace-nowrap inline-flex items-center gap-2">
+                        for your organization
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

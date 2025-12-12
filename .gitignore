@@ -8,3 +8,12 @@ CLAUDE.md
 Guides/
 MyRecruiter Screenshots/
 Webpage Mocks/
+
+# Node.js
+node_modules/
+
+# Astro build output (generated on deploy)
+dist/
+
+# Astro cache
+.astro/

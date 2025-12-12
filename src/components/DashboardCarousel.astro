@@ -1,0 +1,283 @@
+---
+const tabs = [
+    { id: 0, label: "Know what's working" },
+    { id: 1, label: "Capture every opportunity" },
+    { id: 2, label: "Rescue lost applications" }
+];
+---
+
+<section class="py-16 sm:py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="fade-in">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">See What You've Been Missing</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
+                    Visibility you never had before
+                </h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">
+                    When nonprofits see their first month of data, the reaction is always the same: <span class="text-emerald-400">"I had no idea."</span> Now you'll know exactly who's interested, what they want, and how to reach more of them.
+                </p>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-2 sm:gap-3 mb-8">
+            {tabs.map((tab) => (
+                <button
+                    data-tab={tab.id}
+                    class={`carousel-tab px-6 py-3 rounded-full text-sm font-medium transition-all ${
+                        tab.id === 0
+                            ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
+                            : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
+                    }`}
+                >
+                    {tab.label}
+                </button>
+            ))}
+        </div>
+
+        <!-- Progress Indicators -->
+        <div class="flex justify-center gap-2 mb-8">
+            {tabs.map((tab) => (
+                <div
+                    data-indicator={tab.id}
+                    class={`h-1 rounded-full transition-all duration-300 ${
+                        tab.id === 0 ? 'w-8 bg-emerald-500' : 'w-2 bg-slate-700'
+                    }`}
+                />
+            ))}
+        </div>
+
+        <!-- Slide Content -->
+        <div id="carousel-slides" class="min-h-[600px] lg:h-[800px] overflow-visible lg:overflow-hidden">
+            <!-- Attribution Slide -->
+            <div data-slide="0" class="carousel-slide">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div>
+                        <span id="slide-eyebrow" class="scroll-mt-24 text-emerald-400 font-semibold text-sm tracking-wide uppercase">Put More Toward Your Mission</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
+                            See where supporters come from — and focus your effort where it counts.
+                        </h2>
+                        <div class="space-y-4 text-lg text-slate-400 leading-relaxed">
+                            <p>
+                                You already post on Facebook, send emails, attend events, and share flyers — but which of those channels actually bring volunteers and donors in the door?
+                            </p>
+                            <p>
+                                With MyRecruiter, you'll see exactly which channels drive real action — so you can double down on what works and adjust what doesn't. No more guessing. No more wasted effort.
+                            </p>
+                            <p class="text-white font-medium">
+                                More money toward programs. Less guessing on marketing.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8">
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-emerald-400">
+                                    $<span class="counter" data-target="34500">0</span>
+                                </div>
+                                <div class="text-slate-400 text-sm">value generated</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="3.2" data-decimals="1">0</span>x
+                                </div>
+                                <div class="text-slate-400 text-sm">Facebook vs Organic</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="142">0</span>
+                                </div>
+                                <div class="text-slate-400 text-sm">conversions tracked</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                            <img
+                                src="/images/attribution-dashboard.webp"
+                                alt="MyRecruiter Attribution Dashboard"
+                                class="w-full h-auto"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div class="absolute bottom-8 left-4 right-4 bg-emerald-800 rounded-xl p-4 shadow-xl">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-emerald-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">The insight</div>
+                                    <div class="text-emerald-100 text-sm">Facebook traffic converts at 3.2x the rate of organic. That's where your next volunteer is coming from.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversations Slide -->
+            <div data-slide="1" class="carousel-slide hidden">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div>
+                        <span id="slide-eyebrow" class="scroll-mt-24 text-emerald-400 font-semibold text-sm tracking-wide uppercase">Nothing Slips Through</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
+                            See every question. Capture every opportunity.
+                        </h2>
+                        <div class="space-y-4 text-lg text-slate-400 leading-relaxed">
+                            <p>
+                                Before MyRecruiter, you had no idea how many people visited your site with questions — or what they needed. They came, didn't find answers, and left. No trace. No follow-up. Lost forever.
+                            </p>
+                            <p>
+                                Now every conversation is captured. You'll see exactly what people are asking, when they're asking it, and which questions lead to volunteers and donors.
+                            </p>
+                            <div class="space-y-2 pt-2">
+                                <p class="text-slate-300"><span class="text-white font-medium">Marketing teams</span> use these insights to sharpen messaging.</p>
+                                <p class="text-slate-300"><span class="text-white font-medium">Program teams</span> use them to understand community needs.</p>
+                                <p class="text-slate-300"><span class="text-white font-medium">Leaders</span> use them to align their board and fundraising story.</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8">
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="276">0</span>
+                                </div>
+                                <div class="text-slate-400 text-sm">conversations captured</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-amber-500/50 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-amber-400">
+                                    <span class="counter" data-target="49.5" data-decimals="1">0</span>%
+                                </div>
+                                <div class="text-slate-400 text-sm">after hours</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="65.6" data-decimals="1">0</span>%
+                                </div>
+                                <div class="text-slate-400 text-sm">conversion rate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                            <img
+                                src="/images/conversations-dashboard.webp"
+                                alt="MyRecruiter Conversations Dashboard"
+                                class="w-full h-auto"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div class="absolute bottom-8 left-4 right-4 bg-emerald-800 rounded-xl p-4 shadow-xl">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-emerald-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">The insight</div>
+                                    <div class="text-emerald-100 text-sm">Nearly half of all supporter conversations happen after hours. That's when your team is off — but MyRecruiter isn't.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forms Slide -->
+            <div data-slide="2" class="carousel-slide hidden">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div>
+                        <span id="slide-eyebrow" class="scroll-mt-24 text-emerald-400 font-semibold text-sm tracking-wide uppercase">Rescue Lost Applications</span>
+                        <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3 mb-6">
+                            See who dropped off — and bring them back.
+                        </h2>
+                        <div class="space-y-4 text-lg text-slate-400 leading-relaxed">
+                            <p>
+                                For every 10 people who start your volunteer application, only 3 finish. The rest? They got stuck, distracted, or confused. Traditionally you'd never even know they were there.
+                            </p>
+                            <p>
+                                MyRecruiter shows you exactly where people abandon their applications. It captures the questions that came up right before they left. And it gives you a way to follow up — personally, at scale.
+                            </p>
+                            <p class="text-white font-medium">
+                                Turn 7 lost volunteers into 3 more people in the door.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-8">
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="67">0</span>%
+                                </div>
+                                <div class="text-slate-400 text-sm">typical drop-off rate</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-emerald-500/50 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-emerald-400">
+                                    <span class="counter" data-target="31">0</span>%
+                                </div>
+                                <div class="text-slate-400 text-sm">rescued with MyRecruiter</div>
+                            </div>
+                            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 text-center sm:text-left">
+                                <div class="font-display text-2xl font-semibold text-white">
+                                    <span class="counter" data-target="8">0</span>
+                                </div>
+                                <div class="text-slate-400 text-sm">additional volunteers/mo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                            <img
+                                src="/images/forms-dashboard.webp"
+                                alt="MyRecruiter Forms Dashboard"
+                                class="w-full h-auto"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <div class="absolute bottom-8 left-4 right-4 bg-emerald-800 rounded-xl p-4 shadow-xl">
+                            <div class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-emerald-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <div class="text-white font-semibold text-sm">The insight</div>
+                                    <div class="text-emerald-100 text-sm">Most drop-offs happen at the background check question. A quick FAQ popup increased completions by 31%.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section CTA with Swipe Hint -->
+        <div class="fade-in text-center mt-12" style="transition-delay: 300ms">
+            <!-- Swipe Hint - Mobile Only -->
+            <div class="flex sm:hidden justify-center items-center gap-2 text-slate-400 text-sm mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                </svg>
+                <span>Swipe to explore</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </div>
+            <a
+                href="#results"
+                class="inline-flex items-center flex-wrap text-emerald-400 font-medium text-lg hover:text-white transition-colors group"
+            >
+                See what this would look like for your&nbsp;
+                <span class="whitespace-nowrap inline-flex items-center gap-2">
+                    organization
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>

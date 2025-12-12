@@ -1,0 +1,20 @@
+{
+  "name": "website-redesign",
+  "version": "1.0.0",
+  "description": "AI-powered engagement platform for nonprofits. This repository contains the homepage for MyRecruiter.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.16.5",
+    "tailwindcss": "^3.4.19"
+  }
+}
