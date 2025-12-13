@@ -252,4 +252,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
 
     fadeElements.forEach(el => fadeObserver.observe(el));
+
+    // ========================================
+    // Setup Section - Pulsing Dots Animation
+    // ========================================
+    const setupSection = document.getElementById('setup');
+    const setupDots = document.querySelectorAll('.setup-dot');
+
+    if (setupSection && setupDots.length > 0) {
+        const setupObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Start animation on all dots with their respective delays
+                    setupDots.forEach(dot => {
+                        const delay = dot.dataset.delay || '0s';
+                        dot.style.animation = `sequentialPulse 11s infinite`;
+                        dot.style.animationDelay = delay;
+                    });
+                    // Unobserve after triggering (only trigger once per page load)
+                    setupObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        setupObserver.observe(setupSection);
+    }
 });
