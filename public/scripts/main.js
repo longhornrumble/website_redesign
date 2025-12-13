@@ -1,8 +1,16 @@
 /**
  * MyRecruiter - Main JavaScript
  * Vanilla JS for all interactive elements
- * Replaces React state management with ~100 lines of code
  */
+
+// ========================================
+// Constants
+// ========================================
+const SCROLL_THRESHOLD = 50;
+const SWIPE_THRESHOLD = 50;
+const ANIMATION_DURATION = 1500;
+const FADE_IN_THRESHOLD = 0.1;
+const SETUP_ANIMATION_THRESHOLD = 0.2;
 
 document.addEventListener('DOMContentLoaded', () => {
     // ========================================
@@ -13,16 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoScrolled = document.getElementById('logo-scrolled');
 
     function handleScroll() {
-        const isScrolled = window.scrollY > 50;
+        const isScrolled = window.scrollY > SCROLL_THRESHOLD;
 
         if (isScrolled) {
-            header.classList.add('scrolled');
-            logoDefault.classList.add('hidden');
-            logoScrolled.classList.remove('hidden');
+            header?.classList.add('scrolled');
+            logoDefault?.classList.add('hidden');
+            logoScrolled?.classList.remove('hidden');
         } else {
-            header.classList.remove('scrolled');
-            logoDefault.classList.remove('hidden');
-            logoScrolled.classList.add('hidden');
+            header?.classList.remove('scrolled');
+            logoDefault?.classList.remove('hidden');
+            logoScrolled?.classList.add('hidden');
         }
     }
 
@@ -30,24 +38,78 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll(); // Check initial state
 
     // ========================================
-    // Mobile Menu
+    // Mobile Menu with Focus Trapping
     // ========================================
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
+    /**
+     * Closes the mobile menu and restores focus
+     */
+    function closeMobileMenu() {
+        mobileMenuBtn?.classList.remove('open');
+        mobileMenu?.classList.remove('open');
+        mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn?.focus();
+    }
+
+    /**
+     * Opens the mobile menu and sets up focus trapping
+     */
+    function openMobileMenu() {
+        mobileMenuBtn?.classList.add('open');
+        mobileMenu?.classList.add('open');
+        mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+
+        // Focus first link in menu
+        const firstLink = mobileMenu?.querySelector('a');
+        firstLink?.focus();
+    }
+
     if (mobileMenuBtn && mobileMenu) {
+        // Set initial ARIA state
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-controls', 'mobile-menu');
+
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
+            const isOpen = mobileMenuBtn.classList.contains('open');
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         });
 
         // Close menu when clicking nav links
         mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('open');
-                mobileMenu.classList.remove('open');
-            });
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenuBtn.classList.contains('open')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Focus trapping within mobile menu
+        mobileMenu.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+
+            const focusableElements = mobileMenu.querySelectorAll(
+                'a[href], button:not([disabled])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement?.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement?.focus();
+            }
         });
     }
 
@@ -61,13 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Only toggle on mobile
             if (window.innerWidth < 768) {
                 const faqItem = btn.closest('.faq-item');
-                faqItem.classList.toggle('open');
+                faqItem?.classList.toggle('open');
             }
         });
     });
 
     // ========================================
-    // Pricing Toggle
+    // Pricing Toggle with ARIA
     // ========================================
     const billingMonthly = document.getElementById('billing-monthly');
     const billingAnnual = document.getElementById('billing-annual');
@@ -76,65 +138,102 @@ document.addEventListener('DOMContentLoaded', () => {
     const standardNote = document.getElementById('standard-billing-note');
     const premiumNote = document.getElementById('premium-billing-note');
     const standardCta = document.getElementById('standard-cta');
-    const premiumCta = document.getElementById('premium-cta');
     const premiumCtaSave = document.getElementById('premium-cta-save');
     const billingMessage = document.getElementById('billing-message');
 
+    /**
+     * Updates pricing display and ARIA states based on billing period
+     * @param {boolean} isAnnual - Whether annual billing is selected
+     */
     function setPricing(isAnnual) {
+        // Update ARIA states
+        billingMonthly?.setAttribute('aria-checked', (!isAnnual).toString());
+        billingAnnual?.setAttribute('aria-checked', isAnnual.toString());
+
         if (isAnnual) {
-            standardPrice.textContent = '120';
-            premiumPrice.textContent = '240';
-            standardNote.classList.remove('hidden');
-            premiumNote.classList.remove('hidden');
+            if (standardPrice) standardPrice.textContent = '120';
+            if (premiumPrice) premiumPrice.textContent = '240';
+            standardNote?.classList.remove('hidden');
+            premiumNote?.classList.remove('hidden');
             if (standardCta) standardCta.textContent = 'Get Started — Save 20%';
-            // Show Save 20% span for premium CTA
-            if (premiumCtaSave) premiumCtaSave.classList.remove('hidden');
+            premiumCtaSave?.classList.remove('hidden');
             if (billingMessage) billingMessage.textContent = 'Billed annually. Switch to monthly anytime.';
             // Annual active
-            billingAnnual.classList.add('bg-emerald-500', 'text-white');
-            billingAnnual.classList.remove('text-slate-600', 'hover:text-slate-900');
+            billingAnnual?.classList.add('bg-emerald-500', 'text-white');
+            billingAnnual?.classList.remove('text-slate-600', 'hover:text-slate-900');
             // Monthly inactive
-            billingMonthly.classList.remove('bg-emerald-500', 'text-white');
-            billingMonthly.classList.add('text-slate-600', 'hover:text-slate-900');
+            billingMonthly?.classList.remove('bg-emerald-500', 'text-white');
+            billingMonthly?.classList.add('text-slate-600', 'hover:text-slate-900');
         } else {
-            standardPrice.textContent = '150';
-            premiumPrice.textContent = '300';
-            standardNote.classList.add('hidden');
-            premiumNote.classList.add('hidden');
+            if (standardPrice) standardPrice.textContent = '150';
+            if (premiumPrice) premiumPrice.textContent = '300';
+            standardNote?.classList.add('hidden');
+            premiumNote?.classList.add('hidden');
             if (standardCta) standardCta.textContent = 'Get Started';
-            // Hide Save 20% span for premium CTA
-            if (premiumCtaSave) premiumCtaSave.classList.add('hidden');
+            premiumCtaSave?.classList.add('hidden');
             if (billingMessage) billingMessage.textContent = 'Billed monthly. Switch to annual anytime.';
             // Monthly active
-            billingMonthly.classList.add('bg-emerald-500', 'text-white');
-            billingMonthly.classList.remove('text-slate-600', 'hover:text-slate-900');
+            billingMonthly?.classList.add('bg-emerald-500', 'text-white');
+            billingMonthly?.classList.remove('text-slate-600', 'hover:text-slate-900');
             // Annual inactive
-            billingAnnual.classList.remove('bg-emerald-500', 'text-white');
-            billingAnnual.classList.add('text-slate-600', 'hover:text-slate-900');
+            billingAnnual?.classList.remove('bg-emerald-500', 'text-white');
+            billingAnnual?.classList.add('text-slate-600', 'hover:text-slate-900');
         }
     }
 
     if (billingMonthly && billingAnnual) {
+        // Set initial ARIA states
+        billingMonthly.setAttribute('role', 'radio');
+        billingMonthly.setAttribute('aria-checked', 'true');
+        billingAnnual.setAttribute('role', 'radio');
+        billingAnnual.setAttribute('aria-checked', 'false');
+
         billingMonthly.addEventListener('click', () => setPricing(false));
         billingAnnual.addEventListener('click', () => setPricing(true));
+
+        // Keyboard navigation for radio group
+        [billingMonthly, billingAnnual].forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const isMonthlyFocused = document.activeElement === billingMonthly;
+                    if (isMonthlyFocused) {
+                        billingAnnual.focus();
+                        setPricing(true);
+                    } else {
+                        billingMonthly.focus();
+                        setPricing(false);
+                    }
+                }
+            });
+        });
     }
 
     // ========================================
-    // Dashboard Carousel
+    // Dashboard Carousel with Keyboard Navigation
     // ========================================
     const carouselTabs = document.querySelectorAll('.carousel-tab');
     const carouselSlides = document.querySelectorAll('.carousel-slide');
     const carouselIndicators = document.querySelectorAll('[data-indicator]');
     const carouselContainer = document.getElementById('carousel-slides');
+    const slideCount = carouselSlides.length || 3;
     let activeTab = 0;
     let touchStartX = null;
 
+    /**
+     * Sets the active carousel slide and updates all related UI
+     * @param {number} index - The slide index to activate
+     */
     function setActiveSlide(index) {
         activeTab = index;
 
         // Update tabs
         carouselTabs.forEach((tab, i) => {
-            if (i === index) {
+            const isActive = i === index;
+            tab.setAttribute('aria-selected', isActive.toString());
+            tab.setAttribute('tabindex', isActive ? '0' : '-1');
+
+            if (isActive) {
                 tab.classList.add('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-500/25');
                 tab.classList.remove('bg-slate-800', 'text-slate-400', 'hover:bg-slate-700', 'hover:text-white');
             } else {
@@ -158,16 +257,52 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselSlides.forEach((slide, i) => {
             if (i === index) {
                 slide.classList.remove('hidden');
-                // Trigger counter animations
+                slide.setAttribute('aria-hidden', 'false');
                 animateCountersInSlide(slide);
             } else {
                 slide.classList.add('hidden');
+                slide.setAttribute('aria-hidden', 'true');
             }
         });
     }
 
+    // Set up carousel tabs with ARIA
     carouselTabs.forEach((tab, i) => {
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        tab.setAttribute('tabindex', i === 0 ? '0' : '-1');
+
         tab.addEventListener('click', () => setActiveSlide(i));
+
+        // Keyboard navigation for tabs
+        tab.addEventListener('keydown', (e) => {
+            let newIndex = activeTab;
+
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                newIndex = (activeTab - 1 + slideCount) % slideCount;
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                newIndex = (activeTab + 1) % slideCount;
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                newIndex = 0;
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                newIndex = slideCount - 1;
+            }
+
+            if (newIndex !== activeTab) {
+                setActiveSlide(newIndex);
+                carouselTabs[newIndex]?.focus();
+            }
+        });
+    });
+
+    // Set up slides with ARIA
+    carouselSlides.forEach((slide, i) => {
+        slide.setAttribute('role', 'tabpanel');
+        slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
     });
 
     // Swipe gesture support
@@ -182,13 +317,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const touchEndX = e.changedTouches[0].clientX;
             const diff = touchStartX - touchEndX;
 
-            if (Math.abs(diff) > 50) {
+            if (Math.abs(diff) > SWIPE_THRESHOLD) {
                 if (diff > 0) {
                     // Swipe left - next slide
-                    setActiveSlide((activeTab + 1) % 3);
+                    setActiveSlide((activeTab + 1) % slideCount);
                 } else {
                     // Swipe right - previous slide
-                    setActiveSlide((activeTab - 1 + 3) % 3);
+                    setActiveSlide((activeTab - 1 + slideCount) % slideCount);
                 }
                 // Scroll to slide eyebrow
                 setTimeout(() => {
@@ -202,7 +337,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================
     // Animated Counters
     // ========================================
-    function animateCounter(element, target, duration = 1500, decimals = 0) {
+
+    /**
+     * Animates a numerical counter from 0 to target value
+     * @param {HTMLElement} element - The element to animate
+     * @param {number} target - The target number
+     * @param {number} duration - Animation duration in ms
+     * @param {number} decimals - Number of decimal places
+     */
+    function animateCounter(element, target, duration = ANIMATION_DURATION, decimals = 0) {
         let start = 0;
         const increment = target / (duration / 16);
 
@@ -217,13 +360,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 16);
     }
 
+    /**
+     * Animates all counters within a slide element
+     * @param {HTMLElement} slide - The slide containing counters
+     */
     function animateCountersInSlide(slide) {
         const counters = slide.querySelectorAll('.counter');
         counters.forEach(counter => {
             const target = parseFloat(counter.dataset.target);
             const decimals = parseInt(counter.dataset.decimals) || 0;
+
+            // Validate target value
+            if (isNaN(target) || target < 0) {
+                console.warn('Invalid counter target:', counter.dataset.target);
+                return;
+            }
+
             counter.textContent = '0';
-            animateCounter(counter, target, 1500, decimals);
+            animateCounter(counter, target, ANIMATION_DURATION, decimals);
         });
     }
 
@@ -249,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, delayMs);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: FADE_IN_THRESHOLD });
 
     fadeElements.forEach(el => fadeObserver.observe(el));
 
@@ -273,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setupObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: SETUP_ANIMATION_THRESHOLD });
 
         setupObserver.observe(setupSection);
     }

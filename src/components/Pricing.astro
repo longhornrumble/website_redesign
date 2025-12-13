@@ -40,16 +40,20 @@ const premiumFeatures = [
         <!-- Toggle -->
         <div class="fade-in" style="transition-delay: 75ms">
             <div class="flex flex-col items-center gap-4 mb-12">
-                <div class="inline-flex items-center bg-white border-2 border-slate-200 rounded-full p-1.5">
+                <div class="inline-flex items-center bg-white border-2 border-slate-200 rounded-full p-1.5" role="radiogroup" aria-label="Billing frequency">
                     <button
                         id="billing-monthly"
                         class="billing-toggle px-6 py-2 rounded-full text-sm font-medium transition-all bg-emerald-500 text-white"
+                        role="radio"
+                        aria-checked="true"
                     >
                         Monthly
                     </button>
                     <button
                         id="billing-annual"
                         class="billing-toggle px-6 py-2 rounded-full text-sm font-medium transition-all text-slate-600 hover:text-slate-900"
+                        role="radio"
+                        aria-checked="false"
                     >
                         Annual (save 20%)
                     </button>

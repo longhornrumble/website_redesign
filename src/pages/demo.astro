@@ -299,7 +299,31 @@ const breadcrumbSchema = {
     <Footer />
 </Layout>
 
+<style>
+    /* Hamburger to X animation */
+    #mobile-menu-btn.open #hamburger-1 {
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        width: auto;
+        transform: translateX(0) translateY(-50%) rotate(45deg);
+    }
+    #mobile-menu-btn.open #hamburger-2 {
+        opacity: 0;
+    }
+    #mobile-menu-btn.open #hamburger-3 {
+        bottom: auto;
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        width: auto;
+        transform: translateX(0) translateY(-50%) rotate(-45deg);
+    }
+</style>
+
 <script>
+    const SCROLL_THRESHOLD = 50;
+
     // Demo page header scroll effect
     const nav = document.getElementById('main-nav');
     const logoWhite = document.getElementById('logo-white');
@@ -309,12 +333,10 @@ const breadcrumbSchema = {
     const ctaBtn = document.getElementById('cta-btn');
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    let menuOpen = false;
     let isScrolled = false;
 
     function handleScroll() {
-        const scrollY = window.scrollY;
-        const shouldBeScrolled = scrollY > 50;
+        const shouldBeScrolled = window.scrollY > SCROLL_THRESHOLD;
 
         if (shouldBeScrolled !== isScrolled) {
             isScrolled = shouldBeScrolled;
@@ -356,67 +378,66 @@ const breadcrumbSchema = {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    // Mobile menu toggle
-    const hamburger1 = document.getElementById('hamburger-1');
-    const hamburger2 = document.getElementById('hamburger-2');
-    const hamburger3 = document.getElementById('hamburger-3');
+    // Mobile menu functions
+    function openMenu() {
+        menuBtn?.classList.add('open');
+        menuBtn?.setAttribute('aria-expanded', 'true');
+        mobileMenu?.classList.remove('translate-x-full');
+        mobileMenu?.classList.add('translate-x-0');
+        // Focus first link
+        const firstLink = mobileMenu?.querySelector('a');
+        firstLink?.focus();
+    }
 
-    menuBtn?.addEventListener('click', () => {
-        menuOpen = !menuOpen;
-        if (menuOpen) {
-            mobileMenu?.classList.remove('translate-x-full');
-            mobileMenu?.classList.add('translate-x-0');
-            // Transform to X
-            hamburger1?.style.setProperty('top', '50%');
-            hamburger1?.style.setProperty('left', '4px');
-            hamburger1?.style.setProperty('right', '4px');
-            hamburger1?.style.setProperty('width', 'auto');
-            hamburger1?.style.setProperty('transform', 'translateX(0) translateY(-50%) rotate(45deg)');
-            hamburger2?.style.setProperty('opacity', '0');
-            hamburger3?.style.setProperty('bottom', 'auto');
-            hamburger3?.style.setProperty('top', '50%');
-            hamburger3?.style.setProperty('left', '4px');
-            hamburger3?.style.setProperty('right', '4px');
-            hamburger3?.style.setProperty('width', 'auto');
-            hamburger3?.style.setProperty('transform', 'translateX(0) translateY(-50%) rotate(-45deg)');
-        } else {
-            mobileMenu?.classList.add('translate-x-full');
-            mobileMenu?.classList.remove('translate-x-0');
-            // Transform back to hamburger
-            hamburger1?.style.setProperty('top', '0.5rem');
-            hamburger1?.style.setProperty('left', '50%');
-            hamburger1?.style.setProperty('right', 'auto');
-            hamburger1?.style.setProperty('width', '0.75rem');
-            hamburger1?.style.setProperty('transform', 'translateX(-50%)');
-            hamburger2?.style.setProperty('opacity', '1');
-            hamburger3?.style.setProperty('bottom', '0.5rem');
-            hamburger3?.style.setProperty('top', 'auto');
-            hamburger3?.style.setProperty('left', '50%');
-            hamburger3?.style.setProperty('right', 'auto');
-            hamburger3?.style.setProperty('width', '0.75rem');
-            hamburger3?.style.setProperty('transform', 'translateX(-50%)');
-        }
-    });
+    function closeMenu() {
+        menuBtn?.classList.remove('open');
+        menuBtn?.setAttribute('aria-expanded', 'false');
+        mobileMenu?.classList.add('translate-x-full');
+        mobileMenu?.classList.remove('translate-x-0');
+        menuBtn?.focus();
+    }
 
-    // Close menu when clicking links
-    document.querySelectorAll('.mobile-menu-link').forEach(link => {
-        link.addEventListener('click', () => {
-            menuOpen = false;
-            mobileMenu?.classList.add('translate-x-full');
-            mobileMenu?.classList.remove('translate-x-0');
-            // Reset hamburger
-            hamburger1?.style.setProperty('top', '0.5rem');
-            hamburger1?.style.setProperty('left', '50%');
-            hamburger1?.style.setProperty('right', 'auto');
-            hamburger1?.style.setProperty('width', '0.75rem');
-            hamburger1?.style.setProperty('transform', 'translateX(-50%)');
-            hamburger2?.style.setProperty('opacity', '1');
-            hamburger3?.style.setProperty('bottom', '0.5rem');
-            hamburger3?.style.setProperty('top', 'auto');
-            hamburger3?.style.setProperty('left', '50%');
-            hamburger3?.style.setProperty('right', 'auto');
-            hamburger3?.style.setProperty('width', '0.75rem');
-            hamburger3?.style.setProperty('transform', 'translateX(-50%)');
+    if (menuBtn && mobileMenu) {
+        // Set initial ARIA state
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-controls', 'mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = menuBtn.classList.contains('open');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
-    });
+
+        // Close menu when clicking links
+        document.querySelectorAll('.mobile-menu-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuBtn.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+
+        // Focus trapping within mobile menu
+        mobileMenu.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+
+            const focusableElements = mobileMenu.querySelectorAll('a[href], button:not([disabled])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement?.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement?.focus();
+            }
+        });
+    }
 </script>
