@@ -136,10 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselTabs.forEach((tab, i) => {
             if (i === index) {
                 tab.classList.add('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-500/25');
-                tab.classList.remove('bg-slate-800', 'text-slate-400');
+                tab.classList.remove('bg-slate-800', 'text-slate-400', 'hover:bg-slate-700', 'hover:text-white');
             } else {
                 tab.classList.remove('bg-emerald-500', 'text-white', 'shadow-lg', 'shadow-emerald-500/25');
-                tab.classList.add('bg-slate-800', 'text-slate-400');
+                tab.classList.add('bg-slate-800', 'text-slate-400', 'hover:bg-slate-700', 'hover:text-white');
             }
         });
 

@@ -3,8 +3,7 @@ const navLinks = [
     { label: 'How It Works', href: '#lean-teams' },
     { label: 'Results', href: '#results' },
     { label: 'Pricing', href: '#pricing' },
-    { label: 'Blog', href: 'https://myrecruiter.ai/blog' },
-    { label: 'Contact', href: '#demo' }
+    { label: 'Blog', href: 'https://myrecruiter.ai/blog' }
 ];
 ---
 
@@ -12,7 +11,7 @@ const navLinks = [
     <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
         <div class="flex items-center justify-between">
             <!-- Logo - consistent 44px height in both states -->
-            <div class="flex items-center w-48">
+            <a href="/" class="flex items-center w-48">
                 <img
                     id="logo-default"
                     src="/images/logo-white.webp"
@@ -30,7 +29,7 @@ const navLinks = [
                     width="200"
                     height="44"
                 />
-            </div>
+            </a>
 
             <!-- Navigation Links -->
             <div class="hidden lg:flex items-center gap-12">
@@ -46,7 +45,7 @@ const navLinks = [
 
             <!-- CTA Button -->
             <div class="hidden lg:flex items-center gap-8">
-                <a href="#" class="login-link text-sm font-medium transition-colors text-white/80 hover:text-white">Log In</a>
+                <a href="https://app.myrecruiter.ai" class="login-link text-sm font-medium transition-colors text-white/80 hover:text-white">Log In</a>
                 <a href="demo" id="header-cta" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg">
                     Book a Demo
                 </a>
@@ -55,12 +54,12 @@ const navLinks = [
             <!-- Mobile Hamburger Button -->
             <button
                 id="mobile-menu-btn"
-                class="lg:hidden p-2 flex flex-col justify-center items-end gap-1.5 w-8 h-8"
+                class="lg:hidden relative w-8 h-8"
                 aria-label="Toggle mobile menu"
             >
-                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 origin-center bg-white w-6"></span>
-                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 bg-white w-4"></span>
-                <span class="hamburger-line block h-0.5 rounded-full transition-all duration-300 origin-center bg-white w-5"></span>
+                <span class="hamburger-line absolute h-0.5 rounded-full transition-all duration-300 bg-white top-2 left-1/2 -translate-x-1/2 w-3"></span>
+                <span class="hamburger-line absolute h-0.5 rounded-full transition-all duration-300 bg-white top-1/2 -translate-y-1/2 left-1 right-1"></span>
+                <span class="hamburger-line absolute h-0.5 rounded-full transition-all duration-300 bg-white bottom-2 left-1/2 -translate-x-1/2 w-3"></span>
             </button>
         </div>
     </div>
@@ -78,7 +77,7 @@ const navLinks = [
             </a>
         ))}
         <div class="mt-8 flex flex-col items-center gap-4">
-            <a href="#" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
+            <a href="https://app.myrecruiter.ai" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
             <div class="w-32 border-t border-slate-600 mt-2"></div>
             <a
                 href="demo"
@@ -138,17 +137,23 @@ const navLinks = [
 
     /* Hamburger animation */
     #mobile-menu-btn.open .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translateY(8px);
-        width: 1.5rem;
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        width: auto;
+        transform: translateX(0) translateY(-50%) rotate(45deg);
     }
 
     #mobile-menu-btn.open .hamburger-line:nth-child(2) {
         opacity: 0;
-        width: 0;
     }
 
     #mobile-menu-btn.open .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translateY(-8px);
-        width: 1.5rem;
+        bottom: auto;
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        width: auto;
+        transform: translateX(0) translateY(-50%) rotate(-45deg);
     }
 </style>

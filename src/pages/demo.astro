@@ -94,24 +94,21 @@ const breadcrumbSchema = {
                     <a href="/#results" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Results</a>
                     <a href="/#pricing" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
                     <a href="https://myrecruiter.ai/blog" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Blog</a>
-                    <a href="#book" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
                 </div>
 
                 <!-- CTA - Desktop -->
                 <div class="hidden lg:flex items-center gap-8">
-                    <a href="#" id="login-link" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Log In</a>
+                    <a href="https://app.myrecruiter.ai" id="login-link" class="text-sm font-medium text-white/80 hover:text-white transition-colors">Log In</a>
                     <a href="#book" id="cta-btn" class="px-6 py-2.5 rounded-full text-sm font-semibold bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg transition-all">
                         Book a Demo
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2 text-white" aria-label="Toggle menu">
-                    <div class="flex flex-col gap-1.5">
-                        <span id="hamburger-1" class="block w-6 h-0.5 bg-current transition-all"></span>
-                        <span id="hamburger-2" class="block w-4 h-0.5 bg-current transition-all"></span>
-                        <span id="hamburger-3" class="block w-5 h-0.5 bg-current transition-all"></span>
-                    </div>
+                <button id="mobile-menu-btn" class="lg:hidden relative w-8 h-8 text-white" aria-label="Toggle menu">
+                    <span id="hamburger-1" class="absolute h-0.5 rounded-full bg-current transition-all duration-300 top-2 left-1/2 -translate-x-1/2 w-3"></span>
+                    <span id="hamburger-2" class="absolute h-0.5 rounded-full bg-current transition-all duration-300 top-1/2 -translate-y-1/2 left-1 right-1"></span>
+                    <span id="hamburger-3" class="absolute h-0.5 rounded-full bg-current transition-all duration-300 bottom-2 left-1/2 -translate-x-1/2 w-3"></span>
                 </button>
             </div>
         </div>
@@ -124,10 +121,9 @@ const breadcrumbSchema = {
             <a href="/#results" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Results</a>
             <a href="/#pricing" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Pricing</a>
             <a href="https://myrecruiter.ai/blog" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Blog</a>
-            <a href="#book" class="mobile-menu-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors">Contact</a>
 
             <div class="mt-8 flex flex-col items-center gap-4">
-                <a href="#" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
+                <a href="https://app.myrecruiter.ai" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
                 <div class="w-32 border-t border-slate-600 mt-2"></div>
                 <a href="#book" class="mobile-menu-link px-6 py-2.5 bg-emerald-500 text-white rounded-full font-semibold text-sm hover:bg-emerald-400 transition-all">
                     Get a Personalized Demo
@@ -361,14 +357,44 @@ const breadcrumbSchema = {
     handleScroll();
 
     // Mobile menu toggle
+    const hamburger1 = document.getElementById('hamburger-1');
+    const hamburger2 = document.getElementById('hamburger-2');
+    const hamburger3 = document.getElementById('hamburger-3');
+
     menuBtn?.addEventListener('click', () => {
         menuOpen = !menuOpen;
         if (menuOpen) {
             mobileMenu?.classList.remove('translate-x-full');
             mobileMenu?.classList.add('translate-x-0');
+            // Transform to X
+            hamburger1?.style.setProperty('top', '50%');
+            hamburger1?.style.setProperty('left', '4px');
+            hamburger1?.style.setProperty('right', '4px');
+            hamburger1?.style.setProperty('width', 'auto');
+            hamburger1?.style.setProperty('transform', 'translateX(0) translateY(-50%) rotate(45deg)');
+            hamburger2?.style.setProperty('opacity', '0');
+            hamburger3?.style.setProperty('bottom', 'auto');
+            hamburger3?.style.setProperty('top', '50%');
+            hamburger3?.style.setProperty('left', '4px');
+            hamburger3?.style.setProperty('right', '4px');
+            hamburger3?.style.setProperty('width', 'auto');
+            hamburger3?.style.setProperty('transform', 'translateX(0) translateY(-50%) rotate(-45deg)');
         } else {
             mobileMenu?.classList.add('translate-x-full');
             mobileMenu?.classList.remove('translate-x-0');
+            // Transform back to hamburger
+            hamburger1?.style.setProperty('top', '0.5rem');
+            hamburger1?.style.setProperty('left', '50%');
+            hamburger1?.style.setProperty('right', 'auto');
+            hamburger1?.style.setProperty('width', '0.75rem');
+            hamburger1?.style.setProperty('transform', 'translateX(-50%)');
+            hamburger2?.style.setProperty('opacity', '1');
+            hamburger3?.style.setProperty('bottom', '0.5rem');
+            hamburger3?.style.setProperty('top', 'auto');
+            hamburger3?.style.setProperty('left', '50%');
+            hamburger3?.style.setProperty('right', 'auto');
+            hamburger3?.style.setProperty('width', '0.75rem');
+            hamburger3?.style.setProperty('transform', 'translateX(-50%)');
         }
     });
 
@@ -378,6 +404,19 @@ const breadcrumbSchema = {
             menuOpen = false;
             mobileMenu?.classList.add('translate-x-full');
             mobileMenu?.classList.remove('translate-x-0');
+            // Reset hamburger
+            hamburger1?.style.setProperty('top', '0.5rem');
+            hamburger1?.style.setProperty('left', '50%');
+            hamburger1?.style.setProperty('right', 'auto');
+            hamburger1?.style.setProperty('width', '0.75rem');
+            hamburger1?.style.setProperty('transform', 'translateX(-50%)');
+            hamburger2?.style.setProperty('opacity', '1');
+            hamburger3?.style.setProperty('bottom', '0.5rem');
+            hamburger3?.style.setProperty('top', 'auto');
+            hamburger3?.style.setProperty('left', '50%');
+            hamburger3?.style.setProperty('right', 'auto');
+            hamburger3?.style.setProperty('width', '0.75rem');
+            hamburger3?.style.setProperty('transform', 'translateX(-50%)');
         });
     });
 </script>

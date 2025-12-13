@@ -5,6 +5,7 @@ const productLinks = [
     { label: 'Implementation', href: '#setup' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'Blog', href: 'https://myrecruiter.ai/blog' },
+    { label: 'Log In', href: 'https://app.myrecruiter.ai' },
     { label: 'Book a Demo', href: 'demo' }
 ];
 
@@ -24,7 +25,7 @@ const trustItems = [
             <div class="flex flex-col md:flex-row gap-8 md:gap-20">
                 <!-- Section A - Brand Block -->
                 <div class="flex flex-col items-center md:items-start">
-                    <div class="flex items-center mb-3">
+                    <a href="/" class="flex items-center mb-3">
                         <img
                             src="/images/logo-white.webp"
                             alt="MyRecruiter"
@@ -33,7 +34,7 @@ const trustItems = [
                             height="28"
                             loading="lazy"
                         />
-                    </div>
+                    </a>
                     <p class="text-slate-400 text-sm leading-relaxed mb-3 text-center md:text-left">
                         AI-powered engagement for nonprofits.
                     </p>
