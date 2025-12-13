@@ -37,6 +37,7 @@ const navLinks = [
                     <a
                         href={item.href}
                         class="nav-link text-sm font-medium transition-colors text-slate-300 hover:text-white"
+                        {...(item.href.startsWith('http') ? { rel: 'noopener noreferrer', target: '_blank' } : {})}
                     >
                         {item.label}
                     </a>
@@ -45,7 +46,7 @@ const navLinks = [
 
             <!-- CTA Button -->
             <div class="hidden lg:flex items-center gap-8">
-                <a href="https://app.myrecruiter.ai" class="login-link text-sm font-medium transition-colors text-white/80 hover:text-white">Log In</a>
+                <a href="https://app.myrecruiter.ai" rel="noopener noreferrer" class="login-link text-sm font-medium transition-colors text-white/80 hover:text-white">Log In</a>
                 <a href="demo" id="header-cta" class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-emerald-600 hover:bg-emerald-50 hover:shadow-lg">
                     Book a Demo
                 </a>
@@ -72,12 +73,13 @@ const navLinks = [
             <a
                 href={item.href}
                 class="mobile-nav-link text-2xl font-medium text-white hover:text-emerald-400 transition-colors"
+                {...(item.href.startsWith('http') ? { rel: 'noopener noreferrer', target: '_blank' } : {})}
             >
                 {item.label}
             </a>
         ))}
         <div class="mt-8 flex flex-col items-center gap-4">
-            <a href="https://app.myrecruiter.ai" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
+            <a href="https://app.myrecruiter.ai" rel="noopener noreferrer" class="text-lg text-slate-300 hover:text-white transition-colors">Log In</a>
             <div class="w-32 border-t border-slate-600 mt-2"></div>
             <a
                 href="demo"

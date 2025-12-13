@@ -71,7 +71,11 @@ const trustItems = [
                     <ul class="space-y-2.5">
                         {productLinks.map((item) => (
                             <li>
-                                <a href={item.href} class="text-slate-400 hover:text-white transition-colors text-sm">
+                                <a
+                                    href={item.href}
+                                    class="text-slate-400 hover:text-white transition-colors text-sm"
+                                    {...(item.href.startsWith('http') ? { rel: 'noopener noreferrer', target: '_blank' } : {})}
+                                >
                                     {item.label}
                                 </a>
                             </li>
