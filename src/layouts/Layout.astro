@@ -1,4 +1,9 @@
 ---
+import '@fontsource/plus-jakarta-sans/400.css';
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/600.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -42,10 +47,6 @@ const {
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#50C878">
 
-    <!-- Fonts - Load asynchronously after critical rendering -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <!-- Preload critical images -->
     <link rel="preload" href="/images/logo-white.webp" as="image" fetchpriority="high">
 
@@ -59,16 +60,6 @@ const {
 
     <!-- Core interactions script (minified) -->
     <script is:inline src="/scripts/main.min.js"></script>
-
-    <!-- Load fonts asynchronously -->
-    <script is:inline>
-        (function() {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap';
-            document.head.appendChild(link);
-        })();
-    </script>
 
     <!-- Google Analytics - Deferred to not block rendering -->
     <script is:inline>
