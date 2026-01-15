@@ -28,16 +28,36 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Email is required' });
     }
 
+    if (!contactName) {
+        return res.status(400).json({ error: 'Contact name is required' });
+    }
+
+    if (!organizationName) {
+        return res.status(400).json({ error: 'Organization name is required' });
+    }
+
     const priceId = PRICE_IDS[plan];
 
     try {
         // Create Stripe Customer with tax exemption status
-        // Customer name = organization (the business)
-        // Contact name = individual person making the purchase
+        // Customer name = organization (business name in Stripe)
+        // Individual name = contact person making the purchase
         const customerData = {
             email,
-            name: organizationName || undefined,
+            name: organizationName,
+            description: `Contact: ${contactName}`,
             tax_exempt: taxExempt ? 'exempt' : 'none',
+            // Use shipping.name to set individual name context
+            shipping: {
+                name: contactName,
+                address: {
+                    line1: '',
+                    city: '',
+                    state: '',
+                    postal_code: '',
+                    country: 'US',
+                },
+            },
             metadata: {
                 contact_name: contactName || '',
                 organization_name: organizationName || '',
