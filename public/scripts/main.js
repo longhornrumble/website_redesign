@@ -210,9 +210,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========================================
-    // Stripe Checkout
+    // Stripe Checkout Modal
     // ========================================
     const checkoutBtns = document.querySelectorAll('.checkout-btn');
+    const checkoutModal = document.getElementById('checkout-modal');
+    const checkoutModalBackdrop = document.getElementById('checkout-modal-backdrop');
+    const checkoutModalClose = document.getElementById('checkout-modal-close');
+    const checkoutForm = document.getElementById('checkout-form');
+    const checkoutPlanInput = document.getElementById('checkout-plan');
+    const taxExemptRadios = document.querySelectorAll('input[name="taxExempt"]');
+    const einField = document.getElementById('ein-field');
+    const checkoutSubmit = document.getElementById('checkout-submit');
     let isAnnualBilling = false;
 
     // Track billing state for checkout
@@ -221,38 +229,89 @@ document.addEventListener('DOMContentLoaded', () => {
         billingAnnual.addEventListener('click', () => { isAnnualBilling = true; });
     }
 
+    // Open modal when checkout button clicked
     checkoutBtns.forEach(btn => {
-        btn.addEventListener('click', async () => {
+        btn.addEventListener('click', () => {
             const plan = isAnnualBilling
                 ? btn.dataset.planAnnual
                 : btn.dataset.planMonthly;
 
-            // Disable button and show loading state
-            btn.disabled = true;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Redirecting...';
+            if (checkoutPlanInput) checkoutPlanInput.value = plan;
+            if (checkoutModal) checkoutModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
 
-            try {
-                const response = await fetch('/api/checkout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ plan }),
-                });
+            // Focus first input
+            document.getElementById('checkout-email')?.focus();
+        });
+    });
 
-                const data = await response.json();
+    // Close modal functions
+    function closeCheckoutModal() {
+        if (checkoutModal) checkoutModal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
 
-                if (data.url) {
-                    window.location.href = data.url;
+    checkoutModalClose?.addEventListener('click', closeCheckoutModal);
+    checkoutModalBackdrop?.addEventListener('click', closeCheckoutModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && checkoutModal && !checkoutModal.classList.contains('hidden')) {
+            closeCheckoutModal();
+        }
+    });
+
+    // Show/hide EIN field based on tax exempt selection
+    taxExemptRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            if (einField) {
+                if (e.target.value === 'yes') {
+                    einField.classList.remove('hidden');
                 } else {
-                    throw new Error(data.error || 'Failed to create checkout');
+                    einField.classList.add('hidden');
                 }
-            } catch (error) {
-                console.error('Checkout error:', error);
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                alert('Something went wrong. Please try again.');
             }
         });
+    });
+
+    // Handle form submission
+    checkoutForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(checkoutForm);
+        const plan = formData.get('plan');
+        const email = formData.get('email');
+        const organizationName = formData.get('organizationName');
+        const taxExempt = formData.get('taxExempt') === 'yes';
+        const ein = formData.get('ein');
+
+        // Disable submit button
+        if (checkoutSubmit) {
+            checkoutSubmit.disabled = true;
+            checkoutSubmit.textContent = 'Redirecting...';
+        }
+
+        try {
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plan, email, organizationName, taxExempt, ein }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || 'Failed to create checkout');
+            }
+        } catch (error) {
+            console.error('Checkout error:', error);
+            if (checkoutSubmit) {
+                checkoutSubmit.disabled = false;
+                checkoutSubmit.textContent = 'Continue to Checkout';
+            }
+            alert('Something went wrong. Please try again.');
+        }
     });
 
     // ========================================

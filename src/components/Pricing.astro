@@ -168,3 +168,95 @@ const premiumFeatures = [
         </div>
     </div>
 </section>
+
+<!-- Checkout Modal -->
+<div id="checkout-modal" class="fixed inset-0 z-50 hidden" aria-modal="true" role="dialog">
+    <!-- Backdrop -->
+    <div id="checkout-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+
+    <!-- Modal Content -->
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative">
+            <!-- Close Button -->
+            <button id="checkout-modal-close" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600" aria-label="Close">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Header -->
+            <div class="mb-6">
+                <h3 class="font-display text-2xl font-semibold text-slate-900">Complete your signup</h3>
+                <p class="text-slate-500 mt-1">You'll be redirected to our secure checkout</p>
+            </div>
+
+            <!-- Form -->
+            <form id="checkout-form" class="space-y-4">
+                <input type="hidden" id="checkout-plan" name="plan" value="">
+
+                <!-- Email -->
+                <div>
+                    <label for="checkout-email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                    <input
+                        type="email"
+                        id="checkout-email"
+                        name="email"
+                        required
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                        placeholder="you@organization.org"
+                    />
+                </div>
+
+                <!-- Organization Name -->
+                <div>
+                    <label for="checkout-org" class="block text-sm font-medium text-slate-700 mb-1">Organization Name</label>
+                    <input
+                        type="text"
+                        id="checkout-org"
+                        name="organizationName"
+                        required
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                        placeholder="Your Nonprofit Name"
+                    />
+                </div>
+
+                <!-- Tax Exempt -->
+                <div class="pt-2">
+                    <label class="block text-sm font-medium text-slate-700 mb-3">Is your organization tax-exempt?</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="taxExempt" value="no" checked class="w-4 h-4 text-emerald-500 focus:ring-emerald-500">
+                            <span class="text-slate-700">No</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="taxExempt" value="yes" class="w-4 h-4 text-emerald-500 focus:ring-emerald-500">
+                            <span class="text-slate-700">Yes</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- EIN Field (hidden by default) -->
+                <div id="ein-field" class="hidden">
+                    <label for="checkout-ein" class="block text-sm font-medium text-slate-700 mb-1">EIN (Tax ID Number)</label>
+                    <input
+                        type="text"
+                        id="checkout-ein"
+                        name="ein"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                        placeholder="XX-XXXXXXX"
+                    />
+                    <p class="text-xs text-slate-400 mt-1">We'll verify your tax-exempt status after signup</p>
+                </div>
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    id="checkout-submit"
+                    class="w-full py-3 rounded-full bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors mt-4 disabled:opacity-50 disabled:cursor-wait"
+                >
+                    Continue to Checkout
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

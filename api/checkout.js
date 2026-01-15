@@ -15,19 +15,43 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { plan } = req.body;
+    const { plan, email, organizationName, taxExempt, ein } = req.body;
 
-    // Validate the plan parameter
+    // Validate required fields
     if (!plan || !PRICE_IDS[plan]) {
         return res.status(400).json({
             error: 'Invalid plan. Must be one of: standard_monthly, standard_annual, premium_monthly, premium_annual'
         });
     }
 
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
+
     const priceId = PRICE_IDS[plan];
 
     try {
+        // Create Stripe Customer with tax exemption status
+        const customerData = {
+            email,
+            name: organizationName || undefined,
+            tax_exempt: taxExempt ? 'exempt' : 'none',
+            metadata: {
+                organization_name: organizationName || '',
+                exemption_status: taxExempt ? 'pending_verification' : 'not_exempt',
+            },
+        };
+
+        // Add EIN to metadata if provided
+        if (taxExempt && ein) {
+            customerData.metadata.ein = ein;
+        }
+
+        const customer = await stripe.customers.create(customerData);
+
+        // Create Checkout Session with the customer
         const session = await stripe.checkout.sessions.create({
+            customer: customer.id,
             mode: 'subscription',
             payment_method_types: ['card'],
             line_items: [
@@ -36,26 +60,11 @@ export default async function handler(req, res) {
                     quantity: 1,
                 },
             ],
-            // Collect organization name via custom field
-            custom_fields: [
-                {
-                    key: 'organization_name',
-                    label: {
-                        type: 'custom',
-                        custom: 'Organization Name',
-                    },
-                    type: 'text',
-                },
-            ],
-            // Enable automatic tax calculation (required for tax ID collection)
+            // Enable automatic tax calculation
             automatic_tax: {
                 enabled: true,
             },
-            // Allow customers to enter tax ID for tax exemption
-            tax_id_collection: {
-                enabled: true,
-            },
-            // Collect billing address (includes name)
+            // Collect billing address
             billing_address_collection: 'required',
             // Redirect URLs
             success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
