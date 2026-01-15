@@ -1,0 +1,37 @@
+/* MyRecruiter Header/Footer Styles for Framer */
+.mr-header, .mr-header *, .mr-footer, .mr-footer *, .mr-mobile-menu, .mr-mobile-menu * {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Header scroll state */
+#mr-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+#mr-header.scrolled .mr-nav-link { color: rgb(51, 65, 85); }
+#mr-header.scrolled .mr-nav-link:hover { color: rgb(5, 150, 105); }
+#mr-header.scrolled .mr-login-link { color: rgb(71, 85, 105); }
+#mr-header.scrolled .mr-login-link:hover { color: rgb(15, 23, 42); }
+#mr-header.scrolled #mr-header-cta {
+    background-color: #50C878 !important;
+    color: white !important;
+}
+#mr-header.scrolled #mr-header-cta:hover { background-color: #34d399 !important; }
+#mr-header.scrolled .mr-hamburger-line { background-color: rgb(15, 23, 42) !important; }
+
+/* Mobile menu */
+#mr-mobile-menu.open { transform: translateX(0) !important; opacity: 1 !important; }
+#mr-mobile-menu-btn.open .mr-hamburger-line:nth-child(1) {
+    top: 50%; left: 4px; right: 4px; width: auto;
+    transform: translateX(0) translateY(-50%) rotate(45deg);
+}
+#mr-mobile-menu-btn.open .mr-hamburger-line:nth-child(2) { opacity: 0; }
+#mr-mobile-menu-btn.open .mr-hamburger-line:nth-child(3) {
+    bottom: auto; top: 50%; left: 4px; right: 4px; width: auto;
+    transform: translateX(0) translateY(-50%) rotate(-45deg);
+}
+
+/* Add padding to body for fixed header */
+body { padding-top: 76px; }
