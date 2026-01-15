@@ -1,5 +1,11 @@
 {
   "outputDirectory": "dist",
+  "crons": [
+    {
+      "path": "/api/cleanup-orphan-customers",
+      "schedule": "0 0 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

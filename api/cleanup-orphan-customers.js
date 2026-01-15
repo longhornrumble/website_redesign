@@ -7,25 +7,30 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const GRACE_PERIOD_HOURS = 24;
 
 export default async function handler(req, res) {
-    // Only allow POST requests with authorization
-    if (req.method !== 'POST') {
+    // Check if this is a Vercel cron request
+    const isCronRequest = req.headers['x-vercel-cron'] === '1';
+
+    // Allow GET for cron, POST for manual calls
+    if (req.method !== 'POST' && req.method !== 'GET') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Simple API key check - use CLEANUP_API_KEY env var
-    const authHeader = req.headers.authorization;
-    const expectedKey = process.env.CLEANUP_API_KEY;
+    // For non-cron requests, require API key authorization
+    if (!isCronRequest) {
+        const authHeader = req.headers.authorization;
+        const expectedKey = process.env.CLEANUP_API_KEY;
 
-    if (!expectedKey) {
-        return res.status(500).json({ error: 'CLEANUP_API_KEY not configured' });
+        if (!expectedKey) {
+            return res.status(500).json({ error: 'CLEANUP_API_KEY not configured' });
+        }
+
+        if (authHeader !== `Bearer ${expectedKey}`) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
     }
 
-    if (authHeader !== `Bearer ${expectedKey}`) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
-
-    // Check for dry-run mode (default to true for safety)
-    const dryRun = req.body?.dryRun !== false;
+    // Cron requests execute by default; manual requests dry-run by default
+    const dryRun = isCronRequest ? false : req.body?.dryRun !== false;
 
     const gracePeriodSeconds = GRACE_PERIOD_HOURS * 60 * 60;
     const cutoffTimestamp = Math.floor(Date.now() / 1000) - gracePeriodSeconds;
