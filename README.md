@@ -1,6 +1,6 @@
 # MyRecruiter Homepage
 
-AI-powered engagement platform for nonprofits. This repository contains the homepage for MyRecruiter.
+AI-powered engagement platform for nonprofits. This repository contains the marketing homepage for MyRecruiter.
 
 ## Overview
 
@@ -8,19 +8,27 @@ MyRecruiter helps nonprofits capture and convert more volunteers and donors by p
 
 ## Tech Stack
 
-- **React 18** - UI framework (CDN-loaded)
-- **Tailwind CSS** - Utility-first styling
-- **Babel** - JSX transformation
-- **Plus Jakarta Sans** - Typography
+- **Astro 5** - Static site generator (no SSR, no runtime JS frameworks)
+- **Tailwind CSS 3** - Utility-first styling
+- **Plus Jakarta Sans** - Typography (latin subset, 400-700 weights)
+- **Vanilla JavaScript** - Client-side interactions
 
 ## File Structure
 
 ```
 /
-├── myrecruiter-homepage-v8-updated.html   # Main homepage file
-├── Guides/                                 # Design and development guides
-├── MyRecruiter Screenshots/                # Product dashboard images
-└── Webpage Mocks/                          # Alternative design variants
+├── src/
+│   ├── components/         # Astro components (Header, Hero, FAQ, etc.)
+│   ├── layouts/            # Layout templates
+│   └── pages/              # Page routes (index.astro, demo.astro)
+├── public/
+│   ├── images/             # Static images
+│   ├── videos/             # Video assets
+│   └── scripts/            # Client-side JavaScript
+├── dist/                   # Production build output
+├── astro.config.mjs        # Astro configuration
+├── tailwind.config.mjs     # Tailwind configuration
+└── vercel.json             # Deployment & security headers
 ```
 
 ## Page Sections
@@ -28,21 +36,35 @@ MyRecruiter helps nonprofits capture and convert more volunteers and donors by p
 1. **Header** - Navigation with How It Works, Results, Pricing, Blog, Contact
 2. **Hero** - Main value proposition with CTAs
 3. **Lean Teams** - Problem statement for resource-constrained nonprofits
-4. **Meet Them Where They Are** - Multi-channel engagement messaging
-5. **Analytics Dashboard** - Interactive carousel showing platform capabilities
+4. **Hub & Spoke** - Multi-channel engagement messaging
+5. **Dashboard Carousel** - Interactive carousel showing platform capabilities
 6. **Austin Angels Case Study** - Real results with statistics
 7. **Setup Process** - 4-step onboarding flow
 8. **Pricing** - Standard ($150) and Premium ($300) tiers
-9. **FAQ** - Common questions and answers
+9. **FAQ** - Common questions and answers (accordion on mobile)
 10. **Final CTA** - Conversion-focused call to action
 11. **Footer** - Links, security info, and social media
 
 ## Development
 
-The page is a single HTML file with embedded React components. To view:
+```bash
+npm install         # Install dependencies
+npm run dev         # Start dev server (localhost:4321)
+npm run build       # Production build to dist/
+npm run preview     # Preview production build
+```
 
-1. Open `myrecruiter-homepage-v8-updated.html` in a browser
-2. Or serve via a local server for hot reloading
+After editing `public/scripts/main.js`, regenerate the minified version:
+```bash
+npx terser public/scripts/main.js -o public/scripts/main.min.js -c -m
+```
+
+## Deployment
+
+Deployed to Vercel. The `vercel.json` configures:
+- Security headers (CSP, HSTS, X-Frame-Options, etc.)
+- Cache headers for static assets
+- URL rewrites for clean routes
 
 ## Design System
 
