@@ -36,8 +36,6 @@ export default async function handler(req, res) {
                     quantity: 1,
                 },
             ],
-            // Create a Stripe Customer to store all collected info
-            customer_creation: 'always',
             // Collect organization name via custom field
             custom_fields: [
                 {
