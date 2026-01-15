@@ -1,6 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+
+const agendaItems = [
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>`,
+        title: "Your organization, website & goals",
+        description: "We'll discuss your current site, programs, and how you're attracting volunteers, donors, or other supporters today."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>`,
+        title: "How the AI assistant fits in",
+        description: "I'll walk you through a demo of MyRecruiter tailored to your programs — how it answers questions, routes people to the right forms, and works alongside your existing tools."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`,
+        title: "Implementation plan & rollout strategy",
+        description: "We'll outline a realistic plan and timeline for getting your AI assistant live — and make sure your team is set up for success."
+    }
+];
 ---
 
 <Layout
@@ -9,12 +27,12 @@ import Footer from '../components/Footer.astro';
     canonical="https://myrecruiter.ai/success"
 >
     <!-- Simple Header -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900 border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
             <div class="flex items-center justify-center">
                 <a href="/">
                     <img
-                        src="/images/logo.webp"
+                        src="/images/logo-white.webp"
                         alt="MyRecruiter"
                         class="h-11 w-auto"
                         width="200"
@@ -25,76 +43,164 @@ import Footer from '../components/Footer.astro';
         </div>
     </nav>
 
-    <!-- Success Message -->
-    <section class="pt-32 sm:pt-40 pb-16 sm:pb-24 bg-white min-h-screen flex items-center">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-            <!-- Success Icon -->
-            <div class="w-20 h-20 mx-auto mb-8 rounded-full bg-emerald-100 flex items-center justify-center">
-                <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
+    <!-- Hero with Welcome Message -->
+    <section class="pt-32 sm:pt-40 pb-16 sm:pb-20 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center">
+                <!-- Success Icon -->
+                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 flex items-center justify-center">
+                    <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+
+                <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">You're all set</span>
+
+                <h1 class="font-display text-4xl sm:text-5xl font-semibold text-white mt-4 mb-6 leading-tight">
+                    Welcome to MyRecruiter!
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                    Thank you for subscribing. I'm genuinely excited to help your organization reach more volunteers and donors.
+                </p>
             </div>
 
-            <h1 class="font-display text-4xl sm:text-5xl font-semibold text-slate-900 mb-6">
-                Welcome to MyRecruiter!
-            </h1>
-
-            <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8">
-                Thank you for subscribing. We're excited to help you reach more volunteers and donors.
-            </p>
-
-            <div class="bg-slate-50 rounded-2xl p-8 mb-10 text-left">
-                <h2 class="font-semibold text-slate-900 mb-4">What happens next:</h2>
-                <ol class="space-y-4">
-                    <li class="flex gap-4">
-                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">1</span>
-                        <div>
-                            <p class="text-slate-700 font-medium">Check your inbox</p>
-                            <p class="text-slate-500 text-sm">You'll receive a confirmation email with your receipt, account details, and next steps.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">2</span>
-                        <div>
-                            <p class="text-slate-700 font-medium">We'll reach out within 24 hours</p>
-                            <p class="text-slate-500 text-sm">Our team will contact you to schedule your onboarding and gather information about your organization.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">3</span>
-                        <div>
-                            <p class="text-slate-700 font-medium">Go live in 24-48 hours</p>
-                            <p class="text-slate-500 text-sm">We handle the setup so you can focus on your mission.</p>
-                        </div>
-                    </li>
-                </ol>
+            <!-- Founder card -->
+            <div class="mt-12 bg-slate-800/60 border border-slate-700 rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6">
+                <img
+                    src="/images/chris-miller-profile.webp"
+                    alt="Chris Miller"
+                    class="w-24 h-24 rounded-full border-4 border-emerald-500/40 object-cover flex-shrink-0"
+                    width="96"
+                    height="96"
+                    loading="eager"
+                />
+                <div class="text-center sm:text-left">
+                    <p class="text-sm sm:text-base font-semibold text-white">Chris Miller</p>
+                    <p class="mt-1 text-[11px] sm:text-xs text-slate-400">
+                        Founder — Foster-adoptive dad to four siblings — Lifelong technologist
+                    </p>
+                    <p class="text-sm text-slate-300 mt-4 leading-relaxed">
+                        Thank you for trusting me with your mission. I can't wait to learn more about your organization and show you how MyRecruiter can help you reach more people who need you.
+                    </p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Motion Calendar Embed -->
-            <div class="mb-10">
-                <h2 class="font-semibold text-slate-900 mb-4">Schedule your onboarding call:</h2>
-                <div class="bg-white rounded-2xl overflow-hidden border border-slate-200">
-                    <iframe
-                        src="https://app.usemotion.com/meet/myrecruiter/3wcl3mt"
-                        title="Motion Booking Page"
-                        width="100%"
-                        height="840"
-                        frameborder="0"
-                        loading="lazy"
-                    ></iframe>
+    <!-- Step 1: Check Email -->
+    <section class="py-16 sm:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="flex items-start gap-6">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xl">
+                        1
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-semibold text-slate-900 mb-3">
+                        Check your inbox
+                    </h2>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Look for an email with your receipt, account details, and next steps. If you don't see it in the next few minutes, check your spam folder.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step 2: Schedule Onboarding -->
+    <section class="py-16 sm:py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="flex items-start gap-6 mb-10">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xl">
+                        2
+                    </div>
+                </div>
+                <div>
+                    <h2 class="font-display text-2xl sm:text-3xl font-semibold text-slate-900 mb-3">
+                        Schedule your onboarding call
+                    </h2>
+                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                        This is where we'll get your AI assistant set up and tailored to your organization.
+                    </p>
+
+                    <!-- Call Details -->
+                    <div class="flex flex-wrap gap-6 text-slate-600">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span class="font-medium">Plan for an hour</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            <span class="font-medium">Invite anyone on your team</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <!-- Agenda -->
+            <div class="ml-0 sm:ml-18 pl-0 sm:pl-18">
+                <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-6">What we'll cover</h3>
+                <div class="space-y-4">
+                    {agendaItems.map((item) => (
+                        <div class="bg-white border border-slate-200 rounded-xl p-5 sm:p-6 flex gap-5 shadow-sm">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                                    <Fragment set:html={item.icon} />
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900 mb-1">{item.title}</h4>
+                                <p class="text-slate-600 leading-relaxed">{item.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Embed -->
+    <section class="py-16 sm:py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-10">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Pick a Time</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    Choose a time that works for you
+                </h2>
+                <p class="text-slate-600 max-w-xl mx-auto">
+                    Times are shown in your local timezone. You can reschedule anytime using the link in your confirmation email.
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+                <iframe
+                    src="https://app.usemotion.com/meet/myrecruiter/3wcl3mt"
+                    title="Motion Booking Page"
+                    width="100%"
+                    height="840"
+                    frameborder="0"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
+                ></iframe>
+            </div>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                     href="/"
-                    class="px-8 py-3 rounded-full bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors"
+                    class="px-8 py-3 rounded-full bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors text-center"
                 >
                     Return to Homepage
                 </a>
                 <a
                     href="mailto:support@myrecruiter.ai"
-                    class="px-8 py-3 rounded-full border-2 border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors"
+                    class="px-8 py-3 rounded-full border-2 border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors text-center"
                 >
                     Contact Support
                 </a>
