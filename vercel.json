@@ -29,5 +29,10 @@
   "rewrites": [
     { "source": "/demo", "destination": "/demo.html" },
     { "source": "/success", "destination": "/success.html" }
+  ],
+  "redirects": [
+    { "source": "/blog", "destination": "https://blog.myrecruiter.ai", "permanent": true },
+    { "source": "/blog/:path*", "destination": "https://blog.myrecruiter.ai/:path*", "permanent": true },
+    { "source": "/posts/:slug*", "destination": "https://blog.myrecruiter.ai/posts/:slug*", "permanent": true }
   ]
 }
