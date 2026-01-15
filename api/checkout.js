@@ -36,15 +36,24 @@ export default async function handler(req, res) {
                     quantity: 1,
                 },
             ],
+            // Create a Stripe Customer to store all collected info
+            customer_creation: 'always',
+            // Collect organization name via custom field
+            custom_fields: [
+                {
+                    key: 'organization_name',
+                    label: {
+                        type: 'custom',
+                        custom: 'Organization Name',
+                    },
+                    type: 'text',
+                },
+            ],
             // Allow customers to enter tax ID for tax exemption
             tax_id_collection: {
                 enabled: true,
             },
-            // Let Stripe automatically calculate tax based on customer location
-            automatic_tax: {
-                enabled: true,
-            },
-            // Collect billing address for tax calculation
+            // Collect billing address (includes name)
             billing_address_collection: 'required',
             // Redirect URLs
             success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
