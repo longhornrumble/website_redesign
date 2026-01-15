@@ -33,6 +33,12 @@
   "redirects": [
     { "source": "/blog", "destination": "https://blog.myrecruiter.ai", "permanent": true },
     { "source": "/blog/:path*", "destination": "https://blog.myrecruiter.ai/:path*", "permanent": true },
-    { "source": "/posts/:slug*", "destination": "https://blog.myrecruiter.ai/posts/:slug*", "permanent": true }
+    { "source": "/posts/:slug*", "destination": "https://blog.myrecruiter.ai/posts/:slug*", "permanent": true },
+    { "source": "/about", "destination": "/#lean-teams", "permanent": true },
+    { "source": "/contact", "destination": "/demo", "permanent": true },
+    { "source": "/pricing", "destination": "/#pricing", "permanent": true },
+    { "source": "/thank-you", "destination": "/success", "permanent": true },
+    { "source": "/volunteer-recruitment-template", "destination": "/", "permanent": true },
+    { "source": "/role-descriptions-:path*", "destination": "/", "permanent": true }
   ]
 }
