@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
+
+const currentYear = new Date().getFullYear();
 
 const agendaItems = [
     {
@@ -230,5 +231,24 @@ const agendaItems = [
         </div>
     </section>
 
-    <Footer />
+    <!-- Simplified Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <div class="flex items-center gap-3">
+                    <img
+                        src="/images/logo-white.webp"
+                        alt="MyRecruiter"
+                        class="h-6 w-auto opacity-60"
+                        width="109"
+                        height="24"
+                    />
+                    <span>&copy; {currentYear} MyRecruiter</span>
+                </div>
+                <a href="mailto:support@myrecruiter.ai" class="text-slate-400 hover:text-white transition-colors">
+                    support@myrecruiter.ai
+                </a>
+            </div>
+        </div>
+    </footer>
 </Layout>
