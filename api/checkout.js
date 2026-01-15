@@ -32,9 +32,11 @@ export default async function handler(req, res) {
 
     try {
         // Create Stripe Customer with tax exemption status
+        // Customer name = organization (the business)
+        // Contact name = individual person making the purchase
         const customerData = {
             email,
-            name: contactName || undefined,
+            name: organizationName || undefined,
             tax_exempt: taxExempt ? 'exempt' : 'none',
             metadata: {
                 contact_name: contactName || '',
@@ -75,10 +77,9 @@ export default async function handler(req, res) {
                     },
                 },
             ],
-            // Save billing address and name to customer
+            // Save billing address to customer (keep organization name as customer name)
             customer_update: {
                 address: 'auto',
-                name: 'auto',
             },
             // Enable automatic tax calculation
             automatic_tax: {
