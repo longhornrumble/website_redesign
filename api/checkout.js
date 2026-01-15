@@ -40,27 +40,15 @@ export default async function handler(req, res) {
 
     try {
         // Create Stripe Customer with tax exemption status
-        // Customer name = organization (business name in Stripe)
-        // Individual name = contact person making the purchase
         const customerData = {
             email,
             name: organizationName,
-            description: `Contact: ${contactName}`,
+            business_name: organizationName,
+            individual_name: contactName,
             tax_exempt: taxExempt ? 'exempt' : 'none',
-            // Use shipping.name to set individual name context
-            shipping: {
-                name: contactName,
-                address: {
-                    line1: '',
-                    city: '',
-                    state: '',
-                    postal_code: '',
-                    country: 'US',
-                },
-            },
             metadata: {
-                contact_name: contactName || '',
-                organization_name: organizationName || '',
+                contact_name: contactName,
+                organization_name: organizationName,
                 exemption_status: taxExempt ? 'pending_verification' : 'not_exempt',
             },
         };
