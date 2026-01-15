@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+    title="Welcome to MyRecruiter"
+    description="Thank you for subscribing to MyRecruiter."
+    canonical="https://myrecruiter.ai/success"
+>
+    <!-- Simple Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
+            <div class="flex items-center justify-center">
+                <a href="/">
+                    <img
+                        src="/images/logo.webp"
+                        alt="MyRecruiter"
+                        class="h-11 w-auto"
+                        width="200"
+                        height="44"
+                    />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Message -->
+    <section class="pt-32 sm:pt-40 pb-16 sm:pb-24 bg-white min-h-screen flex items-center">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+            <!-- Success Icon -->
+            <div class="w-20 h-20 mx-auto mb-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl font-semibold text-slate-900 mb-6">
+                Welcome to MyRecruiter!
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8">
+                Thank you for subscribing. We're excited to help you reach more volunteers and donors.
+            </p>
+
+            <div class="bg-slate-50 rounded-2xl p-8 mb-10 text-left">
+                <h2 class="font-semibold text-slate-900 mb-4">What happens next:</h2>
+                <ol class="space-y-4">
+                    <li class="flex gap-4">
+                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">1</span>
+                        <div>
+                            <p class="text-slate-700 font-medium">Check your inbox</p>
+                            <p class="text-slate-500 text-sm">You'll receive a confirmation email with your receipt and account details.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">2</span>
+                        <div>
+                            <p class="text-slate-700 font-medium">We'll reach out within 24 hours</p>
+                            <p class="text-slate-500 text-sm">Our team will contact you to schedule your onboarding and gather information about your organization.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-semibold text-sm">3</span>
+                        <div>
+                            <p class="text-slate-700 font-medium">Go live in 24-48 hours</p>
+                            <p class="text-slate-500 text-sm">We handle the setup so you can focus on your mission.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                    href="/"
+                    class="px-8 py-3 rounded-full bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors"
+                >
+                    Return to Homepage
+                </a>
+                <a
+                    href="mailto:support@myrecruiter.ai"
+                    class="px-8 py-3 rounded-full border-2 border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors"
+                >
+                    Contact Support
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>

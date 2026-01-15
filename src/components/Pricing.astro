@@ -89,9 +89,14 @@ const premiumFeatures = [
                             ))}
                         </ul>
                     </div>
-                    <a id="standard-cta" href="demo" class="w-full py-3 rounded-full border-2 border-emerald-500 text-emerald-500 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block">
+                    <button
+                        id="standard-cta"
+                        class="checkout-btn w-full py-3 rounded-full border-2 border-emerald-500 text-emerald-500 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block disabled:opacity-50 disabled:cursor-wait"
+                        data-plan-monthly="standard_monthly"
+                        data-plan-annual="standard_annual"
+                    >
                         Get Started
-                    </a>
+                    </button>
                 </div>
 
                 <!-- Premium -->
@@ -118,9 +123,14 @@ const premiumFeatures = [
                             ))}
                         </ul>
                     </div>
-                    <a id="premium-cta" href="demo" class="w-full py-4 rounded-full bg-white text-emerald-500 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block">
+                    <button
+                        id="premium-cta"
+                        class="checkout-btn w-full py-4 rounded-full bg-white text-emerald-500 font-semibold hover:bg-emerald-50 transition-colors mt-auto text-center block disabled:opacity-50 disabled:cursor-wait"
+                        data-plan-monthly="premium_monthly"
+                        data-plan-annual="premium_annual"
+                    >
                         <span id="premium-cta-main">Start your 48-hour setup</span><span id="premium-cta-save" class="hidden"><span class="xl:hidden"><br/></span> — Save 20%</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

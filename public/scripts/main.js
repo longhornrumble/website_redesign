@@ -210,6 +210,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ========================================
+    // Stripe Checkout
+    // ========================================
+    const checkoutBtns = document.querySelectorAll('.checkout-btn');
+    let isAnnualBilling = false;
+
+    // Track billing state for checkout
+    if (billingMonthly && billingAnnual) {
+        billingMonthly.addEventListener('click', () => { isAnnualBilling = false; });
+        billingAnnual.addEventListener('click', () => { isAnnualBilling = true; });
+    }
+
+    checkoutBtns.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const plan = isAnnualBilling
+                ? btn.dataset.planAnnual
+                : btn.dataset.planMonthly;
+
+            // Disable button and show loading state
+            btn.disabled = true;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Redirecting...';
+
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan }),
+                });
+
+                const data = await response.json();
+
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || 'Failed to create checkout');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    });
+
+    // ========================================
     // Dashboard Carousel with Keyboard Navigation
     // ========================================
     const carouselTabs = document.querySelectorAll('.carousel-tab');
