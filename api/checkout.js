@@ -47,6 +47,10 @@ export default async function handler(req, res) {
                     type: 'text',
                 },
             ],
+            // Enable automatic tax calculation (required for tax ID collection)
+            automatic_tax: {
+                enabled: true,
+            },
             // Allow customers to enter tax ID for tax exemption
             tax_id_collection: {
                 enabled: true,
