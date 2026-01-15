@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { plan, email, organizationName, taxExempt, ein } = req.body;
+    const { plan, contactName, email, organizationName, taxExempt, ein } = req.body;
 
     // Validate required fields
     if (!plan || !PRICE_IDS[plan]) {
@@ -34,9 +34,10 @@ export default async function handler(req, res) {
         // Create Stripe Customer with tax exemption status
         const customerData = {
             email,
-            name: organizationName || undefined,
+            name: contactName || undefined,
             tax_exempt: taxExempt ? 'exempt' : 'none',
             metadata: {
+                contact_name: contactName || '',
                 organization_name: organizationName || '',
                 exemption_status: taxExempt ? 'pending_verification' : 'not_exempt',
             },
@@ -60,9 +61,24 @@ export default async function handler(req, res) {
                     quantity: 1,
                 },
             ],
-            // Save billing address to customer for tax calculation
+            // Pre-fill organization name as read-only custom field
+            custom_fields: [
+                {
+                    key: 'organization_name',
+                    label: {
+                        type: 'custom',
+                        custom: 'Organization Name',
+                    },
+                    type: 'text',
+                    text: {
+                        default_value: organizationName || '',
+                    },
+                },
+            ],
+            // Save billing address and name to customer
             customer_update: {
                 address: 'auto',
+                name: 'auto',
             },
             // Enable automatic tax calculation
             automatic_tax: {

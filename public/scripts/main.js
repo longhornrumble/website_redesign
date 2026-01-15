@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'hidden';
 
             // Focus first input
-            document.getElementById('checkout-email')?.focus();
+            document.getElementById('checkout-name')?.focus();
         });
     });
 
@@ -279,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(checkoutForm);
         const plan = formData.get('plan');
+        const contactName = formData.get('contactName');
         const email = formData.get('email');
         const organizationName = formData.get('organizationName');
         const taxExempt = formData.get('taxExempt') === 'yes';
@@ -294,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/api/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ plan, email, organizationName, taxExempt, ein }),
+                body: JSON.stringify({ plan, contactName, email, organizationName, taxExempt, ein }),
             });
 
             const data = await response.json();
