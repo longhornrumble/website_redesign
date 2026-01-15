@@ -60,6 +60,10 @@ export default async function handler(req, res) {
                     quantity: 1,
                 },
             ],
+            // Save billing address to customer for tax calculation
+            customer_update: {
+                address: 'auto',
+            },
             // Enable automatic tax calculation
             automatic_tax: {
                 enabled: true,
