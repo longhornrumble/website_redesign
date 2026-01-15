@@ -6,6 +6,10 @@ on:
     - cron: '0 0 * * *'
   # Allow manual trigger from GitHub Actions tab
   workflow_dispatch:
+  # Trigger on push to this workflow file (for initial registration)
+  push:
+    paths:
+      - '.github/workflows/cleanup-orphan-customers.yml'
 
 jobs:
   cleanup:
