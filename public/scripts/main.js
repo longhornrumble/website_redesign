@@ -19,8 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     const logoDefault = document.getElementById('logo-default');
     const logoScrolled = document.getElementById('logo-scrolled');
+    const forceScrolled = header?.dataset.forceScrolled === 'true';
 
     function handleScroll() {
+        // Skip scroll handling if header is forced to scrolled state
+        if (forceScrolled) return;
+
         const isScrolled = window.scrollY > SCROLL_THRESHOLD;
 
         if (isScrolled) {
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
+    if (!forceScrolled) handleScroll(); // Check initial state only if not forced
 
     // ========================================
     // Mobile Menu with Focus Trapping
