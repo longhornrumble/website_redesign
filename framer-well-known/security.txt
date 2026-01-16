@@ -1,0 +1,3 @@
+Contact: mailto:security@myrecruiter.ai
+Preferred-Languages: en
+Canonical: https://blog.myrecruiter.ai/.well-known/security.txt
