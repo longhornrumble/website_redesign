@@ -13,17 +13,32 @@ const logos = [
         <p class="text-center text-xs text-slate-400 mb-8 font-medium tracking-widest uppercase">
             Trusted by nonprofits who rely on volunteers to deliver their mission
         </p>
-        <div class="flex flex-wrap justify-between items-center gap-8 md:gap-6 max-w-4xl mx-auto">
+
+        <!-- Mobile: Scrolling marquee -->
+        <div class="logo-marquee-container md:hidden">
+            <div class="logo-marquee">
+                {logos.map((logo) => (
+                    <div class="logo-item">
+                        <img src={logo.src} alt={logo.alt} loading="lazy" />
+                    </div>
+                ))}
+                {logos.map((logo) => (
+                    <div class="logo-item" aria-hidden="true">
+                        <img src={logo.src} alt="" loading="lazy" />
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- Desktop: Static layout -->
+        <div class="hidden md:flex justify-between items-center gap-6 max-w-4xl mx-auto">
             {logos.map((logo) => (
                 <div class="logo-item">
-                    <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        loading="lazy"
-                    />
+                    <img src={logo.src} alt={logo.alt} loading="lazy" />
                 </div>
             ))}
         </div>
+
         <p class="text-center text-sm text-slate-500 mt-8">
             Supporting thousands of volunteer and donor conversations every month.
         </p>
@@ -31,16 +46,42 @@ const logos = [
 </section>
 
 <style>
+    /* Mobile marquee container */
+    .logo-marquee-container {
+        overflow: hidden;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .logo-marquee {
+        display: flex;
+        gap: 2.5rem;
+        width: max-content;
+        animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Pause on hover/touch */
+    .logo-marquee-container:hover .logo-marquee,
+    .logo-marquee-container:active .logo-marquee {
+        animation-play-state: paused;
+    }
+
     .logo-item {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-shrink: 0;
     }
 
     .logo-item img {
-        height: 3.5rem;
+        height: 3rem;
         width: auto;
-        max-width: 160px;
+        max-width: 140px;
         object-fit: contain;
         filter: grayscale(100%);
         opacity: 0.5;
@@ -68,8 +109,10 @@ const logos = [
         opacity: 1;
     }
 
-    /* Optical centering for BBBS horizontal logo */
-    .logo-item:last-child img {
-        transform: translateY(-2px);
+    /* Optical centering for BBBS horizontal logo - desktop only */
+    @media (min-width: 768px) {
+        .logo-item:last-child img {
+            transform: translateY(-2px);
+        }
     }
 </style>
