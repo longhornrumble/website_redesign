@@ -4,10 +4,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Map of allowed price IDs
 const PRICE_IDS = {
-    standard_monthly: 'price_1RlwUwCPQDfL3b8R5JsRKQ6x',
-    standard_annual: 'price_1SpjGYCPQDfL3b8Rfo0VczCi',
-    premium_monthly: 'price_1PJUqqCPQDfL3b8R2cV9RgM3',
-    premium_annual: 'price_1Q5XfJCPQDfL3b8RXSgjSXKd',
+    standard_monthly: 'price_1Sq6AZCPQDfL3b8RBuuadP52',
+    standard_annual: 'price_1Sq6D8CPQDfL3b8RX9dBubIs',
+    premium_monthly: 'price_1Sq6Q0CPQDfL3b8R1UYLVW9A',
+    premium_annual: 'price_1Sq6RUCPQDfL3b8RUcJUnmje',
 };
 
 export default async function handler(req, res) {
