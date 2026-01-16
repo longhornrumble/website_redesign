@@ -27,18 +27,19 @@ const {
 
     <!-- Open Graph -->
     <meta property="og:title" content={title}>
-    <meta property="og:description" content="AI engagement platform for nonprofits. Find volunteers and donors 24/7.">
+    <meta property="og:description" content={description}>
     <meta property="og:type" content="website">
     <meta property="og:url" content={canonical}>
     <meta property="og:image" content="https://www.myrecruiter.ai/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/png">
+    <meta property="og:site_name" content="MyRecruiter">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content="AI engagement platform for nonprofits">
+    <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content="https://www.myrecruiter.ai/og-image.png">
 
     <!-- Canonical & Icons -->
@@ -47,6 +48,12 @@ const {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#50C878">
+
+    <!-- Preconnect for external resources -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://js.stripe.com" crossorigin>
+    <link rel="dns-prefetch" href="https://app.usemotion.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
 
     <!-- Preload critical images -->
     <link rel="preload" href="/images/logo-white.webp" as="image" fetchpriority="high">

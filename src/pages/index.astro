@@ -47,6 +47,21 @@ import Footer from '../components/Footer.astro';
 
         <script type="application/ld+json" set:html={JSON.stringify({
             "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "MyRecruiter",
+            "url": "https://www.myrecruiter.ai",
+            "logo": "https://www.myrecruiter.ai/images/logo.webp",
+            "description": "AI engagement platform for nonprofits. Find volunteers and donors 24/7.",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Sales",
+                "email": "sales@myrecruiter.ai",
+                "availableLanguage": "English"
+            }
+        })} />
+
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
                 {
