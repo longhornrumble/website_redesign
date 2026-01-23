@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Dynamic organization name - update this for each client workspace
+const organizationName = "Seedling";
+---
+
+<Layout
+    title="Private Environment - MyRecruiter"
+    description="Experience MyRecruiter's AI assistant for nonprofits in a private sandbox environment."
+    canonical="https://www.myrecruiter.ai/sandbox"
+>
+    <meta slot="head" name="robots" content="noindex, nofollow" />
+    <script slot="head" src="https://chat.myrecruiter.ai/widget.js" data-tenant="my87674d777bf9" async></script>
+    <!-- Simple Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
+            <div class="flex items-center justify-center">
+                <a href="/">
+                    <img
+                        src="/images/logo.webp"
+                        alt="MyRecruiter"
+                        class="h-11 w-auto"
+                        width="200"
+                        height="44"
+                    />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Invite Only Badge -->
+    <div class="fixed top-24 right-4 sm:right-10 z-40">
+        <span class="text-xs font-medium text-slate-400 tracking-wide uppercase">Invite Only</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="bg-white min-h-screen pt-20">
+        <!-- Header Section -->
+        <section class="pt-8 pb-12 px-4 sm:px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl font-semibold text-slate-900">
+                    Private Demo Workspace
+                </h1>
+                <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+                    This private workspace was created for <span class="font-semibold text-slate-900">{organizationName}</span>. Use the assistant to explore how MyRecruiter helps nonprofits recruit volunteers and support donors—without adding staff workload.
+                </p>
+            </div>
+        </section>
+
+        <!-- Core Capabilities & Platform Benefits -->
+        <section class="py-12 px-4 sm:px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+                    <!-- Core Capabilities -->
+                    <div>
+                        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-8">Core Capabilities</p>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">24/7 Supporter Engagement</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    MyRecruiter answers every supporter question across your website, email, and social—guiding people to donate or volunteer the moment interest sparks.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">Your staff can't. MyRecruiter can.</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    50% of supporter activity happens after hours. MyRecruiter steps in the moment your team steps out, ensuring would-be volunteers and donors don't move on.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">One team member. Every channel.</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    A single assistant that meets supporters anywhere they encounter your mission—website, print materials, social media, SMS, and email.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Platform Benefits -->
+                    <div>
+                        <p class="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-8">Platform Benefits</p>
+
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">Visibility you never had before</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    See exactly which channels drive real action—so you can double down on what works and adjust what doesn't. No more guessing.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">Impact & Conversion</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    More than 60% of conversations turn into action, resulting in up to 8x more volunteer applications and significant increases in donor engagement.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2">Zero staff burden</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Automation handles the intake and initial screening, freeing your staff to focus on the mission while the AI handles the high-volume noise.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setup Section -->
+        <section class="py-16 px-4 sm:px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-slate-50 rounded-2xl p-8 sm:p-12">
+                    <div class="text-center mb-12">
+                        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-900">
+                            A fully trained team member — live in 48 hours
+                        </h2>
+                        <p class="mt-3 text-slate-600">
+                            The 4-step deployment process is simple and requires no technical skill.
+                        </p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Step 1 -->
+                        <div>
+                            <span class="text-4xl font-bold text-emerald-500/40">1</span>
+                            <h3 class="text-base font-semibold text-slate-900 mt-2 mb-2">Send us your site</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Share your URL and program materials. That's all we need.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div>
+                            <span class="text-4xl font-bold text-emerald-500/40">2</span>
+                            <h3 class="text-base font-semibold text-slate-900 mt-2 mb-2">We build & train</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                We custom-train on your programs and the real questions supporters ask.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div>
+                            <span class="text-4xl font-bold text-emerald-500/40">3</span>
+                            <h3 class="text-base font-semibold text-slate-900 mt-2 mb-2">Review & refine</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Test and fine-tune until the assistant feels like your best team member.
+                            </p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div>
+                            <span class="text-4xl font-bold text-emerald-500/40">4</span>
+                            <h3 class="text-base font-semibold text-slate-900 mt-2 mb-2">Go live everywhere</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Add one line of code to your site and instantly deploy across social.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <div class="flex items-center gap-3">
+                    <img
+                        src="/images/logo-white.webp"
+                        alt="MyRecruiter"
+                        class="h-6 w-auto opacity-60"
+                        width="109"
+                        height="24"
+                    />
+                    <span>&copy; {new Date().getFullYear()} MyRecruiter</span>
+                </div>
+                <a href="mailto:support@myrecruiter.ai" class="text-slate-400 hover:text-white transition-colors">
+                    support@myrecruiter.ai
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</Layout>
