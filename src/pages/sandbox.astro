@@ -10,8 +10,9 @@ const organizationName = "Seedling";
     description="Experience MyRecruiter's AI assistant for nonprofits in a private sandbox environment."
     canonical="https://www.myrecruiter.ai/sandbox"
 >
-    <meta slot="head" name="robots" content="noindex, nofollow" />
-    <script slot="head" src="https://chat.myrecruiter.ai/widget.js" data-tenant="my87674d777bf9" async></script>
+    <Fragment slot="head">
+        <meta name="robots" content="noindex, nofollow" />
+    </Fragment>
     <!-- Simple Header -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
@@ -187,4 +188,6 @@ const organizationName = "Seedling";
         </div>
     </footer>
 
+    <!-- Chat Widget -->
+    <script is:inline src="https://chat.myrecruiter.ai/widget.js" data-tenant="my87674d777bf9" async></script>
 </Layout>
