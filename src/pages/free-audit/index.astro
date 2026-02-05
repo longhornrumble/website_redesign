@@ -1,0 +1,496 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const leaks = [
+    {
+        icon: `<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>`,
+        title: "The Linktree Trap",
+        description: "Your bio link sends supporters to a wall of options with no guidance. They browse, get overwhelmed, and leave without taking action."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+        title: "The 9 PM Website Wall",
+        description: "A supporter finds your site after work, ready to help. But there's no one to answer their questions. By morning, the motivation is gone."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>`,
+        title: "Dead-End QR Codes",
+        description: "Your event flyers and print materials have QR codes that link to a homepage or generic page. The interested person lands, looks around, and drops off."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`,
+        title: "Silent Email Signatures",
+        description: "Your team sends hundreds of emails a week. Every signature is a missed chance to invite someone into a conversation about your mission."
+    }
+];
+
+const deliverables = [
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>`,
+        title: "Link-in-Bio Strategy Review",
+        description: "We evaluate your Linktree, social bios, and top-of-funnel entry points to show where visitors drop off and what a guided alternative looks like."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>`,
+        title: "Website Audit",
+        description: "I identify the specific \u201Cconversion leaks\u201D on your site. I\u2019ll provide a roadmap for moving from passive information to active engagement, ensuring your digital front door is always \u201Chome\u201D to greet visitors."
+    },
+    {
+        icon: `<svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>`,
+        title: "Multi-Channel Bridge Blueprint",
+        description: "Since I can\u2019t see your physical flyers, I provide you with \u201CBest-in-Class\u201D mockups for QR codes on print materials, social posts, and presentation screens. You\u2019ll see how to turn a 30-second physical interaction into a 24/7 digital conversation."
+    }
+];
+
+const stats = [
+    { value: "65.6%", label: "conversation-to-action rate" },
+    { value: "$26", label: "cost per engaged lead" },
+    { value: "767%", label: "increase in volunteer signups" }
+];
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.myrecruiter.ai/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Free Engagement Gap Audit",
+            "item": "https://www.myrecruiter.ai/free-audit"
+        }
+    ]
+};
+
+const offerSchema = {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    "name": "Free Engagement Gap Audit",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "A manual review of your nonprofit's digital engagement strategy, identifying where potential volunteers and donors are being lost.",
+    "url": "https://www.myrecruiter.ai/free-audit",
+    "offeredBy": {
+        "@type": "Organization",
+        "name": "MyRecruiter",
+        "url": "https://www.myrecruiter.ai"
+    }
+};
+---
+
+<Layout
+    title="Free Engagement Gap Audit - MyRecruiter"
+    description="Get a personalized audit of your nonprofit's engagement gaps. Discover where you're losing potential volunteers and donors to administrative friction."
+    canonical="https://www.myrecruiter.ai/free-audit"
+>
+    <Fragment slot="head">
+        <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+        <script type="application/ld+json" set:html={JSON.stringify(offerSchema)} />
+    </Fragment>
+
+    <!-- Standalone Header - Logo only -->
+    <nav class="absolute top-0 left-0 right-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-10 py-5">
+            <div class="flex items-center justify-center">
+                <a href="/">
+                    <img
+                        src="/images/logo-white.webp"
+                        alt="MyRecruiter"
+                        class="h-11 w-auto"
+                        width="200"
+                        height="44"
+                        fetchpriority="high"
+                    />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient relative pt-28 sm:pt-36 pb-16 sm:pb-24">
+        <div class="absolute inset-0 noise pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+            <div class="fade-in">
+                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
+                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                    <span class="text-slate-300 text-sm">Free for nonprofit leaders</span>
+                </div>
+
+                <h1 class="hero-headline font-display text-4xl sm:text-5xl lg:text-[3.5rem] font-semibold text-white leading-[1.1] mb-6">
+                    Stop Leaking Potential Volunteers to Administrative Friction.
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-4 max-w-2xl mx-auto">
+                    Most nonprofits lose up to 50% of interested supporters before they ever fill out a form. Your website, social links, and email signatures may be quietly turning people away.
+                </p>
+
+                <p class="text-base text-slate-400 mb-8 max-w-xl mx-auto">
+                    Get a free, manual audit that shows you exactly where the leaks are &mdash; and a 3-point action plan to fix them.
+                </p>
+
+                <a
+                    href="#audit-form"
+                    class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white px-7 py-3.5 rounded-full font-semibold text-base transition-all shadow-lg shadow-emerald-500/25"
+                >
+                    Get My Free Audit
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </a>
+
+                <p class="text-slate-400 text-sm mt-4">
+                    Manual review by a real person. Delivered within 3 business days.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The 4 Engagement Leaks -->
+    <section class="py-16 sm:py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="fade-in text-center mb-12">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Where You're Losing Supporters</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    4 silent leaks draining your volunteer pipeline
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    Each one costs you potential volunteers and donors every week &mdash; most nonprofits don't know they exist.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+                {leaks.map((leak, i) => (
+                    <div class="fade-in bg-white border border-slate-200 rounded-2xl p-6 sm:p-8" style={`transition-delay: ${i * 100}ms; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06)`}>
+                        <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center mb-4">
+                            <Fragment set:html={leak.icon} />
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">{leak.title}</h3>
+                        <p class="text-slate-600 leading-relaxed">{leak.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <!-- After-hours stat callout -->
+            <div class="fade-in mt-10" style="transition-delay: 400ms">
+                <div class="bg-slate-900 rounded-2xl p-6 sm:p-8 text-center">
+                    <div class="font-display text-4xl md:text-5xl font-bold text-emerald-400 mb-2">47%</div>
+                    <p class="text-slate-300 text-base">
+                        of people try to engage with nonprofits outside of business hours.
+                    </p>
+                    <p class="text-slate-400 text-sm mt-1">If no one answers, they move on.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="py-16 sm:py-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="fade-in text-center mb-12">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Your Free Audit Includes</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    A personalized engagement roadmap &mdash; not an automated scan
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    A real person reviews your digital presence and delivers actionable findings tailored to your organization.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                {deliverables.map((item, i) => (
+                    <div class="fade-in bg-white rounded-2xl p-6 sm:p-8 border border-slate-200" style={`transition-delay: ${i * 100}ms; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06)`}>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4">
+                            <Fragment set:html={item.icon} />
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-2">{item.title}</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">{item.description}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div class="fade-in mt-8 text-center" style="transition-delay: 300ms">
+                <div class="inline-flex items-center gap-2 text-sm text-slate-500">
+                    <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    <span>Every audit is performed manually by our team &mdash; no bots, no automated reports.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-16 sm:py-24 bg-emerald-800 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="fade-in text-center mb-12">
+                <span class="text-emerald-200 font-semibold text-sm tracking-wide uppercase">Real Results</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-white mt-3">
+                    What happens when the leaks get fixed
+                </h2>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 100ms">
+                <div class="grid sm:grid-cols-3 gap-6 mb-12">
+                    {stats.map((stat) => (
+                        <div
+                            class="rounded-2xl p-6 text-center"
+                            style="background-color: #F9FBFA; border: 1px solid rgba(80, 200, 120, 0.15); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06)"
+                        >
+                            <div class="font-display text-4xl md:text-5xl font-semibold mb-2" style="color: #50C878">{stat.value}</div>
+                            <div class="text-sm" style="color: #0A1A2F">{stat.label}</div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 200ms">
+                <div class="bg-white rounded-2xl p-8 md:p-10" style="box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08)">
+                    <div class="flex flex-col md:flex-row gap-6 items-start">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 overflow-hidden rounded-full">
+                            <img
+                                src="/images/cathy-cassidy.webp"
+                                alt="Cathy Cassidy"
+                                class="w-full h-full object-cover"
+                                width="96"
+                                height="96"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div>
+                            <blockquote class="text-lg text-slate-700 leading-relaxed mb-4">
+                                &ldquo;<span class="text-emerald-600 font-medium">The bot works around the clock &mdash; evenings, weekends, and all the off-hours when people have questions but our staff can't be online.</span> It's filling the gaps we didn't even realize were there.&rdquo;
+                            </blockquote>
+                            <div>
+                                <div class="font-semibold text-slate-900">Cathy Cassidy</div>
+                                <div class="text-slate-500 text-sm">Marketing Director, National Angels</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-in text-center mt-10" style="transition-delay: 300ms">
+                <a href="#audit-form" class="text-emerald-200 hover:text-white font-medium text-lg transition-colors group">
+                    Get your free audit
+                    <svg class="w-5 h-5 inline ml-1 group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audit Request Form -->
+    <section id="audit-form" class="py-16 sm:py-24 bg-white scroll-mt-24">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <div class="fade-in text-center mb-10">
+                <span class="text-emerald-600 font-semibold text-sm tracking-wide uppercase">Request Your Audit</span>
+                <h2 class="font-display text-3xl md:text-4xl font-semibold text-slate-900 mt-3 mb-4">
+                    Find out where your engagement gaps are
+                </h2>
+                <p class="text-lg text-slate-600">
+                    Fill out the form below and we'll deliver your personalized audit within 3 business days.
+                </p>
+            </div>
+
+            <div class="fade-in" style="transition-delay: 100ms">
+                <div id="audit-form-card" class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8" style="box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08)">
+                    <form id="audit-form-element" class="space-y-5">
+                        <!-- Name -->
+                        <div>
+                            <label for="audit-name" class="block text-sm font-medium text-slate-700 mb-1">Your Name</label>
+                            <input
+                                type="text"
+                                id="audit-name"
+                                name="name"
+                                required
+                                autocomplete="name"
+                                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                                placeholder="Jane Smith"
+                            />
+                        </div>
+
+                        <!-- Organization Email -->
+                        <div>
+                            <label for="audit-email" class="block text-sm font-medium text-slate-700 mb-1">Organization Email</label>
+                            <input
+                                type="email"
+                                id="audit-email"
+                                name="email"
+                                required
+                                autocomplete="email"
+                                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                                placeholder="you@organization.org"
+                            />
+                        </div>
+
+                        <!-- Website URL -->
+                        <div>
+                            <label for="audit-website" class="block text-sm font-medium text-slate-700 mb-1">Website URL</label>
+                            <input
+                                type="url"
+                                id="audit-website"
+                                name="website"
+                                required
+                                autocomplete="url"
+                                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
+                                placeholder="https://www.yournonprofit.org"
+                            />
+                        </div>
+
+                        <!-- Primary Recruitment Struggle -->
+                        <div>
+                            <label for="audit-struggle" class="block text-sm font-medium text-slate-700 mb-1">Primary Recruitment Struggle</label>
+                            <div class="relative">
+                                <select
+                                    id="audit-struggle"
+                                    name="struggle"
+                                    required
+                                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors bg-white text-slate-900 appearance-none pr-10"
+                                >
+                                    <option value="" disabled selected>Select your biggest challenge</option>
+                                    <option value="not-enough-volunteers">Not getting enough volunteer applications</option>
+                                    <option value="after-hours-engagement">Supporters engage after hours when we can't respond</option>
+                                    <option value="website-traffic-no-action">Website traffic but low conversion to action</option>
+                                    <option value="social-media-dead-ends">Social media interest that doesn't convert</option>
+                                    <option value="event-follow-through">Poor follow-through from events and print outreach</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <svg class="w-5 h-5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <button
+                            type="submit"
+                            id="audit-submit"
+                            class="w-full py-3.5 rounded-full bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors shadow-lg shadow-emerald-500/25 mt-2"
+                        >
+                            Request My Free Audit
+                        </button>
+
+                        <!-- Privacy note -->
+                        <p class="text-center text-xs text-slate-400 mt-3">
+                            <svg class="w-3.5 h-3.5 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            No spam. Just a roadmap to better engagement.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Note -->
+    <section class="py-16 sm:py-20 bg-slate-900">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <div class="fade-in">
+                <div class="flex flex-col sm:flex-row items-center gap-6 mb-8">
+                    <img
+                        src="/images/chris-miller-profile.webp"
+                        alt="Chris Miller"
+                        class="w-20 h-20 rounded-full border-4 border-emerald-500/40 object-cover flex-shrink-0"
+                        width="80"
+                        height="80"
+                        loading="lazy"
+                    />
+                    <div class="text-center sm:text-left">
+                        <p class="text-white font-semibold">Chris Miller</p>
+                        <p class="text-slate-400 text-sm">Founder, MyRecruiter</p>
+                    </div>
+                </div>
+
+                <div class="text-slate-300 leading-relaxed space-y-4">
+                    <p>
+                        I spent 20 years in the HR software industry helping Fortune 500 companies solve their biggest recruitment challenges. But as an adoptive father to four incredible kids, I saw a different need.
+                    </p>
+                    <p>
+                        During our family's journey, we were supported by over a dozen nonprofits. I realized that the organizations changing lives often struggle to find the supporters they desperately need &mdash; not because people don't care, but because <span class="text-emerald-400 font-medium">there's too much friction between nonprofits and their supporters.</span>
+                    </p>
+                    <p>
+                        I built MyRecruiter to bring enterprise-level engagement strategy to the missions that matter most. I review every audit personally. I look forward to digging into yours.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                <div class="flex items-center gap-3">
+                    <img
+                        src="/images/logo-white.webp"
+                        alt="MyRecruiter"
+                        class="h-6 w-auto opacity-60"
+                        width="109"
+                        height="24"
+                        loading="lazy"
+                    />
+                    <span>&copy; {new Date().getFullYear()} MyRecruiter</span>
+                </div>
+                <div class="flex gap-6">
+                    <a href="/privacy" class="hover:text-slate-300 transition-colors">Privacy</a>
+                    <a href="/terms" class="hover:text-slate-300 transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page-specific scripts -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href="#audit-form"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.getElementById('audit-form');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Static form handler (shows thank-you state)
+        const auditForm = document.getElementById('audit-form-element');
+        const auditSubmit = document.getElementById('audit-submit');
+
+        auditForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (auditSubmit) {
+                auditSubmit.disabled = true;
+                auditSubmit.textContent = 'Sending...';
+                auditSubmit.classList.add('opacity-50', 'cursor-wait');
+            }
+
+            setTimeout(() => {
+                const formCard = document.getElementById('audit-form-card');
+                if (formCard) {
+                    formCard.innerHTML = `
+                        <div class="text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <h3 class="font-display text-2xl font-semibold text-slate-900 mb-2">Audit request received!</h3>
+                            <p class="text-slate-600 leading-relaxed max-w-md mx-auto">
+                                We'll review your digital presence and deliver your personalized engagement gap audit within 3 business days. Check your email for a confirmation.
+                            </p>
+                        </div>
+                    `;
+                }
+            }, 800);
+        });
+    </script>
+</Layout>

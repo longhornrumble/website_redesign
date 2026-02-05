@@ -28,7 +28,8 @@
   ],
   "rewrites": [
     { "source": "/demo", "destination": "/demo.html" },
-    { "source": "/success", "destination": "/success.html" }
+    { "source": "/success", "destination": "/success.html" },
+    { "source": "/free-audit", "destination": "/free-audit.html" }
   ],
   "redirects": [
     { "source": "/blog", "destination": "https://blog.myrecruiter.ai", "permanent": true },
