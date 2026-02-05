@@ -43,9 +43,9 @@ const deliverables = [
 ];
 
 const stats = [
-    { value: "65.6%", label: "conversation-to-action rate" },
+    { value: "65%", label: "conversation-to-action rate" },
     { value: "$26", label: "cost per engaged lead" },
-    { value: "767%", label: "increase in volunteer signups" }
+    { value: "767%", label: "increase in volunteer signups", sub: "in the first month" }
 ];
 
 const breadcrumbSchema = {
@@ -244,6 +244,7 @@ const offerSchema = {
                         >
                             <div class="font-display text-4xl md:text-5xl font-semibold mb-2" style="color: #50C878">{stat.value}</div>
                             <div class="text-sm" style="color: #0A1A2F">{stat.label}</div>
+                            {stat.sub && <div class="text-xs mt-1" style="color: #5C6B74">{stat.sub}</div>}
                         </div>
                     ))}
                 </div>
