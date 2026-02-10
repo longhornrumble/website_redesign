@@ -480,12 +480,20 @@ const offerSchema = {
             });
         });
 
-        // Static form handler (shows thank-you state)
+        // Form handler — POST to /api/free-audit
         const auditForm = document.getElementById('audit-form-element');
         const auditSubmit = document.getElementById('audit-submit');
 
-        auditForm?.addEventListener('submit', (e) => {
+        auditForm?.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const formData = new FormData(auditForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                website: formData.get('website'),
+                struggle: formData.get('struggle'),
+            };
 
             if (auditSubmit) {
                 auditSubmit.disabled = true;
@@ -493,7 +501,24 @@ const offerSchema = {
                 auditSubmit.classList.add('opacity-50', 'cursor-wait');
             }
 
-            setTimeout(() => {
+            // Clear any previous error
+            const prevError = document.getElementById('audit-error');
+            if (prevError) prevError.remove();
+
+            try {
+                const response = await fetch('/api/free-audit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Something went wrong');
+                }
+
+                // Success — show thank-you state
                 const formCard = document.getElementById('audit-form-card');
                 if (formCard) {
                     formCard.innerHTML = `
@@ -510,7 +535,20 @@ const offerSchema = {
                         </div>
                     `;
                 }
-            }, 800);
+            } catch (error) {
+                // Re-enable submit button
+                if (auditSubmit) {
+                    auditSubmit.disabled = false;
+                    auditSubmit.textContent = 'Request My Free Audit';
+                    auditSubmit.classList.remove('opacity-50', 'cursor-wait');
+                }
+                // Show inline error
+                const errorEl = document.createElement('p');
+                errorEl.id = 'audit-error';
+                errorEl.className = 'text-red-600 text-sm text-center mt-3';
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                auditSubmit?.parentNode?.insertBefore(errorEl, auditSubmit.nextSibling);
+            }
         });
     </script>
 </Layout>
