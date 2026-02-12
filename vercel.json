@@ -40,6 +40,7 @@
     { "source": "/pricing", "destination": "/#pricing", "permanent": true },
     { "source": "/thank-you", "destination": "/success", "permanent": true },
     { "source": "/volunteer-recruitment-template", "destination": "/", "permanent": true },
-    { "source": "/role-descriptions-:path*", "destination": "/", "permanent": true }
+    { "source": "/role-descriptions-:path*", "destination": "/", "permanent": true },
+    { "source": "/sandbox", "destination": "/sandbox/casa", "statusCode": 302 }
   ]
 }

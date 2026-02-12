@@ -1,14 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import { sandboxDemos } from '../../data/sandbox-demos';
 
-// Dynamic organization name - update this for each client workspace
-const organizationName = "CASA";
+export function getStaticPaths() {
+    // Validate no duplicate slugs
+    const slugs = sandboxDemos.map(d => d.slug);
+    if (new Set(slugs).size !== slugs.length) {
+        throw new Error('Duplicate slugs found in sandbox-demos.ts');
+    }
+
+    return sandboxDemos.map((demo) => ({
+        params: { slug: demo.slug },
+        props: { orgName: demo.orgName, tenantId: demo.tenantId },
+    }));
+}
+
+const { orgName, tenantId } = Astro.props;
+const slug = Astro.params.slug;
 ---
 
 <Layout
     title="Private Sandbox - MyRecruiter"
     description="Experience MyRecruiter's AI assistant for nonprofits in a private sandbox environment."
-    canonical="https://www.myrecruiter.ai/sandbox"
+    canonical={`https://www.myrecruiter.ai/sandbox/${slug}`}
 >
     <Fragment slot="head">
         <meta name="robots" content="noindex, nofollow" />
@@ -44,7 +58,7 @@ const organizationName = "CASA";
                     Private Demo Workspace
                 </h1>
                 <p class="mt-4 text-slate-600 text-lg leading-relaxed">
-                    This private workspace was created for <span class="font-semibold text-slate-900">{organizationName}</span>. Use the assistant to explore how MyRecruiter helps nonprofits recruit volunteers and support donors—without adding staff workload.
+                    This private workspace was created for <span class="font-semibold text-slate-900">{orgName}</span>. Use the assistant to explore how MyRecruiter helps nonprofits recruit volunteers and support donors—without adding staff workload.
                 </p>
             </div>
         </section>
@@ -189,5 +203,11 @@ const organizationName = "CASA";
     </footer>
 
     <!-- Chat Widget -->
-    <script is:inline src="https://chat.myrecruiter.ai/widget.js" data-tenant="my87674d777bf9" async></script>
+    <script is:inline define:vars={{ tenantId }}>
+        const s = document.createElement('script');
+        s.src = 'https://chat.myrecruiter.ai/widget.js';
+        s.dataset.tenant = tenantId;
+        s.async = true;
+        document.body.appendChild(s);
+    </script>
 </Layout>

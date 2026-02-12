@@ -31,7 +31,7 @@ npx terser public/scripts/main.js -o public/scripts/main.min.js -c -m
 - `index.astro` - Main homepage
 - `demo.astro` - Demo/scheduling page with Motion calendar embed
 - `success.astro` - Post-checkout success page with onboarding calendar
-- `sandbox.astro` - Private demo workspace for prospects (noindex, invite-only)
+- `sandbox/[slug].astro` - Private demo workspace for prospects (noindex, invite-only, dynamic route)
 - `404.astro` - Custom 404 error page
 
 **Landing Pages** (`src/pages/<slug>/index.astro`): Each landing page gets its own folder for organization. New landing pages follow this pattern:
@@ -117,15 +117,23 @@ npx terser public/scripts/main.js -o public/scripts/main.min.js -c -m
 - LogoTicker: Auto-scrolling marquee on mobile, static on desktop
 - Canonical URLs use `www.myrecruiter.ai` (matches redirect config)
 
-## Sandbox Page
+## Sandbox / Demo Zone
 
-Private demo workspace for prospects at `/sandbox`. Not indexed by search engines.
+Multi-page demo zone for prospects at `/sandbox/[slug]`. Each page is identical in layout but embeds a uniquely configured chatbot. Not indexed by search engines.
 
-**Dynamic Content**:
-- `organizationName` variable in frontmatter - update for each client
-- Chat widget with `data-tenant` attribute for client-specific assistant
+**Adding a new demo**:
+1. Open `src/data/sandbox-demos.ts`
+2. Add entry: `{ slug: 'new-client', orgName: 'Client Name', tenantId: 'tenant_hash_here' }`
+3. Rebuild and deploy
 
-**Chat Widget**: Embedded via `chat.myrecruiter.ai`. CSP in `vercel.json` allows:
+**URL Structure**: `/sandbox/casa`, `/sandbox/acme`, etc.
+- `/sandbox` redirects to `/sandbox/casa` (302) for backward compatibility
+- No index/directory page — demos accessed via direct links only
+
+**Data file**: `src/data/sandbox-demos.ts` — array of `{ slug, orgName, tenantId }`
+**Template**: `src/pages/sandbox/[slug].astro` — uses Astro `getStaticPaths` for static generation
+
+**Chat Widget**: Embedded via `chat.myrecruiter.ai` using `define:vars` for dynamic tenant ID. CSP in `vercel.json` allows:
 - `script-src`: loads widget.js
 - `connect-src`: API calls
 - `frame-src`: widget iframe
