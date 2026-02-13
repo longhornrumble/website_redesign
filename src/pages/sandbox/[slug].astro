@@ -11,11 +11,11 @@ export function getStaticPaths() {
 
     return sandboxDemos.map((demo) => ({
         params: { slug: demo.slug },
-        props: { orgName: demo.orgName, tenantId: demo.tenantId },
+        props: { orgName: demo.orgName, tenantHash: demo.tenantHash },
     }));
 }
 
-const { orgName, tenantId } = Astro.props;
+const { orgName, tenantHash } = Astro.props;
 const slug = Astro.params.slug;
 ---
 
@@ -203,10 +203,10 @@ const slug = Astro.params.slug;
     </footer>
 
     <!-- Chat Widget -->
-    <script is:inline define:vars={{ tenantId }}>
+    <script is:inline define:vars={{ tenantHash }}>
         const s = document.createElement('script');
         s.src = 'https://chat.myrecruiter.ai/widget.js';
-        s.dataset.tenant = tenantId;
+        s.dataset.tenant = tenantHash;
         s.async = true;
         document.body.appendChild(s);
     </script>
