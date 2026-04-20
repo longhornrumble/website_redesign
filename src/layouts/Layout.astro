@@ -60,6 +60,23 @@ const {
 
     <title>{title}</title>
 
+    <!-- Swan tracking -->
+    <script is:inline>
+        (function () {
+            var w = window;
+            var swan = (w.swan = w.swan || []);
+            if (swan.isLoaded) return;
+            swan.isLoaded = true;
+            swan.pk = 'cmo7nno8q00060jl8vf3tklfd';
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'https://script.getswan.com?pk=cmo7nno8q00060jl8vf3tklfd';
+            var head = document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+        })();
+    </script>
+
     <!-- Additional head content from pages -->
     <slot name="head" />
 </head>
