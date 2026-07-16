@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExperienceCenter from '../components/ExperienceCenter.jsx';
+---
+
+<Layout title="Experience Center · MyRecruiter" description="A self-guided demo of MyRecruiter — walk a supporter from first question to completed action across volunteer, donor, program, and event journeys.">
+    <ExperienceCenter client:only="preact" />
+</Layout>
+
+<style is:global>
+    /* This route is a standalone immersive shell — no marketing nav/footer. */
+    body { margin: 0; background: #0F172A; }
+
+    /* Keyframes (from the prototype's <style> block) */
+    @keyframes ecFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @keyframes ecPop { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+    @keyframes ecPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(80,200,120,.45); } 50% { box-shadow: 0 0 0 7px rgba(80,200,120,0); } }
+    @keyframes ecPulseG { 0%, 100% { box-shadow: 0 0 0 0 rgba(161,144,95,.45); } 50% { box-shadow: 0 0 0 7px rgba(161,144,95,0); } }
+    @keyframes ecDot { 0%, 60%, 100% { transform: translateY(0); opacity: .35; } 30% { transform: translateY(-3px); opacity: 1; } }
+    @keyframes ecFlow { to { stroke-dashoffset: -22; } }
+    @keyframes ecNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+    @keyframes ecLive { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+    ::selection { background: rgba(80,200,120,.25); }
+
+    /* Sidebar logo / escape-hatch link (from the prototype) */
+    .ec-logo-link { position: relative; display: block; }
+    .ec-logo-hint { opacity: 0; transform: translateY(-2px); transition: opacity .18s cubic-bezier(.4,0,.2,1), transform .18s cubic-bezier(.4,0,.2,1); font-size: 10.5px; font-weight: 600; letter-spacing: .02em; color: #94A3B8; margin-top: 6px; display: block; }
+    .ec-logo-link:hover .ec-logo-hint { opacity: 1; transform: none; }
+    .ec-site-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #94A3B8; cursor: pointer; transition: color .15s cubic-bezier(.4,0,.2,1); text-decoration: none; }
+    .ec-site-link:hover { color: #fff; }
+
+    /* Hover helpers replacing the DC `style-hover` attribute.
+       ec-hoverbg reads a per-element --hb custom property. */
+    .ec-hoverbg:hover { background: var(--hb) !important; }
+    .ec-card:hover { box-shadow: 0 12px 32px rgba(15,23,42,.10) !important; transform: translateY(-2px) !important; }
+    .ec-lift:hover { transform: translateY(-2px) !important; }
+    .ec-heat:hover { transform: scale(1.08) !important; }
+    .ec-hovercream:hover { background: #fbf8ee !important; }
+    .ec-hovergold:hover { background: #8a7439 !important; }
+    .ec-hoverborder:hover { border-color: #50C878 !important; }
+    .ec-faq:hover { background: #fbf8ee !important; color: #0f172a !important; }
+    .ec-btn-primary:hover { background: #5FD089 !important; }
+    .ec-btn-outline:hover { background: #F8FAFC !important; }
+    .ec-btn-outline-dark:hover { background: rgba(255,255,255,.05) !important; }
+</style>
