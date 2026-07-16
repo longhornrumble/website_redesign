@@ -803,7 +803,7 @@ export default class ExperienceCenter extends Component {
         h('p', { style: 'margin:0;font-size:13.5px;line-height:1.55;color:var(--slate,#475569)' }, blurb),
         h('div', { style: 'display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px' },
           h('span', { style: 'font-size:12px;font-weight:600;color:var(--muted,#64748B)' }, dur),
-          h(Btn, { variant: 'outline', size: 'sm', onClick: go }, 'Start Experience'))));
+          h(Btn, { size: 'sm', onClick: go }, 'Start Experience'))));
 
     const volPrev = h(Fragment, null,
       h('div', { style: 'position:absolute;left:22px;top:26px;max-width:210px;padding:9px 12px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px 12px 12px 4px;font-size:11.5px;color:var(--slate,#475569);box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'What volunteer opportunities do you have?'),
