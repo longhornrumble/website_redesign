@@ -1,67 +1,90 @@
 ---
+import HeroDemoScene from './HeroDemoScene.jsx';
 ---
 
-<section class="hero-gradient relative pt-20">
-    <div class="absolute inset-0 noise pointer-events-none"></div>
+<!-- Full-viewport dark hero. Header is the existing fixed site nav (in index.astro). -->
+<section class="relative min-h-screen overflow-hidden bg-[#0F172A]">
+    <!-- Glow layers (behind everything) — exact tuned values from the prototype -->
+    <div class="pointer-events-none absolute -top-[240px] -right-[140px] h-[900px] w-[900px] rounded-full"
+         style="background:radial-gradient(circle,rgba(80,200,120,.28) 0%,rgba(80,200,120,0) 65%)"></div>
+    <div class="pointer-events-none absolute -bottom-[300px] -left-[220px] h-[760px] w-[760px] rounded-full"
+         style="background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%)"></div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 pb-16 sm:pb-32 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <!-- Left Column -->
-            <div class="fade-in">
-                <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                    <span class="text-slate-300 text-sm">Built for volunteer-driven nonprofits</span>
-                </div>
-
-                <h1 class="hero-headline font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-white leading-[1.1] mb-6">
-                    Never miss another volunteer or donor inquiry again.
-                </h1>
-
-                <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-8 sm:mb-6 max-w-lg">
-                    MyRecruiter answers every supporter question across your website, email, and social — guiding people to donate or volunteer the moment interest sparks, even when your team is off the clock.
-                </p>
-
-                <!-- Proof Bar -->
-                <div class="flex flex-col gap-1 mb-10 text-sm">
-                    <span class="text-emerald-400 font-semibold">&#10003; 65.6% of conversations turn into action</span>
-                    <span class="text-emerald-400 font-semibold">&#10003; 8× more volunteer applications</span>
-                    <span class="text-emerald-400 font-semibold">&#10003; 49.4% of engagement happens after hours</span>
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-3 w-full sm:w-auto">
-                    <a href="demo" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all shadow-lg shadow-emerald-500/25">
-                        Get Your Personalized Demo
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </a>
-                    <a href="#lean-teams" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-medium text-sm sm:text-base border border-white/20 hover:bg-white/5 transition-all">
-                        Learn How It Works
-                    </a>
-                </div>
-
-                <p class="text-slate-300 text-center lg:text-left text-sm">
-                    Live in 48 hours · We handle everything · No technical skills needed
-                </p>
+    <main class="relative mx-auto grid max-w-[1280px] items-center gap-12 px-6 pb-16 pt-28 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-[60px] lg:pt-[132px]">
+        <!-- Left column -->
+        <div>
+            <div class="inline-flex items-center gap-[9px] rounded-full border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg">
+                <span class="text-[13px]">🌙</span>
+                <span>Nights and weekends, your team is offline.</span>
+                <span class="text-emerald-300">MyRecruiter isn't.</span>
             </div>
 
-            <!-- Right Column - Widget Screenshot -->
-            <div class="fade-in flex justify-center lg:justify-end mt-8 lg:mt-0" style="transition-delay: 200ms">
-                <div class="relative">
-                    <div class="widget-shadow rounded-2xl overflow-hidden float-animation">
-                        <video
-                            src="/videos/chat-demo.mp4"
-                            autoplay
-                            loop
-                            muted
-                            playsinline
-                            class="w-56 sm:w-72 h-auto"
-                        ></video>
-                    </div>
-                </div>
+            <h1 class="mt-[22px] text-[40px] font-bold leading-[1.06] tracking-[-0.02em] text-white [text-wrap:pretty] sm:text-[57px]">
+                Never miss another volunteer or donor inquiry again.
+            </h1>
+
+            <p class="mt-[18px] max-w-[580px] text-[17px] leading-[1.62] text-white/[.72]">
+                When someone decides to help, every hour matters. MyRecruiter removes the friction between people and your mission—so more people become volunteers, donors, and advocates while your team stays focused on changing lives.
+            </p>
+
+            <!-- Chip flow -->
+            <div class="mt-6 flex flex-wrap items-center gap-[7px]">
+                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Answers questions</span>
+                <span class="text-[12px] text-white/[.35]">→</span>
+                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Guides supporters</span>
+                <span class="text-[12px] text-white/[.35]">→</span>
+                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Books appointments</span>
+                <span class="text-[12px] text-white/[.35]">→</span>
+                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Keeps everyone on track</span>
+            </div>
+
+            <!-- CTAs -->
+            <div class="mt-8 flex flex-col items-stretch gap-[14px] sm:flex-row sm:items-center">
+                <a href="/experience"
+                   class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-500/25 transition-all hover:bg-emerald-400">
+                    Try the Interactive Demo
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="/demo"
+                   class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-medium text-white transition-all hover:bg-white/5">
+                    Book a Live Demo
+                </a>
+            </div>
+
+            <div class="mt-4 text-[13px] text-white/50">Works alongside your team • Live in days • We handle the setup</div>
+        </div>
+
+        <!-- Right column — channel icons + animation -->
+        <div>
+            <div class="mb-3 flex items-center justify-center gap-2 text-[12.5px] font-semibold">
+                <span title="Website" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/[.28] bg-white/[.12]">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                </span>
+                <span title="Facebook" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/[.28] bg-white/[.12]">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+                </span>
+                <span title="Instagram" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/[.28] bg-white/[.12]">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </span>
+                <span title="Print & QR" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/[.28] bg-white/[.12]">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                </span>
+                <span class="ml-1.5 text-emerald-300">— one assistant, everywhere you market</span>
+            </div>
+            <!-- Animation container: NO background of its own — the section glow shows through. -->
+            <div class="relative mx-auto h-[648px] w-[470px] max-w-full overflow-hidden rounded-2xl">
+                <HeroDemoScene client:load speed={0.75} showTimeChip={true} />
             </div>
         </div>
-    </div>
+    </main>
 
-    <div class="absolute bottom-0 left-0 right-0 h-8" style="box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15)"></div>
+    <!-- Proof strip -->
+    <div class="relative border-t border-white/[.08]">
+        <div class="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-14 gap-y-4 px-10 py-[22px]">
+            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">65%</span><span class="text-[12.5px] text-white/[.55]">Conversations become action</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">8×</span><span class="text-[12.5px] text-white/[.55]">More volunteer applications</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">49%</span><span class="text-[12.5px] text-white/[.55]">Engagement happens after hours</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">24/7</span><span class="text-[12.5px] text-white/[.55]">Your mission never closes</span></div>
+        </div>
+    </div>
 </section>
