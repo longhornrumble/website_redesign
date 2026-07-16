@@ -42,4 +42,60 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
     .ec-btn-primary:hover { background: #5FD089 !important; }
     .ec-btn-outline:hover { background: #F8FAFC !important; }
     .ec-btn-outline-dark:hover { background: rgba(255,255,255,.05) !important; }
+
+    /* ── Mobile / narrow tablet ──────────────────────────────────────────
+       The island styles inline (no media queries), so these override with
+       !important. Desktop (>860px) is untouched. */
+    @media (max-width: 860px) {
+        /* Shell: 238px sidebar + content doesn't fit — stack it, sidebar
+           becomes a sticky top bar with a horizontally scrollable nav. */
+        .ec-shell { flex-direction: column !important; }
+        .ec-sidebar {
+            width: 100% !important; height: auto !important;
+            position: sticky !important; top: 0 !important; z-index: 30 !important;
+        }
+        .ec-sb-logo { padding: 12px 16px 6px !important; }
+        .ec-logo-hint { display: none !important; }
+        /* Secondary chrome would push content far down on a phone. */
+        .ec-sb-eyebrow, .ec-sb-back, .ec-sb-cta { display: none !important; }
+        .ec-navlist {
+            flex-direction: row !important; overflow-x: auto !important;
+            padding: 0 12px 10px !important; gap: 6px !important;
+            scrollbar-width: none;
+        }
+        .ec-navlist::-webkit-scrollbar { display: none; }
+        .ec-navlist > div { flex: 0 0 auto !important; white-space: nowrap !important; }
+
+        /* Page padding: 44–48px side padding is unusable at 375px. */
+        .ec-page { padding: 22px 18px 56px !important; }
+        .ec-journey-card { padding: 18px 16px !important; }
+
+        /* Fixed-min grids overflow below ~360px of content width. */
+        .ec-grid, .ec-discover-grid { grid-template-columns: minmax(0, 1fr) !important; }
+        .ec-kpis, .ec-chan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+        /* Widget: 380px fixed + flex-shrink:0 forces overflow. */
+        .ec-widget { width: 100% !important; height: 520px !important; }
+
+        /* Stage rail: 5–6 stages can't compress — let it scroll. */
+        .ec-rail { overflow-x: auto !important; scrollbar-width: none; }
+        .ec-rail::-webkit-scrollbar { display: none; }
+        .ec-rail-item { flex: 0 0 auto !important; }
+
+        .ec-sector-row { flex-direction: column !important; }
+
+        /* "Viewing as" row is 337px and won't wrap — overflows at 320px. */
+        .ec-persp { flex-wrap: wrap !important; }
+        .ec-persp-pills { max-width: 100% !important; overflow-x: auto !important; scrollbar-width: none; }
+        .ec-persp-pills::-webkit-scrollbar { display: none; }
+
+        /* Landing */
+        .ec-landing-header { padding: 16px 18px !important; flex-wrap: wrap !important; gap: 10px !important; justify-content: center !important; }
+        .ec-landing-pill { font-size: 11px !important; padding: 6px 12px !important; }
+        .ec-landing-main { padding: 12px 18px 28px !important; }
+        .ec-landing-h1 { font-size: 38px !important; }
+        /* Final */
+        .ec-final { padding: 40px 20px !important; }
+        .ec-final-h1 { font-size: 30px !important; }
+    }
 </style>
