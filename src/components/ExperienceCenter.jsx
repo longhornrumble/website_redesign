@@ -824,7 +824,9 @@ export default class ExperienceCenter extends Component {
         h('div', null,
           h('div', { style: 'font-size:11.5px;font-weight:700;color:var(--navy,#0F172A)' }, 'Hope Run 5K'),
           h('div', { style: 'font-size:10.5px;color:var(--muted,#64748B);margin-top:2px' }, '248 registered · reminders scheduled'))),
-      h('div', { style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:var(--emerald-500,#50C878);border-radius:10px;font-size:11px;font-weight:600;color:#fff;box-shadow:0 6px 16px rgba(80,200,120,.3)" }, "You're registered! Confirmation on its way."));
+      h('div', { style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:#ECFDF3;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;font-weight:600;color:#2F9D58;display:flex;align-items:center;gap:7px" },
+        this.chk(14, 'currentColor', 2.4),
+        h('span', null, "You're registered! Confirmation on its way.")));
 
     return h('div', { style: 'position:relative' },
       v.welcomeOpen ? this.renderWelcome(v) : null,
