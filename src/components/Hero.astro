@@ -82,9 +82,10 @@ import HeroDemoScene from './HeroDemoScene.jsx';
     </main>
 
     <!-- Proof strip — no divider and no opaque fill: a transparent-topped gradient lets the
-         hero's navy + emerald glow carry through behind the stats, then eases to the white of
-         the section below (LogoTicker is bg-white) over a long fade so the seam is invisible. -->
-    <div class="relative mt-3 pb-[200px] pt-2" style="background:linear-gradient(to bottom,transparent 0%,transparent 55%,#FFFFFF 100%)">
+         hero's navy + emerald glow carry through behind the stats, then resolves to the white of
+         the section below (LogoTicker is bg-white) so the seam is invisible. Navy holds to 62%
+         and white lands by 92%, compressing the fade so it doesn't linger in blue-gray. -->
+    <div class="relative mt-3 pb-[140px] pt-2" style="background:linear-gradient(to bottom,transparent 0%,transparent 62%,#FFFFFF 92%)">
         <div class="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-14 gap-y-4 px-10">
             <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">65%</span><span class="text-[12.5px] text-white/[.55]">Conversations become action</span></div>
             <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">8×</span><span class="text-[12.5px] text-white/[.55]">More volunteer applications</span></div>
