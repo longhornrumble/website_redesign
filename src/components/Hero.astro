@@ -10,10 +10,10 @@ import HeroDemoScene from './HeroDemoScene.jsx';
     <div class="pointer-events-none absolute -bottom-[300px] -left-[220px] h-[760px] w-[760px] rounded-full"
          style="background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%)"></div>
 
-    <main class="relative mx-auto grid max-w-[1280px] items-center gap-12 px-6 pb-6 pt-28 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-6 lg:pt-[124px]">
+    <main class="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-6 pt-28 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-6 lg:pt-[124px]">
         <!-- Left column -->
         <div>
-            <div class="inline-flex items-center gap-[9px] rounded-full border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg">
+            <div class="inline-flex flex-wrap items-center gap-x-[9px] gap-y-1 rounded-full border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg">
                 <span class="text-[13px]">🌙</span>
                 <span>Nights and weekends, your team is offline.</span>
                 <span class="text-emerald-300">MyRecruiter isn't.</span>
@@ -59,7 +59,7 @@ import HeroDemoScene from './HeroDemoScene.jsx';
 
         <!-- Right column — channel icons + animation -->
         <div>
-            <div class="mb-3 flex items-center justify-center gap-2 text-[12.5px] font-semibold">
+            <div class="mb-3 flex flex-wrap items-center justify-center gap-2 text-[12.5px] font-semibold">
                 <span title="Website" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-full border border-white/[.28] bg-white/[.12]">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
                 </span>
@@ -74,8 +74,10 @@ import HeroDemoScene from './HeroDemoScene.jsx';
                 </span>
                 <span class="ml-1.5 text-emerald-300">— one assistant, everywhere you market</span>
             </div>
-            <!-- Animation container: NO background of its own — the section glow shows through. -->
-            <div class="relative mx-auto h-[648px] w-[470px] max-w-full overflow-hidden rounded-2xl">
+            <!-- Animation container: NO background of its own — the section glow shows through.
+                 w-full + max-w keeps it from forcing the single-column grid wider than the
+                 viewport on mobile; the 470/648 aspect preserves the desktop framing as it scales. -->
+            <div class="relative mx-auto aspect-[470/648] w-full max-w-[470px] overflow-hidden rounded-2xl">
                 <HeroDemoScene client:load speed={0.75} showTimeChip={true} />
             </div>
         </div>
@@ -86,7 +88,7 @@ import HeroDemoScene from './HeroDemoScene.jsx';
          the section below (LogoTicker is bg-white) so the seam is invisible. Navy holds to 62%
          and white lands by 92%, compressing the fade so it doesn't linger in blue-gray. -->
     <div class="relative mt-3 pb-[140px] pt-2" style="background:linear-gradient(to bottom,transparent 0%,transparent 62%,#FFFFFF 92%)">
-        <div class="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-14 gap-y-4 px-10">
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-14 gap-y-4 px-6">
             <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">65%</span><span class="text-[12.5px] text-white/[.55]">Conversations become action</span></div>
             <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">8×</span><span class="text-[12.5px] text-white/[.55]">More volunteer applications</span></div>
             <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">49%</span><span class="text-[12.5px] text-white/[.55]">Engagement happens after hours</span></div>
