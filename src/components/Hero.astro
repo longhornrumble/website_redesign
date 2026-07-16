@@ -2,15 +2,15 @@
 import HeroDemoScene from './HeroDemoScene.jsx';
 ---
 
-<!-- Full-viewport dark hero. Header is the existing fixed site nav (in index.astro). -->
-<section class="relative min-h-screen overflow-hidden bg-[#0F172A]">
+<!-- Dark hero. Header is the existing fixed site nav (in index.astro). -->
+<section class="relative overflow-hidden bg-[#0F172A]">
     <!-- Glow layers (behind everything) — exact tuned values from the prototype -->
     <div class="pointer-events-none absolute -top-[240px] -right-[140px] h-[900px] w-[900px] rounded-full"
          style="background:radial-gradient(circle,rgba(80,200,120,.28) 0%,rgba(80,200,120,0) 65%)"></div>
     <div class="pointer-events-none absolute -bottom-[300px] -left-[220px] h-[760px] w-[760px] rounded-full"
          style="background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%)"></div>
 
-    <main class="relative mx-auto grid max-w-[1280px] items-center gap-12 px-6 pb-16 pt-28 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-[60px] lg:pt-[132px]">
+    <main class="relative mx-auto grid max-w-[1280px] items-center gap-12 px-6 pb-12 pt-28 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-12 lg:pt-[124px]">
         <!-- Left column -->
         <div>
             <div class="inline-flex items-center gap-[9px] rounded-full border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg">
@@ -27,15 +27,18 @@ import HeroDemoScene from './HeroDemoScene.jsx';
                 When someone decides to help, every hour matters. MyRecruiter removes the friction between people and your mission—so more people become volunteers, donors, and advocates while your team stays focused on changing lives.
             </p>
 
-            <!-- Chip flow -->
-            <div class="mt-6 flex flex-wrap items-center gap-[7px]">
-                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Answers questions</span>
-                <span class="text-[12px] text-white/[.35]">→</span>
-                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Guides supporters</span>
-                <span class="text-[12px] text-white/[.35]">→</span>
-                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Books appointments</span>
-                <span class="text-[12px] text-white/[.35]">→</span>
-                <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Keeps everyone on track</span>
+            <!-- Chip flow — two balanced rows so it never wraps to a lone stray chip -->
+            <div class="mt-6 flex flex-col gap-[9px]">
+                <div class="flex flex-wrap items-center gap-[7px]">
+                    <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Answers questions</span>
+                    <span class="text-[12px] text-white/[.35]">→</span>
+                    <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Guides supporters</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-[7px]">
+                    <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Books appointments</span>
+                    <span class="text-[12px] text-white/[.35]">→</span>
+                    <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Keeps everyone on track</span>
+                </div>
             </div>
 
             <!-- CTAs -->
