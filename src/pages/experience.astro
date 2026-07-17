@@ -56,8 +56,11 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         }
         .ec-sb-logo { padding: 12px 16px 6px !important; }
         .ec-logo-hint { display: none !important; }
-        /* Secondary chrome would push content far down on a phone. */
+        /* In the stacked top bar these sit above the content, so they'd push every page
+           down a full screen. The eyebrow is redundant here (the nav row says the same);
+           the back-link and CTA reappear in .ec-mobile-foot at the bottom of the page. */
         .ec-sb-eyebrow, .ec-sb-back, .ec-sb-cta { display: none !important; }
+        .ec-mobile-foot { display: block !important; }
         .ec-navlist {
             flex-direction: row !important; overflow-x: auto !important;
             padding: 0 12px 10px !important; gap: 6px !important;

@@ -774,9 +774,25 @@ export default class ExperienceCenter extends Component {
   }
 
   // ── APP SHELL (sidebar + main) ──────────────────────────────────────────
+  // The back-link and the demo CTA render in two places: the navy sidebar on desktop,
+  // and a navy strip under the content on mobile (where the sidebar collapses to a top
+  // bar and these would otherwise push every page down a full screen). Both copies sit
+  // on navy so the slate-400 link and navy-800 card keep the contrast they're drawn for.
+  backLink() {
+    return h('a', { href: '/', class: 'ec-site-link' },
+      h('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: 'M19 12H5M12 19l-7-7 7-7' })), 'Back to myrecruiter.ai');
+  }
+
+  ctaCard() {
+    return h('div', { style: 'background:var(--navy-800,#1E293B);border:1px solid var(--navy-700,#334155);border-radius:14px;padding:16px' },
+      h('div', { style: 'font-size:13px;font-weight:700;color:#fff' }, 'Ready for the real thing?'),
+      h('div', { style: 'font-size:12px;color:var(--slate-400,#94A3B8);line-height:1.5;margin:6px 0 12px' }, 'Live on your site in 48 hours. We handle everything.'),
+      h(Btn, { size: 'sm', full: true, href: '/demo' }, 'Schedule a Live Demo'));
+  }
+
   renderShell(v) {
     const nav = h('nav', { class: 'ec-sidebar', style: 'width:238px;flex:none;background:var(--navy-900,#0F172A);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;box-sizing:border-box' },
-      h('a', { href: 'https://www.myrecruiter.ai', class: 'ec-logo-link ec-sb-logo', style: 'padding:22px 20px 16px', title: 'Back to myrecruiter.ai' },
+      h('a', { href: '/', class: 'ec-logo-link ec-sb-logo', style: 'padding:22px 20px 16px', title: 'Back to myrecruiter.ai' },
         h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:148px;display:block' }),
         h('span', { class: 'ec-logo-hint' }, '← Back to site')),
       h('div', { class: 'ec-sb-eyebrow', style: 'padding:8px 22px 10px;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--slate-400,#94A3B8)' }, 'EXPERIENCE CENTER'),
@@ -784,14 +800,8 @@ export default class ExperienceCenter extends Component {
         v.navItems.map((it, i) => h('div', { key: i, onClick: it.go, class: 'ec-hoverbg', style: `display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;background:${it.bg};color:${it.fg};font-size:13px;font-weight:600;transition:background .15s;--hb:${it.hoverBg}` },
           h('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: it.d })),
           h('span', null, it.label)))),
-      h('div', { class: 'ec-sb-back', style: 'margin-top:auto;padding:0 22px 12px' },
-        h('a', { href: 'https://www.myrecruiter.ai', class: 'ec-site-link' },
-          h('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: 'M19 12H5M12 19l-7-7 7-7' })), 'Back to myrecruiter.ai')),
-      h('div', { class: 'ec-sb-cta', style: 'padding:0 16px 16px' },
-        h('div', { style: 'background:var(--navy-800,#1E293B);border:1px solid var(--navy-700,#334155);border-radius:14px;padding:16px' },
-          h('div', { style: 'font-size:13px;font-weight:700;color:#fff' }, 'Ready for the real thing?'),
-          h('div', { style: 'font-size:12px;color:var(--slate-400,#94A3B8);line-height:1.5;margin:6px 0 12px' }, 'Live on your site in 48 hours. We handle everything.'),
-          h(Btn, { size: 'sm', full: true, href: '/demo' }, 'Schedule a Live Demo'))));
+      h('div', { class: 'ec-sb-back', style: 'margin-top:auto;padding:0 22px 12px' }, this.backLink()),
+      h('div', { class: 'ec-sb-cta', style: 'padding:0 16px 16px' }, this.ctaCard()));
 
     let main;
     if (v.isHome) main = this.renderHome(v);
@@ -800,9 +810,17 @@ export default class ExperienceCenter extends Component {
     else if (v.isPlatform) main = this.renderPlatform(v);
     else if (v.isFinal) main = this.renderFinal(v);
 
+    // display:none inline, switched on only by the mobile media block — desktop stays a
+    // two-child row by construction. Placed after <main> so the stacked mobile column
+    // ends with it.
+    const mobileFoot = h('div', { class: 'ec-mobile-foot', style: 'display:none;background:var(--navy-900,#0F172A);padding:20px 18px 26px' },
+      h('div', { style: 'margin-bottom:14px' }, this.backLink()),
+      this.ctaCard());
+
     return h('div', { class: 'ec-shell', style: 'display:flex;min-height:100vh;background:var(--slate-50,#F8FAFC)' },
       nav,
-      h('main', { style: 'flex:1;min-width:0;position:relative' }, main));
+      h('main', { style: 'flex:1;min-width:0;position:relative' }, main),
+      mobileFoot);
   }
 
   // ── HOME ────────────────────────────────────────────────────────────────
@@ -835,7 +853,7 @@ export default class ExperienceCenter extends Component {
         h('div', null,
           h('div', { style: 'font-size:11.5px;font-weight:700;color:var(--navy,#0F172A)' }, 'Hope Run 5K'),
           h('div', { style: 'font-size:10.5px;color:var(--muted,#64748B);margin-top:2px' }, '248 registered · reminders scheduled'))),
-      h('div', { class: 'ec-prev-chip', style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:#ECFDF3;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;font-weight:600;color:#2F9D58;display:flex;align-items:center;gap:7px" },
+      h('div', { class: 'ec-prev-chip', style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:#ECFDF3;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;font-weight:600;color:var(--emerald-700,#1C7A45);display:flex;align-items:center;gap:7px" },
         this.chk(14, 'currentColor', 2.4),
         h('span', null, "You're registered! Confirmation on its way.")));
 
