@@ -83,6 +83,8 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         .ec-rail-item { flex: 0 0 auto !important; }
 
         .ec-sector-row { flex-direction: column !important; }
+        /* 32px of overlay padding wastes scarce width on a phone. */
+        .ec-welcome-overlay { padding: 16px !important; }
 
         /* "Viewing as" row is 337px and won't wrap — overflows at 320px. */
         .ec-persp { flex-wrap: wrap !important; }
