@@ -904,7 +904,7 @@ export default class ExperienceCenter extends Component {
           h('div', { onClick: st.go, style: `display:flex;flex-direction:column;align-items:center;gap:7px;cursor:${st.cursor};min-width:0` },
             h('div', { style: `width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-sizing:border-box;background:${st.bg};color:${st.fg};border:2px solid ${st.bd};animation:${st.anim};transition:background .3s,border-color .3s` }, st.mark),
             h('div', { style: `font-size:10.5px;font-weight:600;color:${st.lc};text-align:center;line-height:1.25;max-width:78px` }, st.label)),
-          st.hasLine ? h('div', { style: `flex:1;height:2px;border-radius:2px;background:${st.lineBg};margin:14px 8px 0;transition:background .3s` }) : null))),
+          st.hasLine ? h('div', { class: 'ec-rail-line', style: `flex:1;height:2px;border-radius:2px;background:${st.lineBg};margin:14px 8px 0;transition:background .3s` }) : null))),
       // lens card
       h('div', { style: 'background:var(--navy-900,#0F172A);border-radius:18px;padding:20px 24px;margin-bottom:20px;position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:16px 34px;align-items:center' },
         h('div', { style: 'position:absolute;top:-90px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.15) 0%,rgba(80,200,120,0) 70%);pointer-events:none' }),
@@ -927,10 +927,10 @@ export default class ExperienceCenter extends Component {
           v.kSteward ? this.renderSteward(v) : null,
           v.kMeasure ? this.renderMeasure(v) : null)),
       // back / next
-      h('div', { style: 'display:flex;justify-content:space-between;align-items:center;margin-top:20px' },
+      h('div', { class: 'ec-stage-controls', style: 'display:flex;justify-content:space-between;align-items:center;margin-top:20px' },
         h('div', null, v.canBack ? h(Btn, { variant: 'outline', onClick: v.prevStage }, '← Back') : null),
         h('div', { style: 'display:flex;align-items:center;gap:16px' },
-          h('span', { style: 'font-size:12px;font-weight:600;color:var(--muted,#64748B)' }, 'Stage ' + v.stageNum + ' of ' + v.stageTotal),
+          h('span', { class: 'ec-stage-count', style: 'font-size:12px;font-weight:600;color:var(--muted,#64748B)' }, 'Stage ' + v.stageNum + ' of ' + v.stageTotal),
           h(Btn, { onClick: v.nextStage }, v.nextLabel))));
   }
 

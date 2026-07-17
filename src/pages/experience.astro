@@ -77,10 +77,26 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         /* Widget: 380px fixed + flex-shrink:0 forces overflow. */
         .ec-widget { width: 100% !important; height: 520px !important; }
 
-        /* Stage rail: 5–6 stages can't compress — let it scroll. */
+        /* Stage rail: 5–6 stages can't compress — let it scroll. The connectors collapse to 0
+           width here, so spacing would come from each label's width (38–78px) and the last stage
+           — with the widest label — drifted away from the rest. Fixed-width items instead, so the
+           circles are evenly spaced regardless of label length. */
         .ec-rail { overflow-x: auto !important; scrollbar-width: none; }
         .ec-rail::-webkit-scrollbar { display: none; }
-        .ec-rail-item { flex: 0 0 auto !important; }
+        /* Equal share of the width (grow, never shrink below 58px): evenly spaced circles that
+           still all fit on screen, falling back to a scroll only on the narrowest phones. */
+        .ec-rail-item { flex: 1 0 58px !important; justify-content: center !important; }
+        .ec-rail-line { display: none !important; }
+        /* Label max-width is 78px inline; let it use the item's share instead of overflowing. */
+        .ec-rail-item > div > div:last-child { max-width: 100% !important; }
+
+        /* Bottom controls: Back + "Stage 6 of 6" + the next button over-run the row (420 needed
+           vs 392 available), squeezing the counter until it wrapped mid-number. Trim the button
+           padding, pin the counter, and let the row wrap on the narrowest phones. */
+        .ec-stage-controls { flex-wrap: wrap !important; gap: 12px !important; }
+        .ec-stage-count { white-space: nowrap !important; }
+        .ec-stage-controls .ec-btn-primary,
+        .ec-stage-controls .ec-btn-outline { padding-left: 14px !important; padding-right: 14px !important; }
 
         .ec-sector-row { flex-direction: column !important; }
         /* 32px of overlay padding wastes scarce width on a phone. */
