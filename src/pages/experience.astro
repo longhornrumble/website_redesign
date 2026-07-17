@@ -98,6 +98,18 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         .ec-stage-controls .ec-btn-primary,
         .ec-stage-controls .ec-btn-outline { padding-left: 14px !important; padding-right: 14px !important; }
 
+        /* Home card previews: the bubbles are absolutely positioned at tops tuned for the wider
+           desktop card, where they're ~40px tall. On a phone the copy wraps to 3 lines (55px) and
+           the second bubble collided with the first (Donor overlapped by 6px, Event's chip by 1).
+           Bubble height is capped by max-width, so it's a constant 55px across phone widths —
+           these tops clear it with room to spare and still fit the 148px preview. */
+        .ec-prev-q { top: 18px !important; }
+        .ec-prev-a { top: 84px !important; }
+        .ec-prev-chip { top: 106px !important; }
+        /* 148px can't hold the taller wrapped content once it's spaced apart — at 320 the Event
+           chip wraps to two lines and was clipped by the preview's overflow:hidden. */
+        .ec-card-preview { height: 168px !important; }
+
         .ec-sector-row { flex-direction: column !important; }
         /* 32px of overlay padding wastes scarce width on a phone. */
         .ec-welcome-overlay { padding: 16px !important; }
