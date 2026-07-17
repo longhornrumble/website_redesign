@@ -758,7 +758,8 @@ export default class ExperienceCenter extends Component {
       h('div', { style: 'position:absolute;top:-240px;right:-140px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
       h('div', { style: 'position:absolute;bottom:-280px;left:-220px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.09) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
       h('header', { class: 'ec-landing-header', style: 'position:relative;display:flex;align-items:center;justify-content:space-between;padding:26px 48px' },
-        h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:168px;display:block' }),
+        h('a', { href: '/', title: 'MyRecruiter home', style: 'display:block' },
+          h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:168px;display:block' })),
         h('div', { class: 'ec-landing-pill', style: 'display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap' },
           h('span', { style: 'width:7px;height:7px;border-radius:50%;background:var(--emerald-500,#50C878);animation:ecLive 2s ease-in-out infinite' }),
           h('span', null, 'Experience Center · self-guided demo'))),
@@ -807,7 +808,7 @@ export default class ExperienceCenter extends Component {
   // ── HOME ────────────────────────────────────────────────────────────────
   renderHome(v) {
     const card = (bg, title, blurb, dur, go, preview) => h('div', { class: 'ec-card', style: 'background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s' },
-      h('div', { style: 'height:148px;background:var(--mint,#E9F7EF);position:relative;overflow:hidden' }, preview),
+      h('div', { class: 'ec-card-preview', style: 'height:148px;background:var(--mint,#E9F7EF);position:relative;overflow:hidden' }, preview),
       h('div', { style: 'padding:20px 22px 22px;display:flex;flex-direction:column;gap:9px;flex:1' },
         h('div', { style: 'font-size:17px;font-weight:700;color:var(--navy,#0F172A)' }, title),
         h('p', { style: 'margin:0;font-size:13.5px;line-height:1.55;color:var(--slate,#475569)' }, blurb),
@@ -816,11 +817,11 @@ export default class ExperienceCenter extends Component {
           h(Btn, { size: 'sm', onClick: go }, 'Start Experience'))));
 
     const volPrev = h(Fragment, null,
-      h('div', { style: 'position:absolute;left:22px;top:26px;max-width:210px;padding:9px 12px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px 12px 12px 4px;font-size:11.5px;color:var(--slate,#475569);box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'What volunteer opportunities do you have?'),
-      h('div', { style: 'position:absolute;right:22px;top:86px;max-width:220px;padding:9px 12px;background:#fbf8ee;border:1px solid #e8e2ce;border-radius:10px;font-size:11.5px;color:#334155;box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'Three ways to get involved — want to hear more?'));
+      h('div', { class: 'ec-prev-q', style: 'position:absolute;left:22px;top:26px;max-width:210px;padding:9px 12px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px 12px 12px 4px;font-size:11.5px;color:var(--slate,#475569);box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'What volunteer opportunities do you have?'),
+      h('div', { class: 'ec-prev-a', style: 'position:absolute;right:22px;top:86px;max-width:220px;padding:9px 12px;background:#fbf8ee;border:1px solid #e8e2ce;border-radius:10px;font-size:11.5px;color:#334155;box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'Three ways to get involved — want to hear more?'));
     const donorPrev = h(Fragment, null,
-      h('div', { style: 'position:absolute;left:22px;top:26px;max-width:220px;padding:9px 12px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px 12px 12px 4px;font-size:11.5px;color:var(--slate,#475569);box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'Where does my donation actually go?'),
-      h('div', { style: 'position:absolute;right:22px;top:74px;max-width:220px;padding:9px 12px;background:#fbf8ee;border:1px solid #e8e2ce;border-radius:10px;font-size:11.5px;color:#334155;box-shadow:0 2px 8px rgba(15,23,42,.06)' }, '92¢ of every dollar funds direct programs.'));
+      h('div', { class: 'ec-prev-q', style: 'position:absolute;left:22px;top:26px;max-width:220px;padding:9px 12px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px 12px 12px 4px;font-size:11.5px;color:var(--slate,#475569);box-shadow:0 2px 8px rgba(15,23,42,.06)' }, 'Where does my donation actually go?'),
+      h('div', { class: 'ec-prev-a', style: 'position:absolute;right:22px;top:86px;max-width:220px;padding:9px 12px;background:#fbf8ee;border:1px solid #e8e2ce;border-radius:10px;font-size:11.5px;color:#334155;box-shadow:0 2px 8px rgba(15,23,42,.06)' }, '92¢ of every dollar funds direct programs.'));
     const progPrev = h('div', { style: 'position:absolute;left:22px;top:22px;right:22px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:12px;padding:12px 14px;box-shadow:0 2px 8px rgba(15,23,42,.06)' },
       h('div', { style: 'font-size:11px;font-weight:700;color:var(--navy,#0F172A);margin-bottom:8px' }, 'Intake — STEM Tutoring'),
       h('div', { style: 'display:flex;align-items:center;gap:8px;font-size:11px;color:var(--slate,#475569);padding:4px 0' }, this.chk(13, '#1C7A45', 2.5), h('span', null, 'Eligibility confirmed')),
@@ -834,7 +835,7 @@ export default class ExperienceCenter extends Component {
         h('div', null,
           h('div', { style: 'font-size:11.5px;font-weight:700;color:var(--navy,#0F172A)' }, 'Hope Run 5K'),
           h('div', { style: 'font-size:10.5px;color:var(--muted,#64748B);margin-top:2px' }, '248 registered · reminders scheduled'))),
-      h('div', { style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:#ECFDF3;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;font-weight:600;color:#2F9D58;display:flex;align-items:center;gap:7px" },
+      h('div', { class: 'ec-prev-chip', style: "position:absolute;left:22px;right:22px;top:96px;padding:8px 12px;background:#ECFDF3;border:1px solid #A7F3D0;border-radius:10px;font-size:11px;font-weight:600;color:#2F9D58;display:flex;align-items:center;gap:7px" },
         this.chk(14, 'currentColor', 2.4),
         h('span', null, "You're registered! Confirmation on its way.")));
 
@@ -904,7 +905,7 @@ export default class ExperienceCenter extends Component {
           h('div', { onClick: st.go, style: `display:flex;flex-direction:column;align-items:center;gap:7px;cursor:${st.cursor};min-width:0` },
             h('div', { style: `width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-sizing:border-box;background:${st.bg};color:${st.fg};border:2px solid ${st.bd};animation:${st.anim};transition:background .3s,border-color .3s` }, st.mark),
             h('div', { style: `font-size:10.5px;font-weight:600;color:${st.lc};text-align:center;line-height:1.25;max-width:78px` }, st.label)),
-          st.hasLine ? h('div', { style: `flex:1;height:2px;border-radius:2px;background:${st.lineBg};margin:14px 8px 0;transition:background .3s` }) : null))),
+          st.hasLine ? h('div', { class: 'ec-rail-line', style: `flex:1;height:2px;border-radius:2px;background:${st.lineBg};margin:14px 8px 0;transition:background .3s` }) : null))),
       // lens card
       h('div', { style: 'background:var(--navy-900,#0F172A);border-radius:18px;padding:20px 24px;margin-bottom:20px;position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:16px 34px;align-items:center' },
         h('div', { style: 'position:absolute;top:-90px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.15) 0%,rgba(80,200,120,0) 70%);pointer-events:none' }),
@@ -927,10 +928,10 @@ export default class ExperienceCenter extends Component {
           v.kSteward ? this.renderSteward(v) : null,
           v.kMeasure ? this.renderMeasure(v) : null)),
       // back / next
-      h('div', { style: 'display:flex;justify-content:space-between;align-items:center;margin-top:20px' },
+      h('div', { class: 'ec-stage-controls', style: 'display:flex;justify-content:space-between;align-items:center;margin-top:20px' },
         h('div', null, v.canBack ? h(Btn, { variant: 'outline', onClick: v.prevStage }, '← Back') : null),
         h('div', { style: 'display:flex;align-items:center;gap:16px' },
-          h('span', { style: 'font-size:12px;font-weight:600;color:var(--muted,#64748B)' }, 'Stage ' + v.stageNum + ' of ' + v.stageTotal),
+          h('span', { class: 'ec-stage-count', style: 'font-size:12px;font-weight:600;color:var(--muted,#64748B)' }, 'Stage ' + v.stageNum + ' of ' + v.stageTotal),
           h(Btn, { onClick: v.nextStage }, v.nextLabel))));
   }
 
@@ -1485,7 +1486,9 @@ export default class ExperienceCenter extends Component {
           h(Btn, { size: 'lg', href: '/demo' }, 'Schedule a Live Demo'),
           h(Btn, { variant: 'outline', size: 'lg', onDark: true, href: '/#pricing' }, 'Choose Your Plan')),
         h('a', { onClick: v.goHome, style: 'margin-top:28px;font-size:12.5px;font-weight:600;color:var(--slate-400,#94A3B8);cursor:pointer' }, '← Back to the Experience Center')),
-      h('div', { style: 'position:relative;padding:24px 44px;display:flex;justify-content:flex-end' }, h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:150px;display:block' })));
+      h('div', { style: 'position:relative;padding:24px 44px;display:flex;justify-content:flex-end' },
+        h('a', { href: '/', title: 'MyRecruiter home', style: 'display:block' },
+          h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:150px;display:block' }))));
   }
 
   // ── OVERVIEW MODAL ──────────────────────────────────────────────────────

@@ -77,10 +77,38 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         /* Widget: 380px fixed + flex-shrink:0 forces overflow. */
         .ec-widget { width: 100% !important; height: 520px !important; }
 
-        /* Stage rail: 5–6 stages can't compress — let it scroll. */
+        /* Stage rail: 5–6 stages can't compress — let it scroll. The connectors collapse to 0
+           width here, so spacing would come from each label's width (38–78px) and the last stage
+           — with the widest label — drifted away from the rest. Fixed-width items instead, so the
+           circles are evenly spaced regardless of label length. */
         .ec-rail { overflow-x: auto !important; scrollbar-width: none; }
         .ec-rail::-webkit-scrollbar { display: none; }
-        .ec-rail-item { flex: 0 0 auto !important; }
+        /* Equal share of the width (grow, never shrink below 58px): evenly spaced circles that
+           still all fit on screen, falling back to a scroll only on the narrowest phones. */
+        .ec-rail-item { flex: 1 0 58px !important; justify-content: center !important; }
+        .ec-rail-line { display: none !important; }
+        /* Label max-width is 78px inline; let it use the item's share instead of overflowing. */
+        .ec-rail-item > div > div:last-child { max-width: 100% !important; }
+
+        /* Bottom controls: Back + "Stage 6 of 6" + the next button over-run the row (420 needed
+           vs 392 available), squeezing the counter until it wrapped mid-number. Trim the button
+           padding, pin the counter, and let the row wrap on the narrowest phones. */
+        .ec-stage-controls { flex-wrap: wrap !important; gap: 12px !important; }
+        .ec-stage-count { white-space: nowrap !important; }
+        .ec-stage-controls .ec-btn-primary,
+        .ec-stage-controls .ec-btn-outline { padding-left: 14px !important; padding-right: 14px !important; }
+
+        /* Home card previews: the bubbles are absolutely positioned at tops tuned for the wider
+           desktop card, where they're ~40px tall. On a phone the copy wraps to 3 lines (55px) and
+           the second bubble collided with the first (Donor overlapped by 6px, Event's chip by 1).
+           Bubble height is capped by max-width, so it's a constant 55px across phone widths —
+           these tops clear it with room to spare and still fit the 148px preview. */
+        .ec-prev-q { top: 18px !important; }
+        .ec-prev-a { top: 84px !important; }
+        .ec-prev-chip { top: 106px !important; }
+        /* 148px can't hold the taller wrapped content once it's spaced apart — at 320 the Event
+           chip wraps to two lines and was clipped by the preview's overflow:hidden. */
+        .ec-card-preview { height: 168px !important; }
 
         .ec-sector-row { flex-direction: column !important; }
         /* 32px of overlay padding wastes scarce width on a phone. */
