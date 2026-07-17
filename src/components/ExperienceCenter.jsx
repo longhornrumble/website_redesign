@@ -758,7 +758,8 @@ export default class ExperienceCenter extends Component {
       h('div', { style: 'position:absolute;top:-240px;right:-140px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
       h('div', { style: 'position:absolute;bottom:-280px;left:-220px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.09) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
       h('header', { class: 'ec-landing-header', style: 'position:relative;display:flex;align-items:center;justify-content:space-between;padding:26px 48px' },
-        h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:168px;display:block' }),
+        h('a', { href: '/', title: 'MyRecruiter home', style: 'display:block' },
+          h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:168px;display:block' })),
         h('div', { class: 'ec-landing-pill', style: 'display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap' },
           h('span', { style: 'width:7px;height:7px;border-radius:50%;background:var(--emerald-500,#50C878);animation:ecLive 2s ease-in-out infinite' }),
           h('span', null, 'Experience Center · self-guided demo'))),
@@ -1485,7 +1486,9 @@ export default class ExperienceCenter extends Component {
           h(Btn, { size: 'lg', href: '/demo' }, 'Schedule a Live Demo'),
           h(Btn, { variant: 'outline', size: 'lg', onDark: true, href: '/#pricing' }, 'Choose Your Plan')),
         h('a', { onClick: v.goHome, style: 'margin-top:28px;font-size:12.5px;font-weight:600;color:var(--slate-400,#94A3B8);cursor:pointer' }, '← Back to the Experience Center')),
-      h('div', { style: 'position:relative;padding:24px 44px;display:flex;justify-content:flex-end' }, h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:150px;display:block' })));
+      h('div', { style: 'position:relative;padding:24px 44px;display:flex;justify-content:flex-end' },
+        h('a', { href: '/', title: 'MyRecruiter home', style: 'display:block' },
+          h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:150px;display:block' }))));
   }
 
   // ── OVERVIEW MODAL ──────────────────────────────────────────────────────
