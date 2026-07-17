@@ -747,14 +747,14 @@ export default class ExperienceCenter extends Component {
     return h('div', { style: 'position:relative;min-height:100vh;background:var(--navy-900,#0F172A);overflow:hidden;display:flex;flex-direction:column;animation:ecFadeUp .35s ease-out both' },
       h('div', { style: 'position:absolute;top:-240px;right:-140px;width:760px;height:760px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
       h('div', { style: 'position:absolute;bottom:-280px;left:-220px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.09) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
-      h('header', { style: 'position:relative;display:flex;align-items:center;justify-content:space-between;padding:26px 48px' },
+      h('header', { class: 'ec-landing-header', style: 'position:relative;display:flex;align-items:center;justify-content:space-between;padding:26px 48px' },
         h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:168px;display:block' }),
-        h('div', { style: 'display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85)' },
+        h('div', { class: 'ec-landing-pill', style: 'display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap' },
           h('span', { style: 'width:7px;height:7px;border-radius:50%;background:var(--emerald-500,#50C878);animation:ecLive 2s ease-in-out infinite' }),
           h('span', null, 'Experience Center · self-guided demo'))),
-      h('main', { style: 'position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:860px;margin:0 auto;padding:20px 48px 40px;text-align:center' },
+      h('main', { class: 'ec-landing-main', style: 'position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:860px;margin:0 auto;padding:20px 48px 40px;text-align:center' },
         h('div', { style: 'font-size:12px;font-weight:600;letter-spacing:.16em;color:var(--emerald-300,#6ee7b7);text-transform:uppercase' }, 'AI Engagement for Mission-Driven Organizations'),
-        h('h1', { style: 'margin:18px 0 0;font-size:64px;line-height:1.06;font-weight:700;letter-spacing:-0.02em;color:#fff' }, 'Turn Interest Into ', h('span', { style: 'background:linear-gradient(135deg,#75dbb7,#50C878,#3da060);-webkit-background-clip:text;background-clip:text;color:transparent' }, 'Action')),
+        h('h1', { class: 'ec-landing-h1', style: 'margin:18px 0 0;font-size:64px;line-height:1.06;font-weight:700;letter-spacing:-0.02em;color:#fff' }, 'Turn Interest Into ', h('span', { style: 'background:linear-gradient(135deg,#75dbb7,#50C878,#3da060);-webkit-background-clip:text;background-clip:text;color:transparent' }, 'Action')),
         h('p', { style: 'margin:22px auto 0;max-width:620px;font-size:17px;line-height:1.65;color:rgba(255,255,255,.72)' }, 'Remove the friction between interest and action, so more volunteers, donors, and program participants join your mission.'),
         h('div', { style: 'display:flex;gap:14px;justify-content:center;margin-top:34px' },
           h(Btn, { size: 'lg', onClick: v.goHome }, 'Explore the Self-Guided Experience')),
@@ -764,19 +764,19 @@ export default class ExperienceCenter extends Component {
 
   // ── APP SHELL (sidebar + main) ──────────────────────────────────────────
   renderShell(v) {
-    const nav = h('nav', { style: 'width:238px;flex:none;background:var(--navy-900,#0F172A);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;box-sizing:border-box' },
-      h('a', { href: 'https://www.myrecruiter.ai', class: 'ec-logo-link', style: 'padding:22px 20px 16px', title: 'Back to myrecruiter.ai' },
+    const nav = h('nav', { class: 'ec-sidebar', style: 'width:238px;flex:none;background:var(--navy-900,#0F172A);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;box-sizing:border-box' },
+      h('a', { href: 'https://www.myrecruiter.ai', class: 'ec-logo-link ec-sb-logo', style: 'padding:22px 20px 16px', title: 'Back to myrecruiter.ai' },
         h('img', { src: '/images/logo-white.webp', alt: 'MyRecruiter', style: 'width:148px;display:block' }),
         h('span', { class: 'ec-logo-hint' }, '← Back to site')),
-      h('div', { style: 'padding:8px 22px 10px;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--slate-400,#94A3B8)' }, 'EXPERIENCE CENTER'),
-      h('div', { style: 'display:flex;flex-direction:column;gap:2px;padding:0 10px' },
+      h('div', { class: 'ec-sb-eyebrow', style: 'padding:8px 22px 10px;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--slate-400,#94A3B8)' }, 'EXPERIENCE CENTER'),
+      h('div', { class: 'ec-navlist', style: 'display:flex;flex-direction:column;gap:2px;padding:0 10px' },
         v.navItems.map((it, i) => h('div', { key: i, onClick: it.go, class: 'ec-hoverbg', style: `display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;cursor:pointer;background:${it.bg};color:${it.fg};font-size:13px;font-weight:600;transition:background .15s;--hb:${it.hoverBg}` },
           h('svg', { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: it.d })),
           h('span', null, it.label)))),
-      h('div', { style: 'margin-top:auto;padding:0 22px 12px' },
+      h('div', { class: 'ec-sb-back', style: 'margin-top:auto;padding:0 22px 12px' },
         h('a', { href: 'https://www.myrecruiter.ai', class: 'ec-site-link' },
           h('svg', { width: 14, height: 14, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: 'M19 12H5M12 19l-7-7 7-7' })), 'Back to myrecruiter.ai')),
-      h('div', { style: 'padding:0 16px 16px' },
+      h('div', { class: 'ec-sb-cta', style: 'padding:0 16px 16px' },
         h('div', { style: 'background:var(--navy-800,#1E293B);border:1px solid var(--navy-700,#334155);border-radius:14px;padding:16px' },
           h('div', { style: 'font-size:13px;font-weight:700;color:#fff' }, 'Ready for the real thing?'),
           h('div', { style: 'font-size:12px;color:var(--slate-400,#94A3B8);line-height:1.5;margin:6px 0 12px' }, 'Live on your site in 48 hours. We handle everything.'),
@@ -789,7 +789,7 @@ export default class ExperienceCenter extends Component {
     else if (v.isPlatform) main = this.renderPlatform(v);
     else if (v.isFinal) main = this.renderFinal(v);
 
-    return h('div', { style: 'display:flex;min-height:100vh;background:var(--slate-50,#F8FAFC)' },
+    return h('div', { class: 'ec-shell', style: 'display:flex;min-height:100vh;background:var(--slate-50,#F8FAFC)' },
       nav,
       h('main', { style: 'flex:1;min-width:0;position:relative' }, main));
   }
@@ -830,14 +830,14 @@ export default class ExperienceCenter extends Component {
 
     return h('div', { style: 'position:relative' },
       v.welcomeOpen ? this.renderWelcome(v) : null,
-      h('div', { style: 'max-width:1040px;margin:0 auto;padding:52px 44px 72px;animation:ecFadeUp .35s ease-out both' },
+      h('div', { class: 'ec-page', style: 'max-width:1040px;margin:0 auto;padding:52px 44px 72px;animation:ecFadeUp .35s ease-out both' },
         h('div', { style: 'font-size:11.5px;font-weight:700;letter-spacing:.15em;color:var(--emerald-700,#1C7A45)' }, 'SELF-GUIDED DEMO'),
         h('h1', { style: 'margin:10px 0 0;font-size:36px;font-weight:700;letter-spacing:-0.015em;color:var(--navy,#0F172A)' }, 'The Nonprofit Experience'),
         h('p', { style: 'margin:12px 0 0;max-width:640px;font-size:15px;line-height:1.65;color:var(--slate,#475569);text-wrap:pretty' }, 'Four realistic scenarios, drawn from real nonprofit work. Each one walks a supporter from first question to completed action — with no staff involved.'),
         h('div', { style: 'display:flex;align-items:center;gap:12px;margin:22px 0 26px;padding:14px 18px;background:var(--navy-900,#0F172A);border-radius:14px' },
           h('svg', { width: 18, height: 18, viewBox: '0 0 24 24', fill: 'none', stroke: '#6ee7b7', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: 'flex:none' }, h('path', { d: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z' })),
           h('span', { style: 'font-size:13px;line-height:1.5;color:rgba(255,255,255,.82)' }, 'Switch between Visitor, Coordinator, and Executive views at any time.')),
-        h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px' },
+        h('div', { class: 'ec-grid', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:20px' },
           card('', 'Volunteer Recruitment', 'Experience how volunteer interest becomes a scheduled orientation automatically.', '≈ 3 min', v.goVolunteer, volPrev),
           card('', 'Donor Engagement', 'Build donor confidence through instant answers and guided next steps.', '≈ 2 min', v.goDonor, donorPrev),
           card('', 'Program Enrollment', 'Guide participants from their first questions to a completed intake and scheduled appointment.', '≈ 2 min', v.goProgram, progPrev),
@@ -854,7 +854,7 @@ export default class ExperienceCenter extends Component {
             h('div', { style: 'font-size:24px;font-weight:700;letter-spacing:-.01em;color:#fff;margin-top:8px' }, 'Welcome to the Experience Center'),
             h('div', { style: 'font-size:14px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:6px' }, 'Choose the experience that’s most relevant to you.'))),
         h('div', { style: 'padding:24px 34px 30px' },
-          h('div', { style: 'display:flex;gap:12px' },
+          h('div', { class: 'ec-sector-row', style: 'display:flex;gap:12px' },
             v.sectorOpts.map((so, i) => h('div', { key: i, onClick: so.set, style: `flex:1;display:flex;align-items:center;gap:11px;padding:15px 16px;border-radius:13px;border:1.5px solid ${so.bd};background:${so.bg};cursor:${so.cursor};transition:border-color .15s,background .15s` },
               h('span', { style: `width:18px;height:18px;border-radius:50%;border:2px solid ${so.dot};display:flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box` }, h('span', { style: `width:9px;height:9px;border-radius:50%;background:${so.fill}` })),
               h('div', { style: 'min-width:0' },
@@ -874,20 +874,20 @@ export default class ExperienceCenter extends Component {
 
   // ── EXPERIENCE (journey) ────────────────────────────────────────────────
   renderExperience(v) {
-    return h('div', { style: 'max-width:1120px;margin:0 auto;padding:30px 36px 64px;animation:ecFadeUp .35s ease-out both' },
+    return h('div', { class: 'ec-page', style: 'max-width:1120px;margin:0 auto;padding:30px 36px 64px;animation:ecFadeUp .35s ease-out both' },
       // header row
       h('div', { style: 'display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap' },
         h('div', null,
           h('a', { onClick: v.goHome, style: 'font-size:12.5px;font-weight:600;cursor:pointer' }, '← Experience Center'),
           h('h1', { style: 'margin:8px 0 0;font-size:27px;font-weight:700;letter-spacing:-0.01em;color:var(--navy,#0F172A)' }, v.expTitle),
           h('div', { style: 'margin-top:5px;font-size:13px;color:var(--muted,#64748B)' }, v.expSub)),
-        h('div', { style: 'display:flex;align-items:center;gap:10px' },
+        h('div', { class: 'ec-persp', style: 'display:flex;align-items:center;gap:10px' },
           h('span', { style: 'font-size:11.5px;font-weight:600;color:var(--muted,#64748B)' }, 'Viewing as'),
-          h('div', { style: 'display:flex;gap:3px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:999px;padding:4px' },
+          h('div', { class: 'ec-persp-pills', style: 'display:flex;gap:3px;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:999px;padding:4px' },
             v.perspPills.map((pp, i) => h('div', { key: i, onClick: pp.set, style: `padding:7px 14px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;background:${pp.bg};color:${pp.fg};transition:background .15s,color .15s;white-space:nowrap` }, pp.label))))),
       // stage rail
-      h('div', { style: 'background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:16px;padding:18px 20px 14px;margin:20px 0 20px;display:flex;align-items:flex-start' },
-        v.stages.map((st, i) => h('div', { key: i, style: `display:flex;align-items:flex-start;flex:${st.flex};min-width:0` },
+      h('div', { class: 'ec-rail', style: 'background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:16px;padding:18px 20px 14px;margin:20px 0 20px;display:flex;align-items:flex-start' },
+        v.stages.map((st, i) => h('div', { key: i, class: 'ec-rail-item', style: `display:flex;align-items:flex-start;flex:${st.flex};min-width:0` },
           h('div', { onClick: st.go, style: `display:flex;flex-direction:column;align-items:center;gap:7px;cursor:${st.cursor};min-width:0` },
             h('div', { style: `width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-sizing:border-box;background:${st.bg};color:${st.fg};border:2px solid ${st.bd};animation:${st.anim};transition:background .3s,border-color .3s` }, st.mark),
             h('div', { style: `font-size:10.5px;font-weight:600;color:${st.lc};text-align:center;line-height:1.25;max-width:78px` }, st.label)),
@@ -905,7 +905,7 @@ export default class ExperienceCenter extends Component {
             h('span', null, lp))))),
       // content
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start' },
-        h('div', { style: 'flex:1 1 560px;min-width:0;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:18px;padding:26px 28px;min-height:440px;box-sizing:border-box' },
+        h('div', { class: 'ec-journey-card', style: 'flex:1 1 560px;min-width:0;background:#fff;border:1px solid var(--line,#E2E8F0);border-radius:18px;padding:26px 28px;min-height:440px;box-sizing:border-box' },
           v.kDiscover ? this.renderDiscover(v) : null,
           v.sWidget ? this.renderWidgetStage(v) : null,
           v.kRemind ? this.renderRemind(v) : null,
@@ -963,7 +963,7 @@ export default class ExperienceCenter extends Component {
       h('div', { style: 'font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--emerald-700,#1C7A45)' }, 'STAGE 1 · DISCOVER'),
       h('h2', { style: 'margin:7px 0 8px;font-size:22px;font-weight:700;color:var(--navy,#0F172A)' }, 'Every journey starts at a different door'),
       h('p', { style: 'margin:0;font-size:13.5px;line-height:1.6;color:var(--slate,#475569);max-width:560px' }, v.discoverIntro),
-      h('div', { style: 'display:grid;grid-template-columns:172px minmax(0,1fr);gap:20px;margin-top:22px' },
+      h('div', { class: 'ec-discover-grid', style: 'display:grid;grid-template-columns:172px minmax(0,1fr);gap:20px;margin-top:22px' },
         h('div', { style: 'display:flex;flex-direction:column;gap:8px' },
           v.channels.map((ch, i) => h('div', { key: i, onClick: ch.set, class: 'ec-hoverborder', style: `display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;border:1.5px solid ${ch.bd};background:${ch.bg};cursor:pointer;transition:border-color .15s,background .15s` },
             h('span', { style: 'font-size:16px' }, ch.e),
@@ -987,7 +987,7 @@ export default class ExperienceCenter extends Component {
 
   renderWidgetShell(v) {
     const org = v.orgName;
-    return h('div', { style: 'position:relative;width:380px;max-width:100%;height:560px;display:flex;flex-direction:column;background:#fffefb;border:1px solid #e8e2ce;border-top:2px solid #a08a4a;border-radius:12px;box-shadow:0 2px 24px rgba(15,23,42,.08);box-sizing:border-box;overflow:hidden;flex-shrink:0' },
+    return h('div', { class: 'ec-widget', style: 'position:relative;width:380px;max-width:100%;height:560px;display:flex;flex-direction:column;background:#fffefb;border:1px solid #e8e2ce;border-top:2px solid #a08a4a;border-radius:12px;box-shadow:0 2px 24px rgba(15,23,42,.08);box-sizing:border-box;overflow:hidden;flex-shrink:0' },
       h('div', { style: 'display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;flex:none' },
         h('div', { style: 'font-size:11px;font-weight:700;letter-spacing:.14em;color:#8a7439;text-transform:uppercase' }, org),
         h('div', { style: 'display:flex;align-items:center;gap:14px' },
@@ -1254,7 +1254,7 @@ export default class ExperienceCenter extends Component {
       h('div', { style: 'font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--emerald-700,#1C7A45)' }, v.measureEyebrow),
       h('h2', { style: 'margin:7px 0 8px;font-size:22px;font-weight:700;color:var(--navy,#0F172A)' }, v.measureTitle),
       h('p', { style: 'margin:0;font-size:13.5px;line-height:1.6;color:var(--slate,#475569);max-width:560px' }, v.measureBlurb),
-      h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:20px' },
+      h('div', { class: 'ec-kpis', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:20px' },
         v.measureStats.map((ms, i) => h('div', { key: i, style: 'border:1px solid var(--line,#E2E8F0);border-radius:14px;padding:18px;text-align:center' },
           h('div', { style: 'font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--emerald-600,#2FA45E)' }, ms.v),
           h('div', { style: 'font-size:11.5px;font-weight:600;color:var(--muted,#64748B);margin-top:4px' }, ms.l)))),
@@ -1275,7 +1275,7 @@ export default class ExperienceCenter extends Component {
 
   // ── ANALYTICS ───────────────────────────────────────────────────────────
   renderAnalytics(v) {
-    return h('div', { style: 'max-width:1060px;margin:0 auto;padding:44px 40px 56px;animation:ecFadeUp .35s ease-out both' },
+    return h('div', { class: 'ec-page', style: 'max-width:1060px;margin:0 auto;padding:44px 40px 56px;animation:ecFadeUp .35s ease-out both' },
       h('div', { style: 'display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap' },
         h('div', null,
           h('div', { style: 'display:flex;align-items:center;gap:8px' },
@@ -1298,12 +1298,12 @@ export default class ExperienceCenter extends Component {
 
   renderExecDash(v) {
     return h('div', { style: 'animation:ecFadeUp .3s ease-out both' },
-      h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:24px' },
+      h('div', { class: 'ec-kpis', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:24px' },
         v.execKpis.map((k, i) => h('div', { key: i, class: 'ec-lift', style: 'background:#fff;border-radius:16px;padding:24px 18px;text-align:center;box-shadow:0 4px 20px -2px rgba(0,0,0,.08),0 2px 8px -2px rgba(0,0,0,.04);transition:transform .3s cubic-bezier(.16,1,.3,1)' },
           h('div', { style: 'font-size:38px;font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--emerald-500,#50C878)' }, k.v),
           h('div', { style: 'font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--slate,#475569);margin-top:14px' }, k.l),
           h('div', { style: 'font-size:12px;color:var(--slate-400,#94A3B8);margin-top:5px' }, k.d)))),
-      h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:16px' },
+      h('div', { class: 'ec-grid', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:16px' },
         // funnel card
         h('div', { style: 'background:#fff;border-radius:12px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 1px 2px -1px rgba(0,0,0,.04)' },
           h('div', { style: 'display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px' },
@@ -1384,14 +1384,14 @@ export default class ExperienceCenter extends Component {
           h('span', { style: 'flex:1' }, o.l),
           h('span', { style: 'font-weight:700;color:var(--navy,#0F172A)' }, o.pct + '%')))));
     return h('div', { style: 'animation:ecFadeUp .3s ease-out both' },
-      h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin-top:24px' },
+      h('div', { class: 'ec-grid', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin-top:24px' },
         h('div', { style: 'display:flex;flex-direction:column;gap:16px' }, upcoming, pipeline),
         h('div', { style: 'display:flex;flex-direction:column;gap:16px' }, topQ, outcomes)));
   }
 
   renderOpsDash(v) {
     const cardStyle = 'background:#fff;border-radius:12px;padding:22px 24px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 1px 2px -1px rgba(0,0,0,.04)';
-    const kpis = h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:24px' },
+    const kpis = h('div', { class: 'ec-kpis', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:24px' },
       v.opsKpis.map((ok, i) => h('div', { key: i, style: 'background:#fff;border-radius:16px;padding:20px 18px;text-align:center;box-shadow:0 4px 20px -2px rgba(0,0,0,.08),0 2px 8px -2px rgba(0,0,0,.04)' },
         h('div', { style: 'font-size:30px;font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--emerald-500,#50C878)' }, ok.v),
         h('div', { style: 'font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--slate,#475569);margin-top:12px' }, ok.l),
@@ -1423,7 +1423,7 @@ export default class ExperienceCenter extends Component {
           h('div', { style: 'width:36px;flex:none;font-size:11.5px;font-weight:700;color:var(--navy,#0F172A);text-align:right' }, cw.pct + '%')))));
     return h('div', { style: 'animation:ecFadeUp .3s ease-out both' },
       kpis,
-      h('div', { style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px' },
+      h('div', { class: 'ec-grid', style: 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px' },
         bottleneck,
         h('div', { style: 'display:flex;flex-direction:column;gap:16px' }, reminder, channel)));
   }
@@ -1434,12 +1434,12 @@ export default class ExperienceCenter extends Component {
       h('span', { style: 'font-size:15px' }, e), h('span', { style: 'font-size:12.5px;font-weight:600;color:var(--navy,#0F172A)' }, label));
     const connector = (hh) => h('div', { style: 'display:flex;justify-content:center;margin:2px 0' },
       h('svg', { width: 24, height: hh, viewBox: `0 0 24 ${hh}` }, h('line', { x1: 12, y1: 2, x2: 12, y2: hh - 2, stroke: '#50C878', strokeWidth: 2, strokeDasharray: '4 7', strokeLinecap: 'round', style: 'animation:ecFlow 1.4s linear infinite' })));
-    return h('div', { style: 'max-width:820px;margin:0 auto;padding:48px 40px 80px;animation:ecFadeUp .35s ease-out both' },
+    return h('div', { class: 'ec-page', style: 'max-width:820px;margin:0 auto;padding:48px 40px 80px;animation:ecFadeUp .35s ease-out both' },
       h('div', { style: 'text-align:center' },
         h('div', { style: 'font-size:11.5px;font-weight:700;letter-spacing:.15em;color:var(--emerald-700,#1C7A45)' }, 'HOW IT WORKS'),
         h('h1', { style: 'margin:10px 0 0;font-size:32px;font-weight:700;letter-spacing:-0.015em;color:var(--navy,#0F172A)' }, 'One AI engine behind every conversation'),
         h('p', { style: 'margin:12px auto 0;max-width:560px;font-size:14.5px;line-height:1.65;color:var(--slate,#475569);text-wrap:pretty' }, 'Every channel feeds the same engine. It knows your programs, collects what you need, books the next step, and measures everything.')),
-      h('div', { style: 'display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px;margin:32px auto 0' },
+      h('div', { class: 'ec-chan-grid', style: 'display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px;margin:32px auto 0' },
         chan('🌐', 'Website chat'), chan('📋', 'QR codes'), chan('💬', 'SMS'), chan('💬', 'Facebook Messenger'), chan('📱', 'Instagram Messenger'), chan('✉️', 'Email')),
       connector(44),
       h('div', { style: 'max-width:460px;margin:0 auto;background:var(--navy-900,#0F172A);border-radius:18px;padding:24px 26px;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 48px rgba(15,23,42,.25)' },
@@ -1464,9 +1464,9 @@ export default class ExperienceCenter extends Component {
   renderFinal(v) {
     return h('div', { style: 'min-height:100vh;background:var(--navy-900,#0F172A);display:flex;flex-direction:column;position:relative;overflow:hidden;animation:ecFadeUp .35s ease-out both' },
       h('div', { style: 'position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(circle,rgba(80,200,120,.16) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
-      h('div', { style: 'position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:680px;margin:0 auto;padding:60px 44px' },
+      h('div', { class: 'ec-final', style: 'position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;max-width:680px;margin:0 auto;padding:60px 44px' },
         h('div', { style: 'font-size:11.5px;font-weight:700;letter-spacing:.16em;color:var(--emerald-300,#6ee7b7)' }, 'YOU’VE SEEN THE JOURNEY'),
-        h('h1', { style: 'margin:18px 0 0;font-size:42px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#fff;text-wrap:pretty' }, 'Imagine Every Interested Person Becoming Part of Your Mission.'),
+        h('h1', { class: 'ec-final-h1', style: 'margin:18px 0 0;font-size:42px;line-height:1.15;font-weight:700;letter-spacing:-0.02em;color:#fff;text-wrap:pretty' }, 'Imagine Every Interested Person Becoming Part of Your Mission.'),
         h('p', { style: 'margin:20px 0 0;font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.72);text-wrap:pretty' }, 'You just experienced one volunteer’s journey. Now imagine every volunteer, donor, family, or program participant automatically receiving that same friction-free experience.'),
         h('div', { style: 'display:flex;gap:14px;justify-content:center;margin-top:32px' },
           h(Btn, { size: 'lg', href: '/demo' }, 'Schedule a Live Demo'),
