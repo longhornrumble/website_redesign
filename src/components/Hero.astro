@@ -28,12 +28,16 @@ import HeroDemoScene from './HeroDemoScene.jsx';
                 When someone decides to help, every hour matters. MyRecruiter removes the friction between people and your mission—so more people become volunteers, donors, and advocates while your team stays focused on changing lives.
             </p>
 
-            <!-- Chip flow — two balanced rows so it never wraps to a lone stray chip -->
+            <!-- Chip flow — two balanced rows so it never wraps to a lone stray chip. The trailing
+                 arrow on row 1 carries the sequence into row 2. -->
             <div class="mt-6 flex flex-col gap-[9px]">
                 <div class="flex flex-wrap items-center gap-[7px]">
                     <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Answers questions</span>
                     <span class="text-[12px] text-white/[.35]">→</span>
                     <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Guides supporters</span>
+                    <!-- Carries the sequence into row 2. Hidden under 400px, where row 1 no longer
+                         fits it and it would wrap onto a line by itself. -->
+                    <span class="hidden text-[12px] text-white/[.35] min-[400px]:inline">→</span>
                 </div>
                 <div class="flex flex-wrap items-center gap-[7px]">
                     <span class="rounded-full border border-[rgba(80,200,120,.35)] bg-[rgba(80,200,120,.13)] px-[14px] py-2 text-[12.5px] font-semibold text-emerald-300">Books appointments</span>
