@@ -163,8 +163,18 @@ export default class ExperienceCenter extends Component {
     this.after(900 / sp, () => this.setState({ calShown: true }));
   }
 
+  // Every screen and stage change starts new content at the top of the page; without this you
+  // stay scrolled where the previous screen's controls were (worst on a phone, where Next sits
+  // far below the fold).
+  scrollTop() {
+    if (typeof window === 'undefined') return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
   setStage(i) {
     this.clearTimers();
+    this.scrollTop();
     const st = this.cfg().stages;
     const key = (st[i] || st[0]).key;
     this.setState({ stage: i, maxStage: Math.max(this.state.maxStage, i), qOverlayOpen: false, typing: false });
@@ -174,7 +184,7 @@ export default class ExperienceCenter extends Component {
     else if (key === 'schedule') this.startSchedule();
     else if (key === 'remind') { this.setState({ tlShown: 0 }); [1, 2, 3].forEach(n => this.after(300 + n * 550, () => this.setState({ tlShown: n }))); }
   }
-  goExp(id) { this.clearTimers(); this.setState({ view: id, overviewOpen: false, stage: 0, maxStage: 0, thread: [], typing: false, formStep: 0, formPlaying: false, formDone: false, slotDay: -1, slotTime: -1, confirmed: false, calShown: false, tlShown: 0, rescheduled: false, attended: false, attendLog: 0, qOverlayOpen: false, asked: [] }); }
+  goExp(id) { this.clearTimers(); this.scrollTop(); this.setState({ view: id, overviewOpen: false, stage: 0, maxStage: 0, thread: [], typing: false, formStep: 0, formPlaying: false, formDone: false, slotDay: -1, slotTime: -1, confirmed: false, calShown: false, tlShown: 0, rescheduled: false, attended: false, attendLog: 0, qOverlayOpen: false, asked: [] }); }
 
   lens() {
     return {
@@ -419,7 +429,7 @@ export default class ExperienceCenter extends Component {
     const isExp = this.isExp(s.view);
     const cfg = this.cfg();
     const key = this.curKey();
-    const setView = v => () => { this.clearTimers(); this.setState({ view: v, overviewOpen: false }); };
+    const setView = v => () => { this.clearTimers(); this.scrollTop(); this.setState({ view: v, overviewOpen: false }); };
     const goExp = id => () => this.goExp(id);
 
     const navDef = [
@@ -845,7 +855,10 @@ export default class ExperienceCenter extends Component {
   }
 
   renderWelcome(v) {
-    return h('div', { style: 'position:absolute;inset:0;z-index:40;background:rgba(2,6,23,.55);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:32px;box-sizing:border-box;animation:ecFadeUp .25s ease-out both' },
+    // position:fixed, not absolute: absolute centred the modal inside the page's content box,
+    // which on a phone is far taller than the screen, so it landed below the fold. Fixed centres
+    // it on the viewport (and matches the Overview modal, which is already fixed).
+    return h('div', { class: 'ec-welcome-overlay', style: 'position:fixed;inset:0;z-index:40;background:rgba(2,6,23,.55);backdrop-filter:blur(7px);display:flex;align-items:center;justify-content:center;padding:32px;box-sizing:border-box;animation:ecFadeUp .25s ease-out both' },
       h('div', { style: 'width:560px;max-width:100%;max-height:calc(100vh - 64px);overflow:auto;background:#fff;border-radius:20px;box-shadow:0 32px 80px rgba(2,6,23,.5)' },
         h('div', { style: 'padding:30px 34px 22px;background:var(--navy-900,#0F172A);position:relative;overflow:hidden' },
           h('div', { style: 'position:absolute;top:-70px;right:-50px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(80,200,120,.18) 0%,rgba(80,200,120,0) 65%);pointer-events:none' }),
