@@ -13,10 +13,11 @@ import HeroDemoScene from './HeroDemoScene.jsx';
     <main class="relative mx-auto grid max-w-6xl items-center gap-12 px-6 pb-6 pt-28 lg:grid-cols-[minmax(0,1.05fr)_470px] lg:gap-[60px] lg:pb-6 lg:pt-[124px]">
         <!-- Left column -->
         <div>
-            <div class="inline-flex flex-wrap items-center gap-x-[9px] gap-y-1 rounded-full border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg">
-                <span class="text-[13px]">🌙</span>
-                <span>Nights and weekends, your team is offline.</span>
-                <span class="text-emerald-300">MyRecruiter isn't.</span>
+            <!-- Icon + one text block (not three flex items): when the copy wraps on a phone,
+                 the second line aligns under "Nights…" rather than under the icon. -->
+            <div class="inline-flex items-start gap-[9px] rounded-3xl border border-white/[.14] bg-white/[.07] px-[17px] py-[9px] text-[13.5px] font-semibold text-white/[.85] backdrop-blur-lg sm:rounded-full">
+                <span class="flex-none text-[13px] leading-[1.5]">🌙</span>
+                <span class="leading-[1.5]">Nights and weekends, your team is offline. <span class="text-emerald-300">MyRecruiter isn't.</span></span>
             </div>
 
             <h1 class="mt-[22px] text-[40px] font-bold leading-[1.06] tracking-[-0.02em] text-white [text-wrap:pretty] sm:text-[57px]">
@@ -88,14 +89,14 @@ import HeroDemoScene from './HeroDemoScene.jsx';
          the section below (LogoTicker is bg-white) so the seam is invisible. Navy holds to 62%
          and white lands by 92%, compressing the fade so it doesn't linger in blue-gray. -->
     <div class="relative mt-3 pb-[140px] pt-2" style="background:linear-gradient(to bottom,transparent 0%,transparent 62%,#FFFFFF 92%)">
-        <!-- justify-between only once the four stats fit on one line (~1130px viewport), so the
-             first/last align to the same content edges as the nav and headline. Below that they
-             wrap, where centering reads better than stretched rows. -->
-        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-14 gap-y-4 px-6 min-[1130px]:justify-between">
-            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">65%</span><span class="text-[12.5px] text-white/[.55]">Conversations become action</span></div>
-            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">8×</span><span class="text-[12.5px] text-white/[.55]">More volunteer applications</span></div>
-            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">49%</span><span class="text-[12.5px] text-white/[.55]">Engagement happens after hours</span></div>
-            <div class="flex items-baseline gap-[9px]"><span class="text-[23px] font-bold text-emerald-300">24/7</span><span class="text-[12.5px] text-white/[.55]">Your mission never closes</span></div>
+        <!-- Alignment by width: stacked on a phone the rows left-align and the number sits in a
+             fixed column, so numbers and labels each line up. Once the four fit on one line
+             (~1130px) justify-between puts the first/last on the nav/headline content edges. -->
+        <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-start gap-x-14 gap-y-4 px-6 sm:justify-center min-[1130px]:justify-between">
+            <div class="flex items-baseline gap-[9px]"><span class="min-w-[56px] text-[23px] font-bold text-emerald-300 sm:min-w-0">65%</span><span class="text-[12.5px] text-white/[.55]">Conversations become action</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="min-w-[56px] text-[23px] font-bold text-emerald-300 sm:min-w-0">8×</span><span class="text-[12.5px] text-white/[.55]">More volunteer applications</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="min-w-[56px] text-[23px] font-bold text-emerald-300 sm:min-w-0">49%</span><span class="text-[12.5px] text-white/[.55]">Engagement happens after hours</span></div>
+            <div class="flex items-baseline gap-[9px]"><span class="min-w-[56px] text-[23px] font-bold text-emerald-300 sm:min-w-0">24/7</span><span class="text-[12.5px] text-white/[.55]">Your mission never closes</span></div>
         </div>
     </div>
 </section>
