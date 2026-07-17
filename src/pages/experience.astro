@@ -120,7 +120,8 @@ import ExperienceCenter from '../components/ExperienceCenter.jsx';
         .ec-persp-pills::-webkit-scrollbar { display: none; }
 
         /* Landing */
-        .ec-landing-header { padding: 16px 18px !important; flex-wrap: wrap !important; gap: 10px !important; justify-content: center !important; }
+        /* Split row/column gap: once the pill wraps under the logo, a shared 10px reads cramped. */
+        .ec-landing-header { padding: 18px !important; flex-wrap: wrap !important; column-gap: 10px !important; row-gap: 18px !important; justify-content: center !important; }
         .ec-landing-pill { font-size: 11px !important; padding: 6px 12px !important; }
         .ec-landing-main { padding: 12px 18px 28px !important; }
         .ec-landing-h1 { font-size: 38px !important; }
