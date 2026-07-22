@@ -20,7 +20,11 @@ Deliberately **not** over-promised: deletion language for Messenger-only End Use
 
 ## Open items to resolve before publishing (then delete this file or move it out of the deploy path)
 
-1. **Form-submission retention** — internal records are inconsistent (documented as both "effectively permanent" and "365-day TTL," with some 90-day sub-rows). The live page uses **general** language ("per Customer configuration and our data-retention standards") on purpose. Confirm the actual enforced retention before publishing any specific number.
+1. **Form-submission retention** — RESOLVED via privacy-data-governance advisory (2026-07-21), grounded in code:
+   - **Code enforces a uniform 365-day TTL** on every form-submission row (`Lambdas/lambda/Master_Function_Staging/form_handler.py:695`), matching the locked operator decision (`docs/roadmap/PII-Project/data-retention-strategy.md:48,110`). The inventory's "effectively permanent / no TTL" note (`pii-inventory.md:93`) is **STALE** — reconcile it.
+   - Form data is **Tier-3-floor raw PII** (name/email/phone/free-text); some tenants (foster/minors/crisis) carry vulnerable-population context. Our store is an **operational buffer + discretionary lead record** — the Controller receives its own copy via fulfillment at capture (`form_handler.py:970-1039`) and analytics is de-identified (`form_handler.py:714`), so nothing technical requires long retention.
+   - **Recommendation:** endorse **365 days as a tenant-configurable CEILING** (not a floor); allow shorter per-tenant; **counsel-set shorter default (~90–180d) for vulnerable-population tenants**. Consent artifacts are separate (SMS/TCPA, 4–5yr, never DSAR-deleted, `data-retention-strategy.md:51`).
+   - **Keep the public policy GENERAL** (no single hard number) until item #13 (controller/processor determination) is decided — that gates who publishes a consumer retention schedule. If counsel wants a number, express it as a **maximum/ceiling** that code enforces.
 
 2. **Messaging retention specifics** — code today ages Messenger/IG message content on a short TTL (recent-messages ~7 days for Meta rows; widget recent-messages ~24h; analytics preview ~90 days; logs ~30 days). Page says "short-term" rather than exact days so the policy doesn't lock to an implementation detail. Decide whether to state exact days.
 
@@ -43,3 +47,9 @@ Deliberately **not** over-promised: deletion language for Messenger-only End Use
 11. **Security representation / F-SEC1** — an unauthenticated form-write path was flagged internally (fabricated submissions possible). Not a policy statement, but relevant to the "commercially reasonable safeguards" representation — confirm remediation status with security.
 
 12. **"Last updated" date** — page shows 2026-07-21 (draft date). Update to the actual publish date at merge.
+
+13. **Controller vs. processor determination (Q1)** — the load-bearing gate. Decides whether MyRecruiter's own policy publishes a consumer retention schedule at all, or whether that duty sits with the tenant nonprofit (Controller). Counsel decision (`data-retention-strategy.md:117`).
+
+14. **Prod TTL enforcement (honesty gate for any retention claim)** — prod is a divergent table `picasso_form_submissions` (Phase-4 carve-out, `pii-inventory.md:89`). A backfill log exists (`m4g2-prod-ttl-backfill-execution-log-2026-05-24.md`) but **TTL-enabled state + backfill completeness of pre-M4 legacy rows must be independently verified** before publishing any "we retain no longer than X" statement — a row missing the `ttl` attribute never expires.
+
+15. **Litigation-hold exception (honesty + legal gap)** — the 365-day TTL is **unconditional** (`form_handler.py:695`); DynamoDB will auto-delete rows even under legal hold or a pending dispute/DSAR. Add a hold mechanism (per-row TTL suppression or hold table) + a documented hold process, and include the "unless a longer period is required to comply with law, resolve disputes, or enforce agreements" carve-out in the policy retention wording.
