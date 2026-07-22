@@ -50,6 +50,10 @@ Deliberately **not** over-promised: deletion language for Messenger-only End Use
 
 13. **Controller vs. processor determination (Q1)** — the load-bearing gate. Decides whether MyRecruiter's own policy publishes a consumer retention schedule at all, or whether that duty sits with the tenant nonprofit (Controller). Counsel decision (`data-retention-strategy.md:117`).
 
-14. **Prod TTL enforcement (honesty gate for any retention claim)** — prod is a divergent table `picasso_form_submissions` (Phase-4 carve-out, `pii-inventory.md:89`). A backfill log exists (`m4g2-prod-ttl-backfill-execution-log-2026-05-24.md`) but **TTL-enabled state + backfill completeness of pre-M4 legacy rows must be independently verified** before publishing any "we retain no longer than X" statement — a row missing the `ttl` attribute never expires.
+14. **Prod TTL enforcement (honesty gate for any retention claim) — ✅ VERIFIED 2026-07-21** (read-only, prod acct 614, `picasso_form_submissions`):
+    - `describe-time-to-live` → `TimeToLiveStatus: ENABLED`, `AttributeName: ttl`.
+    - Scan `attribute_not_exists(ttl)` → **0 of 47 rows missing `ttl`** (every row will expire).
+    - `ttl` values are Number epoch-seconds in the future, within the 365-day window (sampled).
+    - **Conclusion:** prod enforces the 365-day TTL uniformly; no never-expiring legacy rows. A "retained no longer than ~12 months" statement would be truthful for prod as of this date. (Re-verify before publish if time has elapsed; table was tiny — 47 rows — so drift is easy to re-check.)
 
 15. **Litigation-hold exception (honesty + legal gap)** — the 365-day TTL is **unconditional** (`form_handler.py:695`); DynamoDB will auto-delete rows even under legal hold or a pending dispute/DSAR. Add a hold mechanism (per-row TTL suppression or hold table) + a documented hold process, and include the "unless a longer period is required to comply with law, resolve disputes, or enforce agreements" carve-out in the policy retention wording.
