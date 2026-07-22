@@ -30,7 +30,7 @@ Deliberately **not** over-promised: deletion language for Messenger-only End Use
 
 5. **Bedrock invocation logging** — confirm whether AWS Bedrock model-invocation logging is enabled (would persist raw prompts). If enabled, ensure retention/security statements remain accurate.
 
-6. **Contact method** — page routes all requests to `info@myrecruiter.ai` (matches the prior page and is a live inbox). Consider standing up a dedicated `privacy@myrecruiter.ai` for CCPA/state-law request handling and Meta review. If created, update "How to Make a Request," "Deletion of Messaging Channel Data," and "Contact Us."
+6. **Contact method** — RESOLVED: page routes all privacy/rights/deletion requests to `privacy@myrecruiter.ai` (confirmed live 2026-07-21). No further action unless counsel prefers a different address.
 
 7. **Legal entity / address** — page states "MyRecruiter LLC" with email-only contact (matching the prior page, which had no mailing address). Confirm whether a physical/mailing address is required for any jurisdiction.
 
